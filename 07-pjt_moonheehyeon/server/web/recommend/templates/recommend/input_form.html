@@ -1,0 +1,34 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+{% with current=request.resolver_match.url_name %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">BETWEEN YOU & THE NEXT CHAPTER</p>
+    {% if current == 'image' %}<h1>상상 속 이야기에,<br><em>하나뿐인 표지</em>를.</h1><p>마음에 그린 장면을 들려주세요.<br>당신의 이야기에 어울리는 책 표지를 만들어요.</p>
+    {% elif current == 'tts' %}<h1>마음에 남은 문장을,<br><em>목소리</em>로 만나요.</h1><p>다시 듣고 싶은 문장이나 추천 이유를 남겨주세요.<br>잠깐 눈을 감고, 이야기에 귀 기울여 보세요.</p>
+    {% elif current == 'flow' %}<h1>책에 관한 상상,<br><em>무엇이든</em> 들려주세요.</h1><p>읽고 싶은 책부터 만들고 싶은 표지까지.<br>당신의 한 문장에 알맞은 방법으로 답할게요.</p>
+    {% elif current == 'validate' %}<h1>좋은 발견의 시작,<br><em>한 문장</em>부터.</h1><p>300자 이내의 취향을 입력하고 저장해 보세요.<br>빈 입력과 글자 수 제한을 확인하는 공간이에요.</p>
+    {% elif current == 'route' %}<h1>당신의 한 문장,<br><em>어디로</em> 이어질까요?</h1><p>책을 추천받거나, 새로운 표지를 만들거나.<br>요청에 알맞은 경로를 먼저 확인해 보세요.</p>
+    {% else %}<h1>취향을 따라,<br><em>새로운 책</em> 속으로.</h1><p>오늘의 기분, 좋아하는 이야기, 문득 떠오른 취향.<br>당신의 한 문장에서 다음 책을 찾아드려요.</p>{% endif %}
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="art-orbit"></div><span class="art-star">✳</span><span class="art-dot"></span><div class="book-object book-one"><small>THE ART OF READING</small><strong>이야기<br>사이를<br>걷다</strong><span class="book-line"></span><span class="book-bottom">SAICHAEK COLLECTION</span></div><div class="book-object book-two"><small>A NEW CHAPTER</small><strong>나의<br>다음<br>페이지</strong><span class="book-line"></span><span class="book-bottom">FIND YOUR OWN STORY</span></div></div>
+</section>
+<section aria-labelledby="prompt-heading">
+  <div class="section-heading"><h2 id="prompt-heading">{% if current == 'image' %}어떤 표지를 만들까요?{% elif current == 'tts' %}어떤 문장을 들어볼까요?{% elif current == 'validate' %}나의 취향 기록하기{% elif current == 'route' %}어떤 요청을 분류할까요?{% elif current == 'flow' %}어떤 이야기를 시작할까요?{% else %}어떤 책을 찾고 있나요?{% endif %}</h2><span>YOUR READING, YOUR WAY</span></div>
+  <div class="prompt-card">
+    <div class="card-kicker"><svg class="icon"><use href="#i-spark"/></svg>{% if current == 'tts' %}문장에 목소리를 입혀드릴게요{% elif current == 'image' %}상상을 한 장의 표지로{% else %}정해진 답은 없어요. 편하게 이야기해 주세요.{% endif %}</div>
+    <form method="post" {% if current == 'form' %}action="{% url 'recommend:text' %}"{% endif %} data-loading>
+      {% csrf_token %}
+      <div class="form-fields">{% include 'recommend/_fields.html' %}</div>
+      <div class="form-footer"><span class="form-footnote">{% if current == 'tts' %}최대 2,000자 · 듣고 싶은 문장을 자유롭게 남겨주세요.{% else %}최대 300자 · 장르, 분위기, 읽고 싶은 이유를 함께 알려주면 좋아요.{% endif %}</span><button type="submit"><span class="button-label">{% if current == 'image' %}나만의 표지 만들기{% elif current == 'tts' %}목소리로 듣기{% elif current == 'validate' %}취향 저장하기{% elif current == 'route' %}요청 분류하기{% elif current == 'flow' %}이야기 시작하기{% else %}나의 다음 책 찾기{% endif %}</span><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+    </form>
+  </div>
+  {% if current == 'form' or current == 'text' or current == 'flow' %}
+  <div class="suggestions"><span class="suggestion-label">이런 이야기는 어때요?</span><button type="button" class="prompt-chip" data-prompt="퇴근길에 가볍게 읽기 좋은 따뜻한 소설을 추천해줘">퇴근길, 가벼운 소설 ↗</button><button type="button" class="prompt-chip" data-prompt="요즘 조금 지쳤는데 마음에 위로가 되는 에세이를 추천해줘">마음이 쉬어가는 에세이 ↗</button><button type="button" class="prompt-chip" data-prompt="책을 잘 안 읽는 사람도 시간 가는 줄 모르고 읽을 미스터리 소설 추천해줘">밤새 읽는 미스터리 ↗</button></div>
+  {% elif current == 'image' %}<div class="suggestions"><span class="suggestion-label">상상에 힌트가 필요하다면</span><button type="button" class="prompt-chip" data-prompt="초록빛 숲속의 작은 서점, 따뜻한 수채화 스타일의 소설 표지를 만들어줘">숲속의 작은 서점 ↗</button><button type="button" class="prompt-chip" data-prompt="달빛이 비치는 고요한 바다와 작은 배가 있는 미니멀한 에세이 표지">달빛 아래의 바다 ↗</button></div>{% endif %}
+  {% if saved %}<div class="meta">취향을 기록했어요. · {{ saved.request_text }}</div>{% endif %}
+</section>
+<section class="features" aria-labelledby="discover-heading"><div class="section-heading"><h2 id="discover-heading">책을 만나는 또 다른 방법</h2><span>A LITTLE MORE DISCOVERY</span></div><div class="feature-grid"><a class="feature-card" href="{% url 'recommend:image' %}"><span class="feature-icon"><svg class="icon"><use href="#i-image"/></svg></span><span class="feature-arrow">↗</span><h3>상상에 표지를 입히다</h3><p>머릿속 이야기를 한 장의 이미지로.<br>세상에 하나뿐인 표지를 만들어보세요.</p></a><a class="feature-card" href="{% url 'recommend:analyze' %}"><span class="feature-icon"><svg class="icon"><use href="#i-scan"/></svg></span><span class="feature-arrow">↗</span><h3>표지 너머의 이야기</h3><p>눈길이 머문 책 표지 한 장으로<br>새로운 책과 취향을 발견해보세요.</p></a><a class="feature-card" href="{% url 'recommend:tts' %}"><span class="feature-icon"><svg class="icon"><use href="#i-audio"/></svg></span><span class="feature-arrow">↗</span><h3>문장을 듣는 시간</h3><p>마음에 남은 문장을 목소리로.<br>읽는 즐거움에 듣는 여유를 더해요.</p></a></div></section>
+<div class="quote-banner"><span class="quote-symbol">“</span><p>아직 만나지 못한 좋은 이야기가, 당신을 기다리고 있어요.</p><small>ONE PAGE AT A TIME</small></div>
+{% endwith %}
+{% endblock %}

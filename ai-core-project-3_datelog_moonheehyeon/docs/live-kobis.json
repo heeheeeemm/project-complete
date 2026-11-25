@@ -1,0 +1,708 @@
+{
+  "mode": "live_backend_browser",
+  "records": [
+    {
+      "message": "박스오피스 순위 알려줘",
+      "status": 200,
+      "elapsed_ms": 2427,
+      "response": {
+        "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+        "run_id": "92a83855e3234c56a5110e399fed10b1",
+        "answer": "어느 날짜에 관람하실 예정인가요?",
+        "question": "어느 날짜에 관람하실 예정인가요?",
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": null,
+          "start_time": null,
+          "deadline": null,
+          "deadline_inclusive": null,
+          "region": null,
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": null,
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "ed45d37f72784f83a4635cf08bc6210d",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:31.019287+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "697963acffce465381b37fcdbb4fe6a2",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:52:32.613352+00:00",
+            "data": {
+              "intent": "plan",
+              "reason": "사용자가 박스오피스 순위 요청함으로 기본 최신 순위 조회 도구를 선택함",
+              "updates": {},
+              "selected_tools": [
+                "get_boxoffice"
+              ]
+            }
+          },
+          {
+            "event_id": "8c98ed479b6e4de1a1bca4e283f0d06c",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:32.628872+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 1593.92
+            }
+          },
+          {
+            "event_id": "d18706bca3814c1297a8ae1ae7e0bb09",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:32.642827+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "ca9988df24e54b1d9ed51e954922af3a",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:32.654988+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "51506dc2fc7c4d70873c497f36d36040",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:32.672766+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "0bdd7271806b4fe0be782cd86cfe15fe",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:32.688604+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "0b63d71187e8483da0297a47f2e5e49b",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:32.702911+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "87418dbddd6d45308a337b06a1ffb116",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:32.718372+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "57c0b59b07524c75a326b12942f3593c",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:32.732446+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "d6c534f0b0b647bca501b3765f79a0c4",
+            "session_id": "b09d1a53db65407e9d425bc1d75a444c",
+            "run_id": "92a83855e3234c56a5110e399fed10b1",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:32.747259+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    },
+    {
+      "message": "영화코드 20124079의 러닝타임과 장르 상세 정보를 알려줘",
+      "status": 200,
+      "elapsed_ms": 4761,
+      "response": {
+        "session_id": "066eff4163764171b14505b9dc34e371",
+        "run_id": "5e176b8579854542ae38f47b99dab38f",
+        "answer": "조건과 비교할 수 있는 영화 1편을 찾았습니다. 카드의 러닝타임과 판단 기준을 확인해 주세요.",
+        "question": null,
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": null,
+          "start_time": null,
+          "deadline": null,
+          "deadline_inclusive": null,
+          "region": null,
+          "genre": null,
+          "movie_cd": "20124079",
+          "movie_nm": null,
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [
+          {
+            "movie_cd": "20124079",
+            "movie_nm": "광해, 왕이 된 남자",
+            "runtime_minutes": 131,
+            "genres": [
+              "사극",
+              "드라마"
+            ],
+            "ratings": [
+              "15세이상관람가"
+            ],
+            "source": "KOBIS 영화 상세정보",
+            "watch_date": null,
+            "earliest_start": null,
+            "latest_start": null,
+            "required_minutes": 131,
+            "buffer_minutes": 0,
+            "basis": "러닝타임 131분 + 사용자 여유 시간 0분. 실제 상영 시간표는 별도 확인해야 합니다."
+          }
+        ],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "d25d458c99254c29972f901404450339",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:32.800669+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "d51257d3eedf404893fa55031af04acb",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:52:34.774614+00:00",
+            "data": {
+              "intent": "facts",
+              "reason": "사용자가 영화코드 20124079의 러닝타임과 장르 상세 정보를 요청함",
+              "updates": {
+                "movie_cd": "20124079"
+              },
+              "selected_tools": [
+                "get_movie_detail"
+              ]
+            }
+          },
+          {
+            "event_id": "d35699f995a347a88605f0ceae49d100",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:34.794229+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 1979.17
+            }
+          },
+          {
+            "event_id": "8730019f578643d598c36c0e78efb330",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:34.807810+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "d6fb751dc970458cb8878829c5c40ad1",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "work_plan",
+            "timestamp": "2026-11-20T03:52:34.820671+00:00",
+            "data": {
+              "tasks": [
+                {
+                  "tool": "get_movie_detail",
+                  "args": {
+                    "movie_cd": "20124079"
+                  }
+                }
+              ],
+              "attempt": 0
+            }
+          },
+          {
+            "event_id": "49783c9ce4d84c6fb8cc7357e960e050",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:34.833508+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 13.52
+            }
+          },
+          {
+            "event_id": "38e9135686ff4b5fac5d68d5e4a8d5ea",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:34.847215+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "ff41459726dd4ee98059aa79a0b86a99",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "tool_request",
+            "timestamp": "2026-11-20T03:52:34.862747+00:00",
+            "data": {
+              "tool": "get_movie_detail",
+              "arguments": {
+                "movie_cd": "20124079"
+              }
+            }
+          },
+          {
+            "event_id": "862ce382a58b409ba1b956a90c928e0f",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "tool_response",
+            "timestamp": "2026-11-20T03:52:37.405694+00:00",
+            "data": {
+              "tool": "get_movie_detail",
+              "result": {
+                "ok": true,
+                "data": {
+                  "movie_cd": "20124079",
+                  "movie_nm": "광해, 왕이 된 남자",
+                  "runtime_minutes": 131,
+                  "genres": [
+                    "사극",
+                    "드라마"
+                  ],
+                  "ratings": [
+                    "15세이상관람가"
+                  ],
+                  "source": "KOBIS 영화 상세정보"
+                }
+              },
+              "elapsed_ms": 2529.12
+            }
+          },
+          {
+            "event_id": "a1e742816185421fa859eea0f94d4bb1",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:37.423846+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 2561.73
+            }
+          },
+          {
+            "event_id": "cef54ba32a864197893100b2e389fee2",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:37.440178+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "4b66a85adeba4874950a804a62b3c50a",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "constraint_result",
+            "timestamp": "2026-11-20T03:52:37.458630+00:00",
+            "data": {
+              "recommended": 1,
+              "excluded": [],
+              "replans": 0,
+              "retry": false,
+              "stop_reason": ""
+            }
+          },
+          {
+            "event_id": "2fcb13989adf48a09ada5877c7137b37",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:37.473924+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 14.73
+            }
+          },
+          {
+            "event_id": "06d5a1f9e6b74ee1b034fbae2d5d1dce",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:37.488780+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "4d7c94e5f2544d58a003e1ff0d59aca4",
+            "session_id": "066eff4163764171b14505b9dc34e371",
+            "run_id": "5e176b8579854542ae38f47b99dab38f",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:37.501433+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.02
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    },
+    {
+      "message": "서면에서 임영웅 나오는 영화 보고싶어",
+      "status": 200,
+      "elapsed_ms": 2298,
+      "response": {
+        "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+        "run_id": "6118dfc6d07349e893de43f735703a44",
+        "answer": "관련 영화를 찾았어요. 아래 작품 중 어떤 영화가 맞으신가요?",
+        "question": "관련 영화를 찾았어요. 아래 작품 중 어떤 영화가 맞으신가요?",
+        "notice": null,
+        "movie_matches": [
+          {
+            "movie_cd": "20268264",
+            "movie_nm": "임영웅ㅣ아임 히어로 더 스타디움 2",
+            "year": "2026",
+            "open_date": "2026-11-18"
+          },
+          {
+            "movie_cd": "20257209",
+            "movie_nm": "임영웅 [아임 히어로 2] 청음회",
+            "year": "2025",
+            "open_date": "2025-08-28"
+          },
+          {
+            "movie_cd": "20242794",
+            "movie_nm": "임영웅│아임 히어로 더 스타디움",
+            "year": "2024",
+            "open_date": "2024-08-28"
+          },
+          {
+            "movie_cd": "20230495",
+            "movie_nm": "아임 히어로 더 파이널",
+            "year": null,
+            "open_date": null
+          }
+        ],
+        "conditions": {
+          "watch_date": null,
+          "start_time": null,
+          "deadline": null,
+          "deadline_inclusive": null,
+          "region": "서면",
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": null,
+          "movie_query": "임영웅",
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "5d50861dd7c04adfbce08ca37f8961f9",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:37.562496+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "983384b4458f428bace6150f98a42d51",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:52:37.579839+00:00",
+            "data": {
+              "intent": "showtimes",
+              "reason": "인물명 또는 불완전한 제목으로 영화 후보를 먼저 검색",
+              "updates": {
+                "region": "서면",
+                "movie_cd": null,
+                "movie_nm": null,
+                "movie_query": "임영웅"
+              },
+              "selected_tools": [
+                "search_movies"
+              ]
+            }
+          },
+          {
+            "event_id": "ed93ccc08f1640628a16664d0f12a8b1",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:37.594998+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 18.45
+            }
+          },
+          {
+            "event_id": "f9e48454581c47eca83b47291e98a7a6",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:37.610519+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "e49caf8d30fd4481a99076931f9d4769",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "work_plan",
+            "timestamp": "2026-11-20T03:52:37.623597+00:00",
+            "data": {
+              "tasks": [
+                {
+                  "tool": "search_movies",
+                  "args": {
+                    "query": "임영웅"
+                  }
+                }
+              ],
+              "attempt": 0
+            }
+          },
+          {
+            "event_id": "6b0e43319d7544b08dc34c666d518b0b",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:37.638561+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 15.09
+            }
+          },
+          {
+            "event_id": "9871e1b94e9c441dbb82de8d86bfeda0",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:37.655803+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "880106a097034756a7c11a109436a70a",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "tool_request",
+            "timestamp": "2026-11-20T03:52:37.670443+00:00",
+            "data": {
+              "tool": "search_movies",
+              "arguments": {
+                "query": "임영웅"
+              }
+            }
+          },
+          {
+            "event_id": "71691e8d9d264dbe9e9354491fb5a1e1",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "tool_response",
+            "timestamp": "2026-11-20T03:52:39.730752+00:00",
+            "data": {
+              "tool": "search_movies",
+              "result": {
+                "ok": true,
+                "data": {
+                  "items": [
+                    {
+                      "movie_cd": "20268264",
+                      "movie_nm": "임영웅ㅣ아임 히어로 더 스타디움 2",
+                      "year": "2026",
+                      "open_date": "2026-11-18"
+                    },
+                    {
+                      "movie_cd": "20257209",
+                      "movie_nm": "임영웅 [아임 히어로 2] 청음회",
+                      "year": "2025",
+                      "open_date": "2025-08-28"
+                    },
+                    {
+                      "movie_cd": "20242794",
+                      "movie_nm": "임영웅│아임 히어로 더 스타디움",
+                      "year": "2024",
+                      "open_date": "2024-08-28"
+                    },
+                    {
+                      "movie_cd": "20230495",
+                      "movie_nm": "아임 히어로 더 파이널",
+                      "year": null,
+                      "open_date": null
+                    }
+                  ],
+                  "source": "KOBIS 영화 목록·영화인 필모그래피",
+                  "warnings": []
+                }
+              },
+              "elapsed_ms": 2041.64
+            }
+          },
+          {
+            "event_id": "0b4113bff9974d079668601022a61d57",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:39.746012+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 2079.23
+            }
+          },
+          {
+            "event_id": "843e4d8692d44e47a49c5d074fdb9961",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:39.765774+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "378b9c62a6ba44a4a4197927eaa025c4",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:39.779172+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "aa405b6b473b4e6e80cc186381b92fa3",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:52:39.794969+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "fa3710aa92b344038e82e1d882595e27",
+            "session_id": "2d38b8392cb94c23bc89a98ac26bd617",
+            "run_id": "6118dfc6d07349e893de43f735703a44",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:52:39.808651+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    }
+  ]
+}

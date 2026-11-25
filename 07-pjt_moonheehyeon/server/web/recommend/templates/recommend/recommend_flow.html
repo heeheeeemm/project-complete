@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-title"><p class="eyebrow">FROM A THOUGHT TO A STORY</p><h1>한 문장에서 시작된, 당신의 표지.</h1><p>들려주신 이야기를 이렇게 그려봤어요.</p></div>
+<div class="panes">
+  <div class="pane">
+    <h3>당신이 들려준 이야기</h3>
+    <div class="result">{{ result.request_text }}</div>
+    <div class="meta">상상 속 장면을 표지 이미지로 담았어요.</div>
+    <a class="back" href="{% url 'recommend:flow' %}">← 다시 입력</a>
+  </div>
+  <div class="pane">
+    <h3>당신을 위한 한 장의 표지</h3>
+    {% if image_base64 %}
+      <img class="cover" src="data:image/jpeg;base64,{{ image_base64 }}" alt="생성된 표지 이미지">
+    {% else %}
+      <div class="result">{{ result.content }}</div>
+      {% if result.model_used %}<div class="meta">사용된 모델: <b>{{ result.model_used }}</b></div>{% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

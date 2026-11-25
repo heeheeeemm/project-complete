@@ -1,0 +1,8 @@
+{
+  "model": "gemini-3.1-flash-lite-image",
+  "format": "JPEG",
+  "width": 864,
+  "height": 1248,
+  "source_media_url": "/media/images/84f2964d-9a0d-4098-ab5b-741e3dbc51e7.jpg",
+  "note": "Actual GMS-generated image saved by Django; API key and runtime database are excluded."
+}

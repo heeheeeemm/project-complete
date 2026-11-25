@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-title"><p class="eyebrow">A SMALL PAUSE</p><h1>잠깐, 책장을 고르고 있어요.</h1><p>연결이 원활하지 않아요. 잠시 후 같은 요청을 다시 보내주세요.</p></div>
+<div class="panes">
+  <div class="pane">
+    <h3>당신이 남긴 이야기</h3>
+    <div class="result">{{ user_input }}</div>
+    <a class="back" href="{% url request.resolver_match.view_name %}">← 다시 입력</a>
+  </div>
+  <div class="pane">
+    <h3>잠시 쉬어가는 페이지</h3>
+    <div class="notice error">
+      잠시 후 다시 시도해 주세요.<br>
+      <details><summary>연결 상태 확인</summary><small>Proxy 서버 응답 코드: {{ status_code }} — FastAPI 를 실행한 터미널의 로그를 확인하세요.</small></details>
+    </div>
+  </div>
+</div>
+{% endblock content %}

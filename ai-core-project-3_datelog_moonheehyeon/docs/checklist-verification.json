@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "통과": 26,
+    "해당없음": 6
+  },
+  "blank_results": 0,
+  "formulas_preserved": true,
+  "merged_ranges_preserved": true,
+  "cached_summary_verified": true,
+  "author": "성명 미제공으로 미기입",
+  "render_method": "셀 서식을 읽은 HTML 미리보기, Excel 네이티브 렌더링은 미실행"
+}

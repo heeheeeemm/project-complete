@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}도서 등록 | 책 이야기{% endblock title %}
+{% block content %}
+<div class="form-shell">
+  <nav class="breadcrumb" aria-label="현재 위치"><a href="{% url 'books:index' %}">도서 목록</a><span aria-hidden="true">/</span><span>도서 등록</span></nav>
+  <section class="panel form-panel">
+    <header class="form-header"><p class="eyebrow">YOUR READING STORY</p><h1>도서 등록</h1><p>마음에 남은 책 한 권을 서재에 소개해주세요.</p></header>
+    
+    <form action="{% url 'books:create' %}" method="POST">
+      {% csrf_token %}
+      {% include 'includes/form_fields.html' %}
+      <div class="form-actions"><button class="button" type="submit">등록</button><a class="text-link" href="{% url 'books:index' %}">도서 목록</a></div>
+    </form>
+    
+  </section>
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+Command: -X utf8 manage.py test --verbosity 2
+Exit code: 0
+
+Found 19 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, contenttypes, recommend, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying recommend.0001_initial... OK
+  Applying recommend.0002_recommendation_session_key_conversationmessage... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+test_context_is_bounded_and_ordered (recommend.test_conversation.ConversationTests.test_context_is_bounded_and_ordered) ... ok
+test_followup_includes_initial_and_previous_conversation (recommend.test_conversation.ConversationTests.test_followup_includes_initial_and_previous_conversation) ... ok
+test_guardrail_and_failure_preserve_history_and_question (recommend.test_conversation.ConversationTests.test_guardrail_and_failure_preserve_history_and_question) ... ok
+test_invalid_followups_do_not_call_model (recommend.test_conversation.ConversationTests.test_invalid_followups_do_not_call_model) ... ok
+test_model_html_is_escaped_and_bold_is_readable (recommend.test_conversation.ConversationTests.test_model_html_is_escaped_and_bold_is_readable) ... ok
+test_only_owner_session_can_read_or_reply (recommend.test_conversation.ConversationTests.test_only_owner_session_can_read_or_reply) ... ok
+test_all_input_pages_render (recommend.tests.RecommendationTests.test_all_input_pages_render) ... ok
+test_connection_failure_shows_retry_page (recommend.tests.RecommendationTests.test_connection_failure_shows_retry_page) ... ok
+test_csrf_is_required (recommend.tests.RecommendationTests.test_csrf_is_required) ... ok
+test_flow_routes_before_generation (recommend.tests.RecommendationTests.test_flow_routes_before_generation) ... ok
+test_flow_stops_on_route_failure_and_generation_rejection (recommend.tests.RecommendationTests.test_flow_stops_on_route_failure_and_generation_rejection) ... ok
+test_image_saved_and_served_by_media_url (recommend.tests.RecommendationTests.test_image_saved_and_served_by_media_url) ... ok
+test_invalid_input_never_calls_proxy (recommend.tests.RecommendationTests.test_invalid_input_never_calls_proxy) ... ok
+test_rejected_and_failed_requests_are_not_saved (recommend.tests.RecommendationTests.test_rejected_and_failed_requests_are_not_saved) ... ok
+test_required_and_length_validation (recommend.tests.RecommendationTests.test_required_and_length_validation) ... ok
+test_score_failure_preserves_recommendation (recommend.tests.RecommendationTests.test_score_failure_preserves_recommendation) ... ok
+test_text_score_and_model_are_saved (recommend.tests.RecommendationTests.test_text_score_and_model_are_saved) ... ok
+test_tts_player (recommend.tests.RecommendationTests.test_tts_player) ... ok
+test_uploaded_cover_is_encoded (recommend.tests.RecommendationTests.test_uploaded_cover_is_encoded) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.229s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+

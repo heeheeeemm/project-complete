@@ -1,0 +1,92 @@
+[
+  {
+    "title": "서비스 홈",
+    "description": "아이보리·녹색 디자인과 취향 입력, 예시 버튼, 기능별 메뉴.",
+    "screenshot": "screenshots/00_home.png"
+  },
+  {
+    "title": "F701 · 필수 입력 검증",
+    "description": "빈 입력을 전송했을 때 필수 입력 오류가 표시됩니다.",
+    "screenshot": "screenshots/F701_empty.png"
+  },
+  {
+    "title": "F701 · 정상 입력 저장",
+    "description": "300자 이내의 정상 입력이 검증을 통과해 저장됩니다.",
+    "screenshot": "screenshots/F701_saved.png"
+  },
+  {
+    "title": "F701 · 최대 길이 검증",
+    "description": "301자 입력을 서버가 거절하고 글자 수 오류를 표시합니다.",
+    "screenshot": "screenshots/F701_length.png"
+  },
+  {
+    "title": "F702 · F709 · 추천과 적합도 평가",
+    "description": "실제 GMS 텍스트 추천, 사용 모델, 점수와 평가 이유를 표시합니다. 후속 대화도 함께 확인할 수 있습니다.",
+    "screenshot": "screenshots/F702_F709_text_score.png"
+  },
+  {
+    "title": "F703 · 부적절한 요청 거절",
+    "description": "명세서 예시의 부적절한 요청을 실제 Guardrail이 403으로 거절합니다.",
+    "screenshot": "screenshots/F703_rejected.png"
+  },
+  {
+    "title": "F704 · 텍스트 경로 결정",
+    "description": "소설 추천 요청이 /chat/completions로 분류됩니다.",
+    "screenshot": "screenshots/F704_text_route.png"
+  },
+  {
+    "title": "F704 · 이미지 경로 결정",
+    "description": "표지 제작 요청이 /images/generations로 분류됩니다.",
+    "screenshot": "screenshots/F704_image_route.png"
+  },
+  {
+    "title": "F705 · F712 · 이미지 생성과 미디어 저장",
+    "description": "gemini-3.1-flash-lite-image로 실제 생성한 이미지를 JPEG로 저장하고 /media/images/ 주소로 제공합니다.",
+    "screenshot": "screenshots/F705_F712_image_media.png"
+  },
+  {
+    "title": "F706 · 연결 실패 안내",
+    "description": "일반 서버와 분리한 포트 8082의 테스트 인스턴스에서 프록시 연결 실패를 발생시켰습니다. 실제 503 안내이며 GMS 인증 실패를 재현한 캡처는 아닙니다.",
+    "screenshot": "screenshots/F706_connection_error.png"
+  },
+  {
+    "title": "F707 · 표지 이미지 분석",
+    "description": "직접 만든 테스트용 어린 왕자 표지를 실제 GMS에 전송해 제목·저자 인식과 유사 도서 추천을 확인했습니다. 실제 출판 표지 사진이 아닙니다.",
+    "screenshot": "screenshots/F707_cover_analysis.png"
+  },
+  {
+    "title": "F708 · F710 · 통합 흐름과 복잡한 요청",
+    "description": "경로 결정 후 텍스트 생성으로 연결됩니다. 여러 조건을 가진 요청은 gpt-5-mini로 처리되었습니다.",
+    "screenshot": "screenshots/F708_F710_flow_complex.png"
+  },
+  {
+    "title": "F708 · 통합 흐름의 이미지 생성",
+    "description": "Django가 이미지 경로를 결정한 후 실제 이미지 생성 결과를 표시합니다.",
+    "screenshot": "screenshots/F708_flow_image.png"
+  },
+  {
+    "title": "F708 · 통합 흐름의 거절 처리",
+    "description": "경로 결정 이후 생성 API 내부의 Guardrail이 부적절한 요청을 거절합니다.",
+    "screenshot": "screenshots/F708_flow_rejected.png"
+  },
+  {
+    "title": "F710 · 단순 요청의 경량 모델 선택",
+    "description": "자동 모델 선택을 활성화한 단순 추천 요청은 gpt-5-nano로 처리되었습니다.",
+    "screenshot": "screenshots/F710_simple_nano.png"
+  },
+  {
+    "title": "F711 · 텍스트 음성 변환",
+    "description": "nova MP3를 생성해 플레이어에 표시했습니다. 실제 재생으로 currentTime 증가와 오류 없음도 확인했습니다.",
+    "screenshot": "screenshots/F711_audio.png"
+  },
+  {
+    "title": "추가 기능 · 이어서 질문하기",
+    "description": "첫 추천의 책을 참조한 추가 질문과 문맥을 유지한 답변을 실제 GMS로 확인했습니다.",
+    "screenshot": "screenshots/extra_followup_chat.png"
+  },
+  {
+    "title": "추가 기능 · 모바일 화면",
+    "description": "390×844 화면에서 대화 입력과 답변을 확인했으며 가로 넘침이 없습니다.",
+    "screenshot": "screenshots/extra_mobile_chat.png"
+  }
+]

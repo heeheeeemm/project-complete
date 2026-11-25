@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-11-20",
+  "archive_root": "DateLog",
+  "scan": {
+    "forbidden_files": [],
+    "credential_pattern_files": [],
+    "example_keys_empty": true
+  },
+  "scope": "현재 설치된 검증용 venv로 비밀 파일 없는 압축 해제본을 실행. 지정 requirements 전체 신규 설치는 별도 수행하지 않음.",
+  "clean_extraction_checks": [
+    {
+      "name": "unittest",
+      "exit_code": 0,
+      "summary": "\n----------------------------------------------------------------------\nRan 126 tests in 5.752s\n\nOK"
+    },
+    {
+      "name": "python_compile",
+      "exit_code": 0,
+      "summary": ""
+    },
+    {
+      "name": "openapi",
+      "exit_code": 0,
+      "summary": "OpenAPI generated"
+    },
+    {
+      "name": "javascript_syntax",
+      "exit_code": 0,
+      "summary": ""
+    }
+  ],
+  "zip_crc_check": "passed",
+  "source_file_count": 80,
+  "key_db_venv_excluded": true
+}

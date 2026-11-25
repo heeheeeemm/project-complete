@@ -1,0 +1,410 @@
+{
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 269,
+      "sha256": "00236c390e360fafbf0bd57a6d51f65d885af8a7b044c2fa2efc003f701d404e"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 68,
+      "sha256": "1865d7ec1f5694960fcff8573adc83ea48c353e827ea5f9bfae9f1243aa0cd26"
+    },
+    {
+      "path": "app/agent.py",
+      "bytes": 27945,
+      "sha256": "616a66765ac0aa3b2e41c342cd4d956ebfc32d83e91a05ab3b390aaebfce3da4"
+    },
+    {
+      "path": "app/api/chat.py",
+      "bytes": 728,
+      "sha256": "be426640fbd32bf7f565b70ba369059b88fbd4b4618ea694888ca536da6425c4"
+    },
+    {
+      "path": "app/api/cinemas.py",
+      "bytes": 1568,
+      "sha256": "c71e87e475b394340e381c4b57b31948179243ab5bd2686cb3b5ce0ba7c57ca3"
+    },
+    {
+      "path": "app/api/logs.py",
+      "bytes": 892,
+      "sha256": "4e92b4b4d9e35af1762223321e24ce408a8d4efdaf184fe84d301a85361ed76a"
+    },
+    {
+      "path": "app/api/plans.py",
+      "bytes": 1176,
+      "sha256": "ab579025d7f553defd86b25e8e9feaf6dbc46287ac627ef1c37a639b1e203445"
+    },
+    {
+      "path": "app/api/showtimes.py",
+      "bytes": 1277,
+      "sha256": "6bcb3b5b8468faa8cae90c381bb67a463fd6a6a582dd0ae6edd762fb544cb769"
+    },
+    {
+      "path": "app/cinema_providers.py",
+      "bytes": 11192,
+      "sha256": "a806a121baecad269ff9955259c9f0247a6961bd95035c2954339485aae83e4d"
+    },
+    {
+      "path": "app/events.py",
+      "bytes": 949,
+      "sha256": "f81132b28288f8c3a413679941be7ba5a016490822ff8cc48c8c11979acb01e1"
+    },
+    {
+      "path": "app/itineraries.py",
+      "bytes": 6804,
+      "sha256": "1d845db81de71f8359336a642cfc0cd3b338df711a7538d47c071dbb3d3967a9"
+    },
+    {
+      "path": "app/llm.py",
+      "bytes": 9913,
+      "sha256": "e24b41d47202c6c8bf9c734183efbadd84b252863bf2e617398d3d3fff6c1331"
+    },
+    {
+      "path": "app/main.py",
+      "bytes": 1554,
+      "sha256": "686e8cf47d972935b8439b9e386b97b4117153207bdc1c146b8ca51022689869"
+    },
+    {
+      "path": "app/movie_lookup.py",
+      "bytes": 3282,
+      "sha256": "c5c723982d2100d5874ecaa89e2d54799e2b4765e1198fcaa4613eb109b55751"
+    },
+    {
+      "path": "app/movie_request.py",
+      "bytes": 4137,
+      "sha256": "92fcf720141f0cf3c7d02e1623d9094edcbcfa4a7b502e385e1a5cc9386c211e"
+    },
+    {
+      "path": "app/place_request.py",
+      "bytes": 2794,
+      "sha256": "246f957190828b69d18ecee87bceb7e3930ce60c64be16145cb6f1a9decd418d"
+    },
+    {
+      "path": "app/places.py",
+      "bytes": 5105,
+      "sha256": "2a7ca7f24bfab20b3ee15ee2e0bf111b1a9bacc9b8ccf9ed386a6f89b3136538"
+    },
+    {
+      "path": "app/schemas.py",
+      "bytes": 6050,
+      "sha256": "73eb46dfcef1e02bc7c133200d107c852213016047b96fee7b66426435b1ee11"
+    },
+    {
+      "path": "app/showtime_request.py",
+      "bytes": 6398,
+      "sha256": "886313bbfaf66840bb44f8efbfcfc9f42370d81ab9c9e9b56c1c2211172ec6a2"
+    },
+    {
+      "path": "app/showtime_search.py",
+      "bytes": 4511,
+      "sha256": "6ed7cd9452e84673006f9ac91a5f2ad46470d000585c318540597719f6d2860d"
+    },
+    {
+      "path": "app/showtimes.py",
+      "bytes": 13644,
+      "sha256": "45fc420705d23da7d36af80c3144c5bd1be0b2a1a39ee8912de93587ae3d8dad"
+    },
+    {
+      "path": "app/store.py",
+      "bytes": 5261,
+      "sha256": "864ddc195b305600c2a4608829bdf64b0eba0f8992e35dee4862e606d32b6ddb"
+    },
+    {
+      "path": "app/time_conditions.py",
+      "bytes": 7491,
+      "sha256": "6ea7b87aa7c2ac86948b43f21e43cda765d80054648055696203a7746d9d6b48"
+    },
+    {
+      "path": "docs/agent-design.md",
+      "bytes": 4413,
+      "sha256": "e991b9dcfd1789aea359b03c9472406a77da028a9b9e1c29d9aa2a6a7793b960"
+    },
+    {
+      "path": "docs/agent-graph.mmd",
+      "bytes": 482,
+      "sha256": "2c381e77bbe72447bc1d86ec22f51007dfabf389c7ee3c7be94f6b3d4531706e"
+    },
+    {
+      "path": "docs/api-spec.md",
+      "bytes": 4084,
+      "sha256": "0f3c991a4f11e1cf1082c45fd23025f8b4545255c585b123230827ecfda32c3e"
+    },
+    {
+      "path": "docs/checklist-verification.json",
+      "bytes": 346,
+      "sha256": "114bfef2bcd285493912d67ca396250ea9e316d5c9413f1731eaaa668862a9bb"
+    },
+    {
+      "path": "docs/crud-verification.json",
+      "bytes": 2056,
+      "sha256": "540c912d3b2caf94310d857c35a7e537a67d3586e5449171ed88145c921dff76"
+    },
+    {
+      "path": "docs/external-services.md",
+      "bytes": 4273,
+      "sha256": "d07994328c12a64e10cb25af276fbf9fa078ea8a50f2484f192f1ca5b10296a0"
+    },
+    {
+      "path": "docs/live-integration.json",
+      "bytes": 47489,
+      "sha256": "a363731911c5b04b1a87e6de57bb17fc4ccd610d9646793b4185927b8e2980cf"
+    },
+    {
+      "path": "docs/live-kobis.json",
+      "bytes": 24725,
+      "sha256": "97bf107998798f66ea1493ce43495d7fc8acf4c96df90cd3bbd84a6baca29dfc"
+    },
+    {
+      "path": "docs/live-ui.json",
+      "bytes": 55312,
+      "sha256": "4344d6390091026af149255487544f2b8a6cfd92194c29befd0fec8885150fb9"
+    },
+    {
+      "path": "docs/logger-isolation.json",
+      "bytes": 621,
+      "sha256": "6aab1180f9b0cddc394d17853824c8e18df2331f239f8e758f5236438e861007"
+    },
+    {
+      "path": "docs/openapi.json",
+      "bytes": 65599,
+      "sha256": "e1966439db0735234eb3c3f9d72f023b66f9ff5c0a53d6192522e90a423bae76"
+    },
+    {
+      "path": "docs/package-verification.json",
+      "bytes": 957,
+      "sha256": "b69ca942faa71f1e77db7771a465c40309632a3282db9f32e850a67226b1e609"
+    },
+    {
+      "path": "docs/requirements.md",
+      "bytes": 6921,
+      "sha256": "73073185ba537f961cbe57165d6b9df2bb8f8a539f1d528e9bfde3ab78b500dd"
+    },
+    {
+      "path": "docs/sample-execution.json",
+      "bytes": 128050,
+      "sha256": "5b0b2ce3dc08d2b6598ff7f879c701dc7db14a8513f97bcc61fb45b34b2d1397"
+    },
+    {
+      "path": "docs/submission-desktop.png",
+      "bytes": 701365,
+      "sha256": "10bea4232e1a31977e02ca8d95eae31b6921b08d49fe33ab46c65c6947a37ed8"
+    },
+    {
+      "path": "docs/submission-guide.md",
+      "bytes": 2353,
+      "sha256": "bcc67aea05eef877b4cb1428280913a43a965f2a0c261e5e1442c2e3cce43263"
+    },
+    {
+      "path": "docs/submission-limit.png",
+      "bytes": 706925,
+      "sha256": "b4e8328d93ce38ce5899e8dbc37be85d1b7eb83345689ed976e151d0f0f60432"
+    },
+    {
+      "path": "docs/submission-live-boxoffice.png",
+      "bytes": 705566,
+      "sha256": "8e76fa10a5b4b4676959685694f7e9bbdd14f494af5fec4a9cc6a2b945c21460"
+    },
+    {
+      "path": "docs/submission-live-cafe.png",
+      "bytes": 737868,
+      "sha256": "d40a4cbf08322372868aa18a7f6618ac41248504bc0e9d4d9a7a5ed289357b0b"
+    },
+    {
+      "path": "docs/submission-live-confirmation.png",
+      "bytes": 766834,
+      "sha256": "e1144c71cc38e0a6fcb6a3f77d370cf87c03fa526414bd515ee1fa00942ccc8f"
+    },
+    {
+      "path": "docs/submission-live-movie.png",
+      "bytes": 764330,
+      "sha256": "f47e7ec047945beabbfaa02f8fea6e704fe176f99bf12e3005a1164c0cf85e24"
+    },
+    {
+      "path": "docs/submission-loading.png",
+      "bytes": 684243,
+      "sha256": "adae3269e1fd9b98cbd62c453c0a162fd8e96e768f89a34a79d0cf83bfc584e8"
+    },
+    {
+      "path": "docs/submission-missing-key.png",
+      "bytes": 688499,
+      "sha256": "c558cdb4a910ca0f5abaa4a1f397c0b19b860ea3c27906d3197cd84be17e7396"
+    },
+    {
+      "path": "docs/submission-mobile.png",
+      "bytes": 377598,
+      "sha256": "46f52df723dc2a584f763fda71018b82735812f8b0f7487d42d935ac24a9a662"
+    },
+    {
+      "path": "docs/submission-no-showtimes.png",
+      "bytes": 775034,
+      "sha256": "4b92a035c3f322a821f66fc85f0793d081788881afc1f623e614ba043c7a3ab8"
+    },
+    {
+      "path": "docs/submission-no_tool.png",
+      "bytes": 707202,
+      "sha256": "c3cc54dca5ac002e99c0730c92c7bd4e1fe690de423ce7e94035a662e9bb8616"
+    },
+    {
+      "path": "docs/submission-partial_failure.png",
+      "bytes": 734198,
+      "sha256": "5fbaa6f95b63f5678d6466a2933a22af8c09c4c12fae098d8ec0a08e71852ac7"
+    },
+    {
+      "path": "docs/submission-replan-events.png",
+      "bytes": 130565,
+      "sha256": "6b4ede8ef0d96ae5b646a1018ac94903aa085d96726451378f0a9a9abc78f892"
+    },
+    {
+      "path": "docs/submission-replan.png",
+      "bytes": 716863,
+      "sha256": "d35286f1749aafc124fb01aa6ca853857e7eb0fb31a2f787a3da690f820e2836"
+    },
+    {
+      "path": "docs/submission-saved-overlap.png",
+      "bytes": 100371,
+      "sha256": "3e3f6825a209e9c6b8b4f096a272cae5345834987f30624537048dcaee96501f"
+    },
+    {
+      "path": "docs/submission-single_pass.png",
+      "bytes": 714908,
+      "sha256": "98ef16254378202e7cf0850179a8c551acc3e3aedcaa67a9101794751745da61"
+    },
+    {
+      "path": "docs/tests.txt",
+      "bytes": 19784,
+      "sha256": "f896e51ff0a59452d29be6ac5a0e21844d74cc4aaf6efec14d704bc0aa97b8a4"
+    },
+    {
+      "path": "docs/tool-catalog.json",
+      "bytes": 33663,
+      "sha256": "7700e8e305eec9b7aa79d5422a54fac0a7753a9e62dc40ecb0915f2a2039851f"
+    },
+    {
+      "path": "docs/tool-definitions.md",
+      "bytes": 5416,
+      "sha256": "f1fb4f67a4dc3dccea6ad985d4741dd8c1f370170ed7da8f72a34fb6b7f443b9"
+    },
+    {
+      "path": "docs/tool-verification.json",
+      "bytes": 15096,
+      "sha256": "40e2fb53fd9edde7a5cac75b9e293656f0b3b5731cbc35bf36c34641a51d2e9f"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 7880,
+      "sha256": "34fe113263bb6cd0a13e437fe3eeace869feffb4f8e8611742ad15ad271c839b"
+    },
+    {
+      "path": "docs/verification-environment.json",
+      "bytes": 1690,
+      "sha256": "7f6ff0d91743ac489146c8995646dd7bd8ca4098a517e28eece1e6b2d916636e"
+    },
+    {
+      "path": "docs/셀프체크리스트_점검완료.xlsx",
+      "bytes": 13940,
+      "sha256": "85a177c8dd90e9795c444ebded24430eca881250c4b6d42d4a0f44b86e073825"
+    },
+    {
+      "path": "index.html",
+      "bytes": 99516,
+      "sha256": "38e07cb80139e0b726f0bc70612932e094f8affd78561060eca19ecc9751b0c8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6420,
+      "sha256": "8dc2bc9b1f2745ee516c5dece8230eaf26455422e7943a0f3318b1c6544fb831"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 287,
+      "sha256": "f1100bfc093c790cf94dc87248a54fbd558528a8338534b71e8012a27a5d7439"
+    },
+    {
+      "path": "scripts/verify_live.py",
+      "bytes": 1950,
+      "sha256": "e90231acf2fb629cac037ed97aeb4c636b7d3032c21e761c955c5f5ed281f403"
+    },
+    {
+      "path": "scripts/verify_scenarios.py",
+      "bytes": 5021,
+      "sha256": "c3593ef5fb01cae27c37b12f6113e937250eebf090ec5bb01dca1948a79bd9c7"
+    },
+    {
+      "path": "scripts/verify_showtimes.py",
+      "bytes": 1939,
+      "sha256": "db05622ba84e0016086fab2c2a4464a7f1f1861e1007ece2a6a5b24d684b6376"
+    },
+    {
+      "path": "scripts/verify_submission.py",
+      "bytes": 4797,
+      "sha256": "b909f6fb507bd88ce0122f2e0e52497bfd6c79a5da28ffbeaeee1dc79bc2881e"
+    },
+    {
+      "path": "serve_frontend.py",
+      "bytes": 1124,
+      "sha256": "3bfb5138a0797c61319b2f3bebbfe4b2485ec5fd36e9fbdd78bfa1426db7de67"
+    },
+    {
+      "path": "tests/test_conversation_context.py",
+      "bytes": 7873,
+      "sha256": "91888dde0f728c2cec270f4b444a7eb8e4ec9a85d2f244f13eb37c374f71353a"
+    },
+    {
+      "path": "tests/test_date_course.py",
+      "bytes": 9425,
+      "sha256": "cd06def58e683cf49adb41e74361bac03b700f3e3c9eb441db6d3a5b0f9b6bc8"
+    },
+    {
+      "path": "tests/test_itineraries.py",
+      "bytes": 4171,
+      "sha256": "61e363456d480404776bb7d8ded5374cefff47991fb6e4d9c9d765a1828f98de"
+    },
+    {
+      "path": "tests/test_llm_errors.py",
+      "bytes": 3674,
+      "sha256": "1028014dc09b81082dcd4a4fb55f28548e3f0ff9b73b474c286bb7eba9f8227f"
+    },
+    {
+      "path": "tests/test_movie_dialogue.py",
+      "bytes": 5432,
+      "sha256": "3bb21801210f0cf9daf7709e0d37c640a7d0d9d34f40f9fa7cc5b540ad2c67df"
+    },
+    {
+      "path": "tests/test_movie_lookup.py",
+      "bytes": 3879,
+      "sha256": "68d8b04077983ddddd82e12fb40645363b7ad216e0e02415b30d6c801daf9acd"
+    },
+    {
+      "path": "tests/test_multicinema.py",
+      "bytes": 10835,
+      "sha256": "93174e4272f425c55428b72c7677f838ff304f2283c390f94eef69864f01e00c"
+    },
+    {
+      "path": "tests/test_requirements.py",
+      "bytes": 26588,
+      "sha256": "73a004bfdc7e3c78bdd4b8ece6d1c43469c58b695e968d51eb4007dc398164e2"
+    },
+    {
+      "path": "tests/test_showtimes.py",
+      "bytes": 11173,
+      "sha256": "0a4c758699401c8884b1bdc19f28bf30383f4349474c896ab2397271437d0700"
+    },
+    {
+      "path": "tests/test_submission_compliance.py",
+      "bytes": 4108,
+      "sha256": "31df2d6e6466ff03b0e6d748f0d4bd719c3e937d2b3c411704f74244b571e05f"
+    },
+    {
+      "path": "tools_start.py",
+      "bytes": 12740,
+      "sha256": "74056a4f8a4c61ac445e00ae73c70b6ce4f7cb51591faa05b23417b46ecebdf5"
+    },
+    {
+      "path": "딸기케익.jpg",
+      "bytes": 223127,
+      "sha256": "5bed08a24ec34a7fe753ea2e70f3d9f0bd89da80f7020aa44033fc08401b7ebb"
+    }
+  ],
+  "note": "manifest.json 자체는 해시 목록에서 제외. .env/DB/venv/개인 기존 로그 제외."
+}

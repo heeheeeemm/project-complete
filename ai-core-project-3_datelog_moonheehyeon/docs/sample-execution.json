@@ -1,0 +1,3812 @@
+{
+  "notice": "실제 LangGraph와 SQLite로 실행했습니다. LLM 분석/외부 API 응답은 고정 데이터이며 실제 외부 연동 기록이 아닙니다. 상한 시나리오는 반복 상한 검증을 위한 가상 후보 15개를 사용합니다.",
+  "records": [
+    {
+      "scenario": "single_pass",
+      "request": "2026-11-21 오후 3시 이후, 오후 5시 전에 끝나는 영화",
+      "analysis_fixture": {
+        "intent": "plan",
+        "reason": "명시된 고정 분석 데이터",
+        "conditions": {
+          "watch_date": "2026-11-21",
+          "start_time": "15:00",
+          "deadline": "17:00"
+        },
+        "tool_names": [
+          "get_boxoffice",
+          "get_movie_detail"
+        ]
+      },
+      "expected": {
+        "replans": 0,
+        "recommendations": 1,
+        "error_codes": []
+      },
+      "actual": {
+        "replans": 0,
+        "recommendations": 1,
+        "error_codes": []
+      },
+      "difference": null,
+      "elapsed_ms": 1039.91,
+      "tool_calls": [
+        {
+          "tool": "get_boxoffice",
+          "arguments": {
+            "target_date": "2026-11-21"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000001"
+          }
+        }
+      ],
+      "session_id": "single_pass",
+      "run_id": "173724ffe6824469824a289d098ba36a",
+      "answer": "조건과 비교할 수 있는 영화 1편을 찾았습니다. 카드의 러닝타임과 판단 기준을 확인해 주세요. 관람일 집계가 없어 최근 박스오피스를 후보로 사용했습니다. 관람일 상영을 보장하지 않습니다.",
+      "question": null,
+      "notice": null,
+      "movie_matches": [],
+      "conditions": {
+        "watch_date": "2026-11-21",
+        "start_time": "15:00",
+        "deadline": "17:00"
+      },
+      "recommendations": [
+        {
+          "movie_cd": "00000001",
+          "movie_nm": "M1",
+          "runtime_minutes": 90,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "watch_date": "2026-11-21",
+          "earliest_start": "15:00",
+          "latest_start": "15:30",
+          "required_minutes": 90,
+          "buffer_minutes": 0,
+          "basis": "러닝타임 90분 + 사용자 여유 시간 0분. 실제 상영 시간표는 별도 확인해야 합니다."
+        }
+      ],
+      "excluded": [],
+      "cinemas": [],
+      "showtimes": [],
+      "showtime_search": null,
+      "places": [],
+      "place_search": null,
+      "course": {},
+      "events": [
+        {
+          "event_id": "711a99ed719342e4be4a55da5015dd1e",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.556038+00:00",
+          "data": {
+            "stage": "analyze"
+          }
+        },
+        {
+          "event_id": "f8bd5d192cc14e8d9f99616c6fe322ac",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "llm_decision",
+          "timestamp": "2026-11-20T03:53:03.569098+00:00",
+          "data": {
+            "intent": "plan",
+            "reason": "명시된 고정 분석 데이터",
+            "updates": {
+              "watch_date": "2026-11-21",
+              "start_time": "15:00",
+              "deadline": "17:00"
+            },
+            "selected_tools": [
+              "get_boxoffice",
+              "get_movie_detail"
+            ]
+          }
+        },
+        {
+          "event_id": "e1cdf14ae7394a3fa0d0f07ec55807ae",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.582725+00:00",
+          "data": {
+            "stage": "analyze",
+            "status": "completed",
+            "elapsed_ms": 13.79
+          }
+        },
+        {
+          "event_id": "5c003ce3383e4975b803484208c46c79",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.596200+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "ddcaf37ff7f848d4a11e3c7c8b7c1c19",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:03.613777+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 0
+          }
+        },
+        {
+          "event_id": "da7dce639e204573b981974768b8defd",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.628751+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 15.18
+          }
+        },
+        {
+          "event_id": "402d4a570f4149e8821941c55d842e05",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.643245+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "2f8d1954d4694f8d815142b4116df48b",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:03.651392+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "2d9468dd645e4d479b7758effd8e5f3f",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:03.675253+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "result": {
+              "ok": true,
+              "data": {
+                "items": [
+                  {
+                    "movie_cd": "00000001",
+                    "movie_nm": "M1",
+                    "rank": "1"
+                  }
+                ],
+                "requested_date": "2026-11-21",
+                "query_date": "2026-11-19",
+                "estimated": true,
+                "source": "고정 KOBIS 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.54
+          }
+        },
+        {
+          "event_id": "9d097ca078944390a3e265f034189106",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:03.688708+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000001"
+            }
+          }
+        },
+        {
+          "event_id": "cdfc4e04dfa24614b768d727d34e0609",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:03.703111+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 90,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.96
+          }
+        },
+        {
+          "event_id": "13387e78a2bd4551b789cdcb731ce77b",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.718153+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 59.15
+          }
+        },
+        {
+          "event_id": "e93ab9acc3cc43c8b70523486a9bb9ec",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.735152+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "ec08e5eb56704cdb8fc77f74e7b4b056",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:03.750091+00:00",
+          "data": {
+            "recommended": 1,
+            "excluded": [],
+            "replans": 0,
+            "retry": false,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "edcb048dcc014c3782fc5b278edc5f47",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.766439+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 16.25
+          }
+        },
+        {
+          "event_id": "73764ce5bf9442868a6dfcd46a8bf54e",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.784765+00:00",
+          "data": {
+            "stage": "respond"
+          }
+        },
+        {
+          "event_id": "242f12ed4f434c7ca5f3830359dd1f83",
+          "session_id": "single_pass",
+          "run_id": "173724ffe6824469824a289d098ba36a",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.796065+00:00",
+          "data": {
+            "stage": "respond",
+            "status": "completed",
+            "elapsed_ms": 0.06
+          }
+        }
+      ],
+      "errors": [],
+      "replans": 0
+    },
+    {
+      "scenario": "replan",
+      "request": "같은 시간 조건에서 다른 후보도 찾아 줘",
+      "analysis_fixture": {
+        "intent": "plan",
+        "reason": "명시된 고정 분석 데이터",
+        "conditions": {
+          "watch_date": "2026-11-21",
+          "start_time": "15:00",
+          "deadline": "17:00"
+        },
+        "tool_names": [
+          "get_boxoffice",
+          "get_movie_detail"
+        ]
+      },
+      "expected": {
+        "replans": 1,
+        "recommendations": 1,
+        "error_codes": []
+      },
+      "actual": {
+        "replans": 1,
+        "recommendations": 1,
+        "error_codes": []
+      },
+      "difference": null,
+      "elapsed_ms": 541.24,
+      "tool_calls": [
+        {
+          "tool": "get_boxoffice",
+          "arguments": {
+            "target_date": "2026-11-21"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000001"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000002"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000003"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000004"
+          }
+        }
+      ],
+      "session_id": "replan",
+      "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+      "answer": "조건과 비교할 수 있는 영화 1편을 찾았습니다. 카드의 러닝타임과 판단 기준을 확인해 주세요. 관람일 집계가 없어 최근 박스오피스를 후보로 사용했습니다. 관람일 상영을 보장하지 않습니다.",
+      "question": null,
+      "notice": null,
+      "movie_matches": [],
+      "conditions": {
+        "watch_date": "2026-11-21",
+        "start_time": "15:00",
+        "deadline": "17:00"
+      },
+      "recommendations": [
+        {
+          "movie_cd": "00000004",
+          "movie_nm": "M4",
+          "runtime_minutes": 90,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "watch_date": "2026-11-21",
+          "earliest_start": "15:00",
+          "latest_start": "15:30",
+          "required_minutes": 90,
+          "buffer_minutes": 0,
+          "basis": "러닝타임 90분 + 사용자 여유 시간 0분. 실제 상영 시간표는 별도 확인해야 합니다."
+        }
+      ],
+      "excluded": [
+        {
+          "movie_cd": "00000001",
+          "movie_nm": "M1",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000002",
+          "movie_nm": "M2",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000003",
+          "movie_nm": "M3",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        }
+      ],
+      "cinemas": [],
+      "showtimes": [],
+      "showtime_search": null,
+      "places": [],
+      "place_search": null,
+      "course": {},
+      "events": [
+        {
+          "event_id": "7d9a65ba7bf640f5861bfcc04ace8566",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.853928+00:00",
+          "data": {
+            "stage": "analyze"
+          }
+        },
+        {
+          "event_id": "5770c77e0e5e4e24960ce65a33311266",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "llm_decision",
+          "timestamp": "2026-11-20T03:53:03.869854+00:00",
+          "data": {
+            "intent": "plan",
+            "reason": "명시된 고정 분석 데이터",
+            "updates": {
+              "watch_date": "2026-11-21",
+              "start_time": "15:00",
+              "deadline": "17:00"
+            },
+            "selected_tools": [
+              "get_boxoffice",
+              "get_movie_detail"
+            ]
+          }
+        },
+        {
+          "event_id": "d94404434d3442a8a77374e3d30da248",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.891135+00:00",
+          "data": {
+            "stage": "analyze",
+            "status": "completed",
+            "elapsed_ms": 21.5
+          }
+        },
+        {
+          "event_id": "17a20987b792478c80a2dc59e4074de4",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.905028+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "c546b61c80c143c9a18d0b37ab37a40f",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:03.918112+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 0
+          }
+        },
+        {
+          "event_id": "72186595b5634436a9eb1b22f85c2d84",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:03.931463+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 13.07
+          }
+        },
+        {
+          "event_id": "e08e7d0840c04ec99c44334da7a998fb",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:03.947122+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "be87f2bb232f462ca75af8f667e9be97",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:03.960001+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "39548a32ca9a49f8a3f356bbc7821065",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:03.976610+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "result": {
+              "ok": true,
+              "data": {
+                "items": [
+                  {
+                    "movie_cd": "00000001",
+                    "movie_nm": "M1",
+                    "rank": "1"
+                  },
+                  {
+                    "movie_cd": "00000002",
+                    "movie_nm": "M2",
+                    "rank": "2"
+                  },
+                  {
+                    "movie_cd": "00000003",
+                    "movie_nm": "M3",
+                    "rank": "3"
+                  },
+                  {
+                    "movie_cd": "00000004",
+                    "movie_nm": "M4",
+                    "rank": "4"
+                  }
+                ],
+                "requested_date": "2026-11-21",
+                "query_date": "2026-11-19",
+                "estimated": true,
+                "source": "고정 KOBIS 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.69
+          }
+        },
+        {
+          "event_id": "bc9104423dbc41ccaa495e1b37a4b3b3",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:03.989049+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000001"
+            }
+          }
+        },
+        {
+          "event_id": "5cbd272a342c486590e675d69b41da67",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.005408+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.34
+          }
+        },
+        {
+          "event_id": "8b104b1f04384b14a66c8db3b89d6575",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.017251+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000002"
+            }
+          }
+        },
+        {
+          "event_id": "cf13eef6ff364caf8a08b434af9adb3c",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.031334+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.43
+          }
+        },
+        {
+          "event_id": "8ef4617734374dd7a60b0ca8802f5a14",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.044329+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000003"
+            }
+          }
+        },
+        {
+          "event_id": "fe7114af62434b72aa1f5e5e31748af9",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.059415+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.42
+          }
+        },
+        {
+          "event_id": "2b6a27eeb84e4a09bcb54e740ead290d",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.072756+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 113.72
+          }
+        },
+        {
+          "event_id": "e4951cbfa03049b78a7031574ead865a",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.087312+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "8eabf284d8f64c0b9a45a86830660fc8",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:04.101012+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 1,
+            "retry": true,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "80733961a5bb4c8780f48563d9c60454",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.116308+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 14.35
+          }
+        },
+        {
+          "event_id": "b425133dde224a64a599024b92b91819",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.129650+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "8f6e1f41483549f9bc08b9cb45a9d439",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "replan",
+          "timestamp": "2026-11-20T03:53:04.142333+00:00",
+          "data": {
+            "attempt": 1,
+            "reason": "조회한 후보가 제약을 충족하지 않아 다음 후보를 평가합니다."
+          }
+        },
+        {
+          "event_id": "11ec3ce9db3a48658662d9089d1782fe",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:04.156515+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 1
+          }
+        },
+        {
+          "event_id": "1d57db718f564622a0b10e7365425a8a",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.169482+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 27.24
+          }
+        },
+        {
+          "event_id": "62b1200ccad54939881ec77181c6e2e8",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.184600+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "22b31c29f99d41df8e439bfd0ffa3be9",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:04.197858+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "1bd653d36f37423380770c68914f7684",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.213692+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000004"
+            }
+          }
+        },
+        {
+          "event_id": "c14f5b7c23d54b95ac947cba143ffdf7",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.228265+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 90,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.53
+          }
+        },
+        {
+          "event_id": "2eb4d60ec8fe41ea91d1f20b175ad1a4",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.244915+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 47.22
+          }
+        },
+        {
+          "event_id": "e710cc6879a445e7894c097e896c7a60",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.259765+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "19789e94d5f3470c9963507ac42c0b9c",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:04.275916+00:00",
+          "data": {
+            "recommended": 1,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 1,
+            "retry": false,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "b955f13e9c684d67a972ee692394cd87",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.289897+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 15.34
+          }
+        },
+        {
+          "event_id": "bfc06480b28546ca81e58cc21c880aaf",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.316417+00:00",
+          "data": {
+            "stage": "respond"
+          }
+        },
+        {
+          "event_id": "230fb20e716343119344fc296390a822",
+          "session_id": "replan",
+          "run_id": "a57b0764f66f4543ae9cf0f54864ef6b",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.335527+00:00",
+          "data": {
+            "stage": "respond",
+            "status": "completed",
+            "elapsed_ms": 0.02
+          }
+        }
+      ],
+      "errors": [],
+      "replans": 1
+    },
+    {
+      "scenario": "limit",
+      "request": "2026-11-21 오후 3시부터 3시 30분 안에 끝나는 영화",
+      "analysis_fixture": {
+        "intent": "plan",
+        "reason": "명시된 고정 분석 데이터",
+        "conditions": {
+          "watch_date": "2026-11-21",
+          "start_time": "15:00",
+          "deadline": "15:30"
+        },
+        "tool_names": [
+          "get_boxoffice",
+          "get_movie_detail"
+        ]
+      },
+      "expected": {
+        "replans": 3,
+        "recommendations": 0,
+        "error_codes": []
+      },
+      "actual": {
+        "replans": 3,
+        "recommendations": 0,
+        "error_codes": []
+      },
+      "difference": null,
+      "elapsed_ms": 1124.33,
+      "tool_calls": [
+        {
+          "tool": "get_boxoffice",
+          "arguments": {
+            "target_date": "2026-11-21"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000001"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000002"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000003"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000004"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000005"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000006"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000007"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000008"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000009"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000010"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000011"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000012"
+          }
+        }
+      ],
+      "session_id": "limit",
+      "run_id": "2c4597b47a3b42df9b6520425a00f531",
+      "answer": "재계획 상한에 도달했습니다. 시작 시각이나 종료 제한 등 조건을 조정해 주시겠어요? 관람일 집계가 없어 최근 박스오피스를 후보로 사용했습니다. 관람일 상영을 보장하지 않습니다.",
+      "question": null,
+      "notice": "재계획 상한에 도달했습니다. 시작 시각이나 종료 제한 등 조건을 조정해 주시겠어요?",
+      "movie_matches": [],
+      "conditions": {
+        "watch_date": "2026-11-21",
+        "start_time": "15:00",
+        "deadline": "15:30"
+      },
+      "recommendations": [],
+      "excluded": [
+        {
+          "movie_cd": "00000001",
+          "movie_nm": "M1",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000002",
+          "movie_nm": "M2",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000003",
+          "movie_nm": "M3",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000004",
+          "movie_nm": "M4",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000005",
+          "movie_nm": "M5",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000006",
+          "movie_nm": "M6",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000007",
+          "movie_nm": "M7",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000008",
+          "movie_nm": "M8",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000009",
+          "movie_nm": "M9",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000010",
+          "movie_nm": "M10",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000011",
+          "movie_nm": "M11",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000012",
+          "movie_nm": "M12",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        }
+      ],
+      "cinemas": [],
+      "showtimes": [],
+      "showtime_search": null,
+      "places": [],
+      "place_search": null,
+      "course": {},
+      "events": [
+        {
+          "event_id": "601b51b29da94dfa9e555478535bfc93",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.397865+00:00",
+          "data": {
+            "stage": "analyze"
+          }
+        },
+        {
+          "event_id": "75d68dd7e3c94ef6b31774d12621ff65",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "llm_decision",
+          "timestamp": "2026-11-20T03:53:04.413802+00:00",
+          "data": {
+            "intent": "plan",
+            "reason": "명시된 고정 분석 데이터",
+            "updates": {
+              "watch_date": "2026-11-21",
+              "start_time": "15:00",
+              "deadline": "15:30"
+            },
+            "selected_tools": [
+              "get_boxoffice",
+              "get_movie_detail"
+            ]
+          }
+        },
+        {
+          "event_id": "8d327e767eea4952b6a31a0404f8f635",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.441102+00:00",
+          "data": {
+            "stage": "analyze",
+            "status": "completed",
+            "elapsed_ms": 27.35
+          }
+        },
+        {
+          "event_id": "f63d973888134336960355a2af7aaa3b",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.459327+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "c37032e8517c4ba3a65027d9a6cad915",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:04.472051+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 0
+          }
+        },
+        {
+          "event_id": "38d7697b093e4417ac6183486bcc4c80",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.494036+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 20.62
+          }
+        },
+        {
+          "event_id": "98536301dd674e57961e0e808ba3dd6e",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.513163+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "1df99fa4dd964818830784b70516be16",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.526323+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "6f72ffc4738340eb90edc584095312ad",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.545848+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "result": {
+              "ok": true,
+              "data": {
+                "items": [
+                  {
+                    "movie_cd": "00000001",
+                    "movie_nm": "M1",
+                    "rank": "1"
+                  },
+                  {
+                    "movie_cd": "00000002",
+                    "movie_nm": "M2",
+                    "rank": "2"
+                  },
+                  {
+                    "movie_cd": "00000003",
+                    "movie_nm": "M3",
+                    "rank": "3"
+                  },
+                  {
+                    "movie_cd": "00000004",
+                    "movie_nm": "M4",
+                    "rank": "4"
+                  },
+                  {
+                    "movie_cd": "00000005",
+                    "movie_nm": "M5",
+                    "rank": "5"
+                  },
+                  {
+                    "movie_cd": "00000006",
+                    "movie_nm": "M6",
+                    "rank": "6"
+                  },
+                  {
+                    "movie_cd": "00000007",
+                    "movie_nm": "M7",
+                    "rank": "7"
+                  },
+                  {
+                    "movie_cd": "00000008",
+                    "movie_nm": "M8",
+                    "rank": "8"
+                  },
+                  {
+                    "movie_cd": "00000009",
+                    "movie_nm": "M9",
+                    "rank": "9"
+                  },
+                  {
+                    "movie_cd": "00000010",
+                    "movie_nm": "M10",
+                    "rank": "10"
+                  },
+                  {
+                    "movie_cd": "00000011",
+                    "movie_nm": "M11",
+                    "rank": "11"
+                  },
+                  {
+                    "movie_cd": "00000012",
+                    "movie_nm": "M12",
+                    "rank": "12"
+                  },
+                  {
+                    "movie_cd": "00000013",
+                    "movie_nm": "M13",
+                    "rank": "13"
+                  },
+                  {
+                    "movie_cd": "00000014",
+                    "movie_nm": "M14",
+                    "rank": "14"
+                  },
+                  {
+                    "movie_cd": "00000015",
+                    "movie_nm": "M15",
+                    "rank": "15"
+                  }
+                ],
+                "requested_date": "2026-11-21",
+                "query_date": "2026-11-19",
+                "estimated": true,
+                "source": "고정 KOBIS 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.97
+          }
+        },
+        {
+          "event_id": "ac9e318971ce4f429d5c5eab9436eadf",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.560033+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000001"
+            }
+          }
+        },
+        {
+          "event_id": "bf9e062676554a34835176c945eea83b",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.574587+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.86
+          }
+        },
+        {
+          "event_id": "604d829f4d79420bb06a0f286a144ebb",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.593339+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000002"
+            }
+          }
+        },
+        {
+          "event_id": "6cc5981fa6c34037a22de82f2ec8fe6b",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.606295+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.42
+          }
+        },
+        {
+          "event_id": "b57076311ef449289cc4fa53ac6fbb6d",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.620283+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000003"
+            }
+          }
+        },
+        {
+          "event_id": "3baee1affae94f57aeec49ffa6712d07",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.634001+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.51
+          }
+        },
+        {
+          "event_id": "5d5e5ca489854b0c9239bfe196d800ad",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.649245+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 122.34
+          }
+        },
+        {
+          "event_id": "734d5ca8b21341cc900c392ea02bca1d",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.664976+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "efc73bf949c74e8f88bbf8812454d35c",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:04.680966+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 1,
+            "retry": true,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "31ef654997c445008813b7d3373ee209",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.696465+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 15.14
+          }
+        },
+        {
+          "event_id": "e79f874bab874577a67eabb91a3ddb8e",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.710547+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "6b6c7997adeb445aae48169415da13d6",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "replan",
+          "timestamp": "2026-11-20T03:53:04.722573+00:00",
+          "data": {
+            "attempt": 1,
+            "reason": "조회한 후보가 제약을 충족하지 않아 다음 후보를 평가합니다."
+          }
+        },
+        {
+          "event_id": "68ad998c44db45debb04f41c01e309ef",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:04.736476+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 1
+          }
+        },
+        {
+          "event_id": "9aa07b619ab54d5d82e7b4414d4e35bb",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.750430+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 28.09
+          }
+        },
+        {
+          "event_id": "2d9b849f6f464896a062f222ceb37715",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.780331+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "d7aabdcef27748719bbc6c16e053f689",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:04.792639+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "6b6f327e8ed94fdd88c0f8b1dbedaa21",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.808497+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000004"
+            }
+          }
+        },
+        {
+          "event_id": "ca880cabf3084fbfb7db0c140f51a034",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.822561+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.5
+          }
+        },
+        {
+          "event_id": "7ec93286eb9a4a9a9fe615d371b8864d",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.839541+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000005"
+            }
+          }
+        },
+        {
+          "event_id": "e68d20f6ecf5466ba1b8c9f06b5122ef",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.852635+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000005",
+                "movie_nm": "M5",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.5
+          }
+        },
+        {
+          "event_id": "45e4799390354e19ae53b44ef7c3a88e",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:04.868370+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000006"
+            }
+          }
+        },
+        {
+          "event_id": "363355d54a8949bea5222d67b77d705d",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:04.880942+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000006",
+                "movie_nm": "M6",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.51
+          }
+        },
+        {
+          "event_id": "59821bebb19a4af2b0f8d29a467c5b61",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.894080+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 101.24
+          }
+        },
+        {
+          "event_id": "1869e2874f884c538246a1fe304c83da",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.908139+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "9deedaf0a2e44a44ab0926640d74661f",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:04.923742+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000005",
+                "movie_nm": "M5",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000006",
+                "movie_nm": "M6",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 2,
+            "retry": true,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "a40ed2001e0449c3899fd153b6f2f7e1",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.939556+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 16.21
+          }
+        },
+        {
+          "event_id": "dcc3c024e25b4222892766c05c1b6076",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:04.956532+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "6d5b70cd3c314a8ca0f1a8ebcbad2f9c",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "replan",
+          "timestamp": "2026-11-20T03:53:04.970411+00:00",
+          "data": {
+            "attempt": 2,
+            "reason": "조회한 후보가 제약을 충족하지 않아 다음 후보를 평가합니다."
+          }
+        },
+        {
+          "event_id": "53070030e15b4a7ebbd13bd67363b855",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:04.984748+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 2
+          }
+        },
+        {
+          "event_id": "74e27b043b524c1c83158f97b1e8d075",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:04.997685+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 28.11
+          }
+        },
+        {
+          "event_id": "9902f40da2d64fe3ae1766f6d7bcd26c",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.013251+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "67d622337f2a43288039926c2754b99f",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:05.024359+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "089dca21e2bb43edbc636c5ba66b3002",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.039800+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000007"
+            }
+          }
+        },
+        {
+          "event_id": "4faa4670ed7a4b3796229d148eb8ea48",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.055969+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000007",
+                "movie_nm": "M7",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.52
+          }
+        },
+        {
+          "event_id": "2674d45702b64f70a14775dca11b4ce0",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.071055+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000008"
+            }
+          }
+        },
+        {
+          "event_id": "6f6ba78f05174c8692a80a04b0897d23",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.085903+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000008",
+                "movie_nm": "M8",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.49
+          }
+        },
+        {
+          "event_id": "f8cfd6c255034e9a86e98e0f3136d9c3",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.102929+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000009"
+            }
+          }
+        },
+        {
+          "event_id": "220fb528b2fe48cc970b8a9c3e982680",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.119399+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000009",
+                "movie_nm": "M9",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.51
+          }
+        },
+        {
+          "event_id": "050c078cd57e42bd82ef9859f41a51a4",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.136123+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 110.8
+          }
+        },
+        {
+          "event_id": "edbc36c40f0947b594f2c03ec6f43987",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.151446+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "a408c3a04e3f4195a76fea82cfca91c8",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:05.168384+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000005",
+                "movie_nm": "M5",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000006",
+                "movie_nm": "M6",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000007",
+                "movie_nm": "M7",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000008",
+                "movie_nm": "M8",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000009",
+                "movie_nm": "M9",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 3,
+            "retry": true,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "b7784717af584bee9b9558a9714aae9a",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.185340+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 17.14
+          }
+        },
+        {
+          "event_id": "7780bc726c314201911f4f1eabd85244",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.204279+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "1692b18b0a654ea5aa41665ee988a39c",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "replan",
+          "timestamp": "2026-11-20T03:53:05.220958+00:00",
+          "data": {
+            "attempt": 3,
+            "reason": "조회한 후보가 제약을 충족하지 않아 다음 후보를 평가합니다."
+          }
+        },
+        {
+          "event_id": "653d8b48b3794a5bb2c9f6f07428340a",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:05.240462+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              }
+            ],
+            "attempt": 3
+          }
+        },
+        {
+          "event_id": "a2662cd739eb43beb986bf2a25caf1ce",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.251422+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 31.37
+          }
+        },
+        {
+          "event_id": "a03aec9187954647add869eea9f2490c",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.265180+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "a79f7b16c3304761a772ffaa9ef2e92d",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:05.277043+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "65ebf8d8f7e649f194e9e4082ca0eec2",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.319837+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000010"
+            }
+          }
+        },
+        {
+          "event_id": "af5db2712301406e9f4e95a3d2424479",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.332145+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000010",
+                "movie_nm": "M10",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.73
+          }
+        },
+        {
+          "event_id": "b5862fa46d06474cbd555b5a4a03318a",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.345731+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000011"
+            }
+          }
+        },
+        {
+          "event_id": "0ac4871d729243a898b059cbee5eb734",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.358563+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000011",
+                "movie_nm": "M11",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.72
+          }
+        },
+        {
+          "event_id": "0bec732d799148889ab685f6d4ff4e20",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.374765+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000012"
+            }
+          }
+        },
+        {
+          "event_id": "19bf08b3d26440a1bd7ce3d17e4f0d01",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.390481+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000012",
+                "movie_nm": "M12",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.7
+          }
+        },
+        {
+          "event_id": "34c6c904bd6349019135d236f83679c2",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.405490+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 128.77
+          }
+        },
+        {
+          "event_id": "3d10b21a75bf490aa1155ff4bbdd22b3",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.427132+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "6931daa2a9414b64ab7463017382a2f4",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:05.446877+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000005",
+                "movie_nm": "M5",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000006",
+                "movie_nm": "M6",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000007",
+                "movie_nm": "M7",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000008",
+                "movie_nm": "M8",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000009",
+                "movie_nm": "M9",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000010",
+                "movie_nm": "M10",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000011",
+                "movie_nm": "M11",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000012",
+                "movie_nm": "M12",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 3,
+            "retry": false,
+            "stop_reason": "재계획 상한에 도달했습니다. 시작 시각이나 종료 제한 등 조건을 조정해 주시겠어요?"
+          }
+        },
+        {
+          "event_id": "aba7bba377fd4b25aa84f6f8fc7f3d99",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.458951+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 11.95
+          }
+        },
+        {
+          "event_id": "48aa60813b0347fab6c6b1c500fc2ef8",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.469516+00:00",
+          "data": {
+            "stage": "respond"
+          }
+        },
+        {
+          "event_id": "d95a25d15dba4226b71447388db65427",
+          "session_id": "limit",
+          "run_id": "2c4597b47a3b42df9b6520425a00f531",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.480569+00:00",
+          "data": {
+            "stage": "respond",
+            "status": "completed",
+            "elapsed_ms": 0.02
+          }
+        }
+      ],
+      "errors": [],
+      "replans": 3
+    },
+    {
+      "scenario": "partial_failure",
+      "request": "조회 하나가 실패해도 다른 영화와 강남 영화관을 찾아 줘",
+      "analysis_fixture": {
+        "intent": "plan",
+        "reason": "명시된 고정 분석 데이터",
+        "conditions": {
+          "watch_date": "2026-11-21",
+          "start_time": "15:00",
+          "deadline": "17:00",
+          "region": "강남"
+        },
+        "tool_names": [
+          "get_boxoffice",
+          "get_movie_detail",
+          "search_cinemas"
+        ]
+      },
+      "expected": {
+        "replans": 1,
+        "recommendations": 1,
+        "error_codes": [
+          "UPSTREAM_ERROR",
+          "INVALID_KEY"
+        ]
+      },
+      "actual": {
+        "replans": 1,
+        "recommendations": 1,
+        "error_codes": [
+          "UPSTREAM_ERROR",
+          "INVALID_KEY"
+        ]
+      },
+      "difference": null,
+      "elapsed_ms": 577.84,
+      "tool_calls": [
+        {
+          "tool": "get_boxoffice",
+          "arguments": {
+            "target_date": "2026-11-21"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000001"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000002"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000003"
+          }
+        },
+        {
+          "tool": "search_cinemas",
+          "arguments": {
+            "region": "강남"
+          }
+        },
+        {
+          "tool": "get_movie_detail",
+          "arguments": {
+            "movie_cd": "00000004"
+          }
+        }
+      ],
+      "session_id": "partial_failure",
+      "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+      "answer": "조건과 비교할 수 있는 영화 1편을 찾았습니다. 카드의 러닝타임과 판단 기준을 확인해 주세요. 관람일 집계가 없어 최근 박스오피스를 후보로 사용했습니다. 관람일 상영을 보장하지 않습니다. 일부 조회가 실패했습니다. 오류 안내를 확인해 주세요.",
+      "question": null,
+      "notice": null,
+      "movie_matches": [],
+      "conditions": {
+        "watch_date": "2026-11-21",
+        "start_time": "15:00",
+        "deadline": "17:00",
+        "region": "강남"
+      },
+      "recommendations": [
+        {
+          "movie_cd": "00000004",
+          "movie_nm": "M4",
+          "runtime_minutes": 90,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "watch_date": "2026-11-21",
+          "earliest_start": "15:00",
+          "latest_start": "15:30",
+          "required_minutes": 90,
+          "buffer_minutes": 0,
+          "basis": "러닝타임 90분 + 사용자 여유 시간 0분. 실제 상영 시간표는 별도 확인해야 합니다."
+        }
+      ],
+      "excluded": [
+        {
+          "movie_cd": "00000001",
+          "movie_nm": "M1",
+          "rank": "1",
+          "reason": "고정 상세 조회 실패"
+        },
+        {
+          "movie_cd": "00000002",
+          "movie_nm": "M2",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        },
+        {
+          "movie_cd": "00000003",
+          "movie_nm": "M3",
+          "runtime_minutes": 180,
+          "genres": [
+            "드라마"
+          ],
+          "ratings": [
+            "전체관람가"
+          ],
+          "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+          "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+        }
+      ],
+      "cinemas": [],
+      "showtimes": [],
+      "showtime_search": null,
+      "places": [],
+      "place_search": null,
+      "course": {},
+      "events": [
+        {
+          "event_id": "ff60147a3bfd471ca824ff516a33bbc5",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.524217+00:00",
+          "data": {
+            "stage": "analyze"
+          }
+        },
+        {
+          "event_id": "f33a58f250b14e259d9543ee14a48048",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "llm_decision",
+          "timestamp": "2026-11-20T03:53:05.536253+00:00",
+          "data": {
+            "intent": "plan",
+            "reason": "명시된 고정 분석 데이터",
+            "updates": {
+              "watch_date": "2026-11-21",
+              "start_time": "15:00",
+              "deadline": "17:00",
+              "region": "강남"
+            },
+            "selected_tools": [
+              "get_boxoffice",
+              "get_movie_detail",
+              "search_cinemas"
+            ]
+          }
+        },
+        {
+          "event_id": "4dd37061260a4cb383f4515a620b3d4b",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.548209+00:00",
+          "data": {
+            "stage": "analyze",
+            "status": "completed",
+            "elapsed_ms": 12.2
+          }
+        },
+        {
+          "event_id": "1126dc654bb54c788848b56471de10a5",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.561485+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "d319ba4f646a4f989b67865988993333",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:05.577207+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              },
+              {
+                "tool": "search_cinemas",
+                "args": {
+                  "region": "강남"
+                }
+              }
+            ],
+            "attempt": 0
+          }
+        },
+        {
+          "event_id": "ee8772edd5dc4f0d89f108732f924a12",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.588139+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 10.96
+          }
+        },
+        {
+          "event_id": "92d235ecca274fb28dcd05518d662a02",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.603051+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "266e76c770cf49abb9c01570c1373323",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.617750+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "600bda3e7f6c42bd876cb6ee279bc764",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.634980+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "result": {
+              "ok": true,
+              "data": {
+                "items": [
+                  {
+                    "movie_cd": "00000001",
+                    "movie_nm": "M1",
+                    "rank": "1"
+                  },
+                  {
+                    "movie_cd": "00000002",
+                    "movie_nm": "M2",
+                    "rank": "2"
+                  },
+                  {
+                    "movie_cd": "00000003",
+                    "movie_nm": "M3",
+                    "rank": "3"
+                  },
+                  {
+                    "movie_cd": "00000004",
+                    "movie_nm": "M4",
+                    "rank": "4"
+                  }
+                ],
+                "requested_date": "2026-11-21",
+                "query_date": "2026-11-19",
+                "estimated": true,
+                "source": "고정 KOBIS 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 1.91
+          }
+        },
+        {
+          "event_id": "8862bcde80af4b22adabedd21dac88d3",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.647413+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000001"
+            }
+          }
+        },
+        {
+          "event_id": "527af61a42b043c3af0761a8262f804a",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.663596+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": false,
+              "error": {
+                "code": "UPSTREAM_ERROR",
+                "message": "고정 상세 조회 실패"
+              }
+            },
+            "elapsed_ms": 0.91
+          }
+        },
+        {
+          "event_id": "7dc01317c7dc44c49486e3a134dde969",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.682385+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000002"
+            }
+          }
+        },
+        {
+          "event_id": "82ae5fb9f6b74ad180ce8a41a618983e",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.687026+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.44
+          }
+        },
+        {
+          "event_id": "2f17a15fa0334c68b1da6f32f86ab72e",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.712497+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000003"
+            }
+          }
+        },
+        {
+          "event_id": "10bce2b38be8410db692563703f310be",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.732370+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 0.47
+          }
+        },
+        {
+          "event_id": "dfc01631d69e48879867f8f00ea647b4",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.748344+00:00",
+          "data": {
+            "tool": "search_cinemas",
+            "arguments": {
+              "region": "강남"
+            }
+          }
+        },
+        {
+          "event_id": "a9cf9e09303b44e0936e97cfd2b4a7cb",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.763032+00:00",
+          "data": {
+            "tool": "search_cinemas",
+            "result": {
+              "ok": false,
+              "error": {
+                "code": "INVALID_KEY",
+                "message": "고정 영화관 키 누락 시나리오"
+              }
+            },
+            "elapsed_ms": 0.95
+          }
+        },
+        {
+          "event_id": "b20c1bc45668455b9dfd84ed1a1ee73d",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.777411+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 159.55
+          }
+        },
+        {
+          "event_id": "273c9b6ff2ac463b9db73b7cc946fab8",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.792951+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "a2aef824bc3047c493bae09301a14e42",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:05.806650+00:00",
+          "data": {
+            "recommended": 0,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "rank": "1",
+                "reason": "고정 상세 조회 실패"
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 1,
+            "retry": true,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "2fe9e211186e468a8d5354e8b32aafce",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.818658+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 11.59
+          }
+        },
+        {
+          "event_id": "8a37a3c0ebeb467f81d41f5bc78d14c8",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.836544+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "d3baaf17fc544e249a786213eb54133b",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "replan",
+          "timestamp": "2026-11-20T03:53:05.850112+00:00",
+          "data": {
+            "attempt": 1,
+            "reason": "조회한 후보가 제약을 충족하지 않아 다음 후보를 평가합니다."
+          }
+        },
+        {
+          "event_id": "45be3c033df04cabb55239ade1746cd1",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "work_plan",
+          "timestamp": "2026-11-20T03:53:05.868081+00:00",
+          "data": {
+            "tasks": [
+              {
+                "tool": "get_boxoffice",
+                "args": {
+                  "target_date": "2026-11-21"
+                }
+              },
+              {
+                "tool": "get_movie_detail",
+                "args_from": "get_boxoffice.items.movie_cd"
+              },
+              {
+                "tool": "search_cinemas",
+                "args": {
+                  "region": "강남"
+                }
+              }
+            ],
+            "attempt": 1
+          }
+        },
+        {
+          "event_id": "35b3076cb99c46b3bfe9e96b666db911",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.870889+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 29.4
+          }
+        },
+        {
+          "event_id": "e083366d375847fe8f8cea68fbb12665",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.900002+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "8118bd834e6a4d8ca6c8bafc7227c99c",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:05.917068+00:00",
+          "data": {
+            "tool": "get_boxoffice",
+            "arguments": {
+              "target_date": "2026-11-21"
+            }
+          }
+        },
+        {
+          "event_id": "80de7a01abd34b61a045e57b2e57e1f8",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_request",
+          "timestamp": "2026-11-20T03:53:05.933245+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "arguments": {
+              "movie_cd": "00000004"
+            }
+          }
+        },
+        {
+          "event_id": "c99c2c65ce3a4d3ea4fcee2560d5f7f7",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_response",
+          "timestamp": "2026-11-20T03:53:05.951369+00:00",
+          "data": {
+            "tool": "get_movie_detail",
+            "result": {
+              "ok": true,
+              "data": {
+                "movie_cd": "00000004",
+                "movie_nm": "M4",
+                "runtime_minutes": 90,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)"
+              }
+            },
+            "elapsed_ms": 2.08
+          }
+        },
+        {
+          "event_id": "9e065e5f02cf449cb6d837066b46a367",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "tool_cache",
+          "timestamp": "2026-11-20T03:53:05.965949+00:00",
+          "data": {
+            "tool": "search_cinemas",
+            "arguments": {
+              "region": "강남"
+            }
+          }
+        },
+        {
+          "event_id": "9f6c41d4d11f4f03b7af64f7338d478a",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:05.983097+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 65.86
+          }
+        },
+        {
+          "event_id": "7374e95344ba47a38cc16389a7ec8267",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:05.999107+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "87176ef91d014f788107c29e47aa643e",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "constraint_result",
+          "timestamp": "2026-11-20T03:53:06.005032+00:00",
+          "data": {
+            "recommended": 1,
+            "excluded": [
+              {
+                "movie_cd": "00000001",
+                "movie_nm": "M1",
+                "rank": "1",
+                "reason": "고정 상세 조회 실패"
+              },
+              {
+                "movie_cd": "00000002",
+                "movie_nm": "M2",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              },
+              {
+                "movie_cd": "00000003",
+                "movie_nm": "M3",
+                "runtime_minutes": 180,
+                "genres": [
+                  "드라마"
+                ],
+                "ratings": [
+                  "전체관람가"
+                ],
+                "source": "고정 KOBIS 상세 응답 (실제 조회 아님)",
+                "reason": "필요 시간 180분이 시작 가능 시각부터 종료 제한까지의 시간보다 깁니다."
+              }
+            ],
+            "replans": 1,
+            "retry": false,
+            "stop_reason": ""
+          }
+        },
+        {
+          "event_id": "9f733927dbab44c19345a9cd82240a71",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.025633+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 11.95
+          }
+        },
+        {
+          "event_id": "652b7667bd41443cab70abe55eee1566",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.041057+00:00",
+          "data": {
+            "stage": "respond"
+          }
+        },
+        {
+          "event_id": "355d9a8857be4e7da562e734c4ff89ce",
+          "session_id": "partial_failure",
+          "run_id": "d26456fa222c4a5b8f9f1222147f8acf",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.056201+00:00",
+          "data": {
+            "stage": "respond",
+            "status": "completed",
+            "elapsed_ms": 0.02
+          }
+        }
+      ],
+      "errors": [
+        {
+          "tool": "get_movie_detail",
+          "code": "UPSTREAM_ERROR",
+          "message": "고정 상세 조회 실패"
+        },
+        {
+          "tool": "search_cinemas",
+          "code": "INVALID_KEY",
+          "message": "고정 영화관 키 누락 시나리오"
+        }
+      ],
+      "replans": 1
+    },
+    {
+      "scenario": "no_tool",
+      "request": "안녕, 사용법을 알려 줘",
+      "analysis_fixture": {
+        "intent": "help",
+        "reason": "명시된 고정 분석 데이터",
+        "conditions": {},
+        "tool_names": []
+      },
+      "expected": {
+        "replans": 0,
+        "recommendations": 0,
+        "error_codes": []
+      },
+      "actual": {
+        "replans": 0,
+        "recommendations": 0,
+        "error_codes": []
+      },
+      "difference": null,
+      "elapsed_ms": 203.15,
+      "tool_calls": [],
+      "session_id": "no_tool",
+      "run_id": "866cde0401ce467aae4741c70fdbff61",
+      "answer": "관람 날짜, 시작 가능한 시각, 종료 제한, 희망 지역을 알려 주세요. 영화 후보의 러닝타임으로 관람 조건을 비교합니다.",
+      "question": null,
+      "notice": "지역과 찾을 장소를 말하거나 오른쪽에서 검색해 보세요. 마음에 드는 곳을 일정에 담고 순서·시간을 정한 뒤 날짜와 함께 저장하면 내 약속에서 다시 볼 수 있어요.",
+      "movie_matches": [],
+      "conditions": {},
+      "recommendations": [],
+      "excluded": [],
+      "cinemas": [],
+      "showtimes": [],
+      "showtime_search": null,
+      "places": [],
+      "place_search": null,
+      "course": {},
+      "events": [
+        {
+          "event_id": "223663c6bebc4d978db16f0e844994af",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.101478+00:00",
+          "data": {
+            "stage": "analyze"
+          }
+        },
+        {
+          "event_id": "f1b62706e95e48e19458e61cf51c97b7",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "llm_decision",
+          "timestamp": "2026-11-20T03:53:06.126514+00:00",
+          "data": {
+            "intent": "help",
+            "reason": "명시된 고정 분석 데이터",
+            "updates": {},
+            "selected_tools": []
+          }
+        },
+        {
+          "event_id": "8936e33bed3d45d8a33d4c5b367d7241",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.138445+00:00",
+          "data": {
+            "stage": "analyze",
+            "status": "completed",
+            "elapsed_ms": 11.95
+          }
+        },
+        {
+          "event_id": "1ba54808285344eaa25d4fb2bdbe0011",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.157680+00:00",
+          "data": {
+            "stage": "plan"
+          }
+        },
+        {
+          "event_id": "b4ba5175b36f4547b29db28d79c578c9",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.171458+00:00",
+          "data": {
+            "stage": "plan",
+            "status": "completed",
+            "elapsed_ms": 0.0
+          }
+        },
+        {
+          "event_id": "e2b9af51026447d9999778d1712a7f4b",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.192966+00:00",
+          "data": {
+            "stage": "execute"
+          }
+        },
+        {
+          "event_id": "8a4ca5e8733946eb9877025e39339d9d",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.207840+00:00",
+          "data": {
+            "stage": "execute",
+            "status": "completed",
+            "elapsed_ms": 0.0
+          }
+        },
+        {
+          "event_id": "b1f1a6c5f72b4b38a734f7752cb7ebdc",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.220104+00:00",
+          "data": {
+            "stage": "judge"
+          }
+        },
+        {
+          "event_id": "64e2a1701306460fbdf36d17e88987ba",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.232688+00:00",
+          "data": {
+            "stage": "judge",
+            "status": "completed",
+            "elapsed_ms": 0.0
+          }
+        },
+        {
+          "event_id": "64b1373af0564c93b166543470393e2c",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_start",
+          "timestamp": "2026-11-20T03:53:06.246100+00:00",
+          "data": {
+            "stage": "respond"
+          }
+        },
+        {
+          "event_id": "bb5d0dd60b9a480c997b586435703413",
+          "session_id": "no_tool",
+          "run_id": "866cde0401ce467aae4741c70fdbff61",
+          "type": "stage_end",
+          "timestamp": "2026-11-20T03:53:06.260831+00:00",
+          "data": {
+            "stage": "respond",
+            "status": "completed",
+            "elapsed_ms": 0.28
+          }
+        }
+      ],
+      "errors": [],
+      "replans": 0
+    }
+  ]
+}

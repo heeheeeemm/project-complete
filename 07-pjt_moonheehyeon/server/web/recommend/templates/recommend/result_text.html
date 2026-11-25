@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if conversation %}
+{% include 'recommend/_conversation.html' %}
+{% else %}
+<div class="page-title"><p class="eyebrow">A LITTLE MORE DISCOVERY</p><h1>{% if uploaded %}표지 너머, 새로운 발견.{% else %}당신의 이야기에서 찾은 답.{% endif %}</h1><p>새로운 이야기를 향한 한 걸음을 함께해요.</p></div>
+<div class="panes">
+  <div class="pane">
+    <h3>당신이 들려준 이야기</h3>
+    {% if uploaded %}<img class="cover" src="{{ uploaded.url }}" alt="업로드한 표지"><br><br>{% endif %}
+    <div class="result">{{ user_input }}</div>
+    <a class="back" href="{% url request.resolver_match.view_name %}">← 다시 입력</a>
+  </div>
+  <div class="pane">
+    <h3>사이책이 찾은 이야기</h3>
+    <div class="result">{{ result.content }}</div>
+    {% if result.model_used %}<div class="meta">사용된 모델: <b>{{ result.model_used }}</b></div>{% endif %}
+    {% if result.score is not None %}
+      <div class="meta">답변 점수: <b>{{ result.score }}</b> / 100<br>이유: {{ result.reason }}</div>
+    {% elif result.reason %}
+      <div class="meta">{{ result.reason }}</div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

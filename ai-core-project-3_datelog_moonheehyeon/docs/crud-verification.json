@@ -1,0 +1,86 @@
+{
+  "missing_date": 422,
+  "saved": {
+    "title": "제출 점검 임시 약속",
+    "watch_date": "2026-11-21",
+    "stops": [
+      {
+        "id": "a0a0d01bb1c84117b89f19723f42f713",
+        "kind": "cafe",
+        "name": "카페 점검",
+        "venue": null,
+        "address": null,
+        "start_time": "13:00",
+        "end_time": "14:00",
+        "source_date": null,
+        "lat": null,
+        "lng": null,
+        "url": null
+      }
+    ],
+    "itinerary_id": 5,
+    "created_at": "2026-11-20T03:51:07.590426Z",
+    "overlap_itinerary_ids": [],
+    "overlap_plan_ids": [],
+    "overlapping_stop_ids": [],
+    "warnings": []
+  },
+  "overlap": {
+    "title": "제출 점검 겹침",
+    "watch_date": "2026-11-21",
+    "stops": [
+      {
+        "id": "c5591399c1724a1d81e84a8f07e97a1b",
+        "kind": "restaurant",
+        "name": "식당 점검",
+        "venue": null,
+        "address": null,
+        "start_time": "13:30",
+        "end_time": "14:30",
+        "source_date": null,
+        "lat": null,
+        "lng": null,
+        "url": null
+      }
+    ],
+    "itinerary_id": 6,
+    "created_at": "2026-11-20T03:51:07.615251Z",
+    "overlap_itinerary_ids": [
+      5
+    ],
+    "overlap_plan_ids": [],
+    "overlapping_stop_ids": [],
+    "warnings": [
+      "다른 약속 ‘제출 점검 임시 약속’(#5)과 시간이 겹칩니다. 저장은 유지됩니다."
+    ]
+  },
+  "updated": {
+    "title": "제출 점검 수정",
+    "watch_date": "2026-11-21",
+    "stops": [
+      {
+        "id": "5b20a332533141899b065b797ca76d58",
+        "kind": "cafe",
+        "name": "인접 카페",
+        "venue": null,
+        "address": null,
+        "start_time": "14:00",
+        "end_time": "15:00",
+        "source_date": null,
+        "lat": null,
+        "lng": null,
+        "url": null
+      }
+    ],
+    "itinerary_id": 6,
+    "created_at": "2026-11-20T03:51:07.615251Z",
+    "overlap_itinerary_ids": [],
+    "overlap_plan_ids": [],
+    "overlapping_stop_ids": [],
+    "warnings": []
+  },
+  "deleted": [
+    204,
+    204
+  ]
+}

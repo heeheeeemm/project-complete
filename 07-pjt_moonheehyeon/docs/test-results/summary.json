@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-06T03:24:45.664183+00:00",
+  "results": [
+    {
+      "check": "django-check",
+      "exit_code": 0
+    },
+    {
+      "check": "migration-check",
+      "exit_code": 0
+    },
+    {
+      "check": "django-tests",
+      "exit_code": 0
+    },
+    {
+      "check": "proxy-tests",
+      "exit_code": 0
+    }
+  ],
+  "django_tests": 19,
+  "proxy_tests": 12
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ form.subgenre_options|json_script:"subgenre-options" }}
+<div class="auth-intro"><div class="eyebrow">SHARE A NEW STORY</div><h1>서가에 새로운 이야기 더하기</h1><p>좋아하는 책을 소개해 주세요. 작가의 이야기도 함께 만나볼 수 있어요.</p></div>
+<div class="card mx-auto" style="max-width:720px">
+  <div class="card-header"><h1 class="h4">도서 등록</h1></div>
+  <div class="card-body">
+    <form action="{% url 'books:create' %}" method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+          {% for error in field.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+      <section class="cover-preview mb-4" data-cover-preview hidden aria-label="책 표지 미리보기">
+        <div class="preview-image" data-book-cover><div class="mini-book"><span class="mini-book-title">책 표지</span></div></div>
+        <div><p class="form-label mb-1">책 표지 미리보기</p><p class="small text-muted mb-1" data-cover-status role="status">제목과 저자로 표지를 찾고 있어요.</p><p class="cover-credit small mb-0" hidden></p></div>
+      </section>
+      <button class="btn btn-primary" type="submit">도서 등록</button>
+      <a href="{% url 'books:index' %}" class="btn btn-secondary">취소</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-4"><a href="{% url 'books:index' %}" class="text-decoration-none small text-muted">← 서가로 돌아가기</a></div>
+<article class="detail-grid">
+  <aside><div class="detail-cover" data-book-cover data-cover-title="{{ book.title }}" data-cover-author="{{ book.author }}"><div class="mini-book"><span class="mini-book-title">{{ book.title }}</span><span class="mini-book-author">{{ book.author }}</span></div></div><p class="cover-credit small text-center mt-2" hidden></p><p class="detail-side-note">한 권의 책 속에 담긴, 수많은 이야기.</p></aside>
+  <div>
+    <div class="eyebrow">BETWEEN THE PAGES</div>
+    <a class="genre-pill text-decoration-none" href="{% url 'books:index' %}?genre={{ book.genre|urlencode }}#bookshelf">{{ book.get_genre_display }}</a>{% if book.subgenre %} <a class="genre-pill text-decoration-none" href="{% url 'books:index' %}?genre={{ book.genre|urlencode }}&amp;subgenre={{ book.subgenre|urlencode }}#bookshelf">{{ book.get_subgenre_display }}</a>{% endif %}
+    <h1 class="detail-title">{{ book.title }}</h1>
+    <div class="detail-meta"><span>저자: {{ book.author }}</span><span>★ 회원 리뷰 평점: <strong>{{ book.rating }} / 10</strong></span></div>
+    <section class="detail-copy"><h2>이 책의 이야기</h2>{{ book.description|linebreaks }}</section>
+    <section class="author-panel" aria-labelledby="author-heading">
+      <h2 id="author-heading" class="h5">{{ book.author }} 작가 정보</h2>
+      {% if book.author_info %}
+        {% if book.author_image %}<img src="{{ book.author_image }}" alt="{{ book.author }} 프로필 사진" class="img-thumbnail mb-3" style="max-height:240px" referrerpolicy="no-referrer">{% endif %}
+        {{ book.author_info|linebreaks }}
+        <h3 class="h6">대표작</h3>
+        <ul>{% for work in book.author_works %}<li>{{ work }}</li>{% empty %}<li>확인된 대표작이 없습니다.</li>{% endfor %}</ul>
+        {% if book.author_source %}<p><a href="{{ book.author_source }}" target="_blank" rel="noopener noreferrer">위키피디아 참고 자료</a></p>{% endif %}
+        <p class="ai-disclaimer">작가 대표작과 작가 정보는 AI가 생성한 정보로, 정확하지 않을 수 있습니다.</p>
+      {% else %}
+        <p class="text-muted">아직 생성된 작가 정보가 없습니다.</p>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <form action="{% url 'books:author_info' book.pk %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-primary">{% if book.author_info %}작가 정보 다시 생성{% else %}AI 작가 정보 생성{% endif %}</button>
+        </form>
+      {% endif %}
+    </section>
+    <div class="d-flex gap-2">
+      <a href="{% url 'books:index' %}" class="btn btn-secondary">목록으로</a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'books:update' book.pk %}" class="btn btn-warning">수정</a>
+        <form action="{% url 'books:delete' book.pk %}" method="POST">
+          {% csrf_token %}<button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</article>
+{% endblock content %}

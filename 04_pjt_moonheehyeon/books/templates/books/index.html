@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="library-hero">
+  <div>
+    <div class="eyebrow">A LITTLE SPACE FOR YOUR NEXT CHAPTER</div>
+    <h1 class="serif">책 한 권으로 시작하는,<br>조금 더 넓은 세상.</h1>
+    <p>좋은 책을 발견하고, 작가의 이야기를 만나보세요.<br>당신의 다음 페이지가 여기서 시작됩니다.</p>
+    <a href="#bookshelf" class="hero-link">우리의 책장 보기 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="book-scene" aria-hidden="true">
+    <div class="scene-circle"></div><div class="scene-line"></div>
+    <div class="decor-book"><span>책과<br>함께하는<br>시간</span><small>A MOMENT TO READ</small></div>
+    <div class="decor-book second"><span>다음<br>페이지</span><small>THE NEXT CHAPTER</small></div>
+    <span class="scene-caption">STORIES WORTH KEEPING</span>
+  </div>
+</section>
+<section id="bookshelf" aria-labelledby="shelf-title">
+  <div class="section-top">
+    <div class="section-title"><h2 id="shelf-title">우리의 책장</h2><span class="count-pill">{{ books|length }}권</span></div>
+    {% if request.user.is_authenticated %}<a href="{% url 'books:create' %}" class="btn btn-primary">＋ 도서 등록</a>{% else %}<span class="section-meta">COLLECT STORIES, FIND YOUR NEXT READ</span>{% endif %}
+  </div>
+  <nav class="genre-filters" aria-label="도서 장르 필터">
+    <a href="{% url 'books:index' %}#bookshelf" class="genre-filter {% if not selected_genre %}is-active{% endif %}" {% if not selected_genre %}aria-current="page"{% endif %}>전체보기</a>
+    {% for code, label in genre_choices %}
+      <a href="{% url 'books:index' %}?genre={{ code|urlencode }}#bookshelf" class="genre-filter {% if selected_genre == code %}is-active{% endif %}" {% if selected_genre == code %}aria-current="page"{% endif %}>{{ label }}</a>
+    {% endfor %}
+  </nav>
+  <form action="{% url 'books:index' %}#bookshelf" method="GET" class="subgenre-picker">
+    <input type="hidden" name="genre" value="{{ selected_genre }}">
+    <label for="subgenre-filter-select">세부 장르로 둘러보기</label>
+    <select id="subgenre-filter-select" name="subgenre" class="form-select" onchange="this.form.requestSubmit()">
+      <option value="">{% if selected_genre %}{{ selected_genre_label }} 전체{% else %}모든 세부 장르{% endif %}</option>
+      {% if selected_genre %}
+        {% for code, label in subgenre_choices %}<option value="{{ code }}" {% if selected_subgenre == code %}selected{% endif %}>{{ label }}</option>{% endfor %}
+      {% else %}
+        {% for group_label, choices in subgenre_groups %}
+          <optgroup label="{{ group_label }}">{% for code, label in choices %}<option value="{{ code }}">{{ label }}</option>{% endfor %}</optgroup>
+        {% endfor %}
+      {% endif %}
+    </select>
+    <button type="submit" class="btn btn-outline-primary">보기</button>
+  </form>
+  {% if subgenre_choices %}
+    <nav class="genre-filters subgenre-filters" aria-label="도서 세부 장르 필터">
+      <span class="subgenre-label">세부 장르</span>
+      <a href="{% url 'books:index' %}?genre={{ selected_genre|urlencode }}#bookshelf" class="genre-filter {% if not selected_subgenre %}is-active{% endif %}" {% if not selected_subgenre %}aria-current="page"{% endif %}>전체</a>
+      {% for code, label in subgenre_choices %}
+        <a href="{% url 'books:index' %}?genre={{ selected_genre|urlencode }}&amp;subgenre={{ code|urlencode }}#bookshelf" class="genre-filter {% if selected_subgenre == code %}is-active{% endif %}" {% if selected_subgenre == code %}aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+  <p class="filter-result" role="status"><strong>{{ selected_genre_label }}{% if selected_subgenre_label %} / {{ selected_subgenre_label }}{% endif %}</strong> · {{ books|length }}권{% if selected_genre %}<a href="{% url 'books:index' %}#bookshelf">필터 초기화 ↗</a>{% endif %}</p>
+  <div class="book-grid">
+    {% for book in books %}
+      <article class="book-item library-card">
+        <a href="{% url 'books:detail' book.pk %}" class="cover-link" aria-label="{{ book.title }} 상세 보기">
+          <div class="book-cover" data-book-cover data-cover-title="{{ book.title }}" data-cover-author="{{ book.author }}"><span class="cover-label">CHAEKDAM LIBRARY</span><div class="mini-book"><span class="mini-book-title">{{ book.title }}</span><span class="mini-book-author">{{ book.author }}</span></div><span class="cover-number">{{ forloop.counter|stringformat:'02d' }}</span></div>
+        </a>
+        <div class="book-info"><span class="genre-pill">{{ book.get_genre_display }}{% if book.subgenre %} · {{ book.get_subgenre_display }}{% endif %}</span><h3><a href="{% url 'books:detail' book.pk %}">{{ book.title }}</a></h3><p class="book-author">{{ book.author }}</p><div class="book-rating"><span><span aria-hidden="true">★</span> <strong>{{ book.rating }}</strong><span class="text-muted"> / 10</span></span><a href="{% url 'books:detail' book.pk %}">책 펼쳐보기 ↗</a></div></div>
+      </article>
+    {% empty %}
+      <div class="empty-shelf"><span class="empty-icon" aria-hidden="true">▤</span>{% if selected_genre %}<h3>이 장르의 책은 아직 없어요.</h3><p>다른 장르를 둘러보거나 첫 번째 책을 등록해 주세요.</p><a href="{% url 'books:index' %}#bookshelf" class="btn btn-outline-primary mt-2">전체 도서 보기</a>{% else %}<h3>첫 번째 이야기를 기다리고 있어요.</h3><p>아직 등록된 도서가 없습니다. 좋아하는 책으로 서가를 채워보세요.</p>{% endif %}{% if request.user.is_authenticated %}<a href="{% url 'books:create' %}" class="btn btn-primary mt-2">도서 등록하기</a>{% elif not selected_genre %}<a href="{% url 'accounts:login' %}" class="btn btn-outline-primary mt-2">로그인하고 시작하기</a>{% endif %}</div>
+    {% endfor %}
+  </div>
+</section>
+<div class="reading-note"><p>서로 다른 취향이 모여, 더 풍성한 서가가 됩니다.</p><span>Every book opens a new world.</span></div>
+{% endblock content %}

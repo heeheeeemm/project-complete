@@ -1,0 +1,250 @@
+.\venv\Scripts\python.exe : test_movie_clarification_survives_a_greeting (test_conversation_context.ConversationGraphTe
+sts.test_movie_clarification_survives_a_greeting) ... ok
+위치 줄:2 문자:1
++ .\venv\Scripts\python.exe -m unittest discover -s tests -v *> tmp/fin ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_movie_clar...reeting) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_reported_followups_keep_movie_region_start_date_and_brands (test_conversation_context.ConversationGraphTests.test_
+reported_followups_keep_movie_region_start_date_and_brands) ... ok
+test_ambiguous_finish_asks_only_for_period_and_keeps_pending_value (test_conversation_context.ConversationParsingTests.
+test_ambiguous_finish_asks_only_for_period_and_keeps_pending_value) ... ok
+test_correction_changes_only_deadline (test_conversation_context.ConversationParsingTests.test_correction_changes_only_
+deadline) ... ok
+test_deadline_can_be_removed_without_losing_other_conditions (test_conversation_context.ConversationParsingTests.test_d
+eadline_can_be_removed_without_losing_other_conditions) ... ok
+test_explicit_different_task_is_not_hijacked (test_conversation_context.ConversationParsingTests.test_explicit_differen
+t_task_is_not_hijacked) ... ok
+test_greeting_does_not_destroy_active_showtime_context (test_conversation_context.ConversationParsingTests.test_greetin
+g_does_not_destroy_active_showtime_context) ... ok
+test_meal_time_is_not_start_time_and_explicit_finish_is_deadline (test_conversation_context.ConversationParsingTests.te
+st_meal_time_is_not_start_time_and_explicit_finish_is_deadline) ... ok
+test_pending_movie_answer_is_not_a_new_unrelated_request (test_conversation_context.ConversationParsingTests.test_pendi
+ng_movie_answer_is_not_a_new_unrelated_request) ... ok
+test_period_answer_resolves_pending_deadline (test_conversation_context.ConversationParsingTests.test_period_answer_res
+olves_pending_deadline) ... ok
+test_start_change_remains_a_start_change (test_conversation_context.ConversationParsingTests.test_start_change_remains_
+a_start_change) ... ok
+test_two_time_sentence_keeps_start_and_finish_roles_separate (test_conversation_context.ConversationParsingTests.test_t
+wo_time_sentence_keeps_start_and_finish_roles_separate) ... ok
+test_until_and_before_have_distinct_boundaries (test_conversation_context.ConversationParsingTests.test_until_and_befor
+e_have_distinct_boundaries) ... ok
+test_exact_deadline_is_excluded_for_before_but_included_for_until (test_conversation_context.FinishBoundaryTests.test_e
+xact_deadline_is_excluded_for_before_but_included_for_until) ... ok
+test_explicit_movie_anchor_overrides_previously_selected_restaurant (test_date_course.CourseGraphTests.test_explicit_mo
+vie_anchor_overrides_previously_selected_restaurant) ... ok
+test_movie_then_western_then_cafe_keeps_movie_and_uses_selected_anchor (test_date_course.CourseGraphTests.test_movie_th
+en_western_then_cafe_keeps_movie_and_uses_selected_anchor) ... ok
+test_food_and_cafe_followups_do_not_require_llm (test_date_course.DateCourseParsingTests.test_food_and_cafe_followups_d
+o_not_require_llm) ... ok
+test_meal_appointment_in_movie_deadline_is_not_a_restaurant_request (test_date_course.DateCourseParsingTests.test_meal_
+appointment_in_movie_deadline_is_not_a_restaurant_request) ... ok
+test_missing_place_region_can_be_answered_without_repeating_food_request (test_date_course.DateCourseParsingTests.test_
+missing_place_region_can_be_answered_without_repeating_food_request) ... ok
+test_nearby_pronouns_do_not_replace_remembered_region (test_date_course.DateCourseParsingTests.test_nearby_pronouns_do_
+not_replace_remembered_region) ... ok
+test_place_modifiers_do_not_replace_remembered_region (test_date_course.DateCourseParsingTests.test_place_modifiers_do_
+not_replace_remembered_region) ... ok
+test_region_before_place_noun_does_not_need_a_particle (test_date_course.DateCourseParsingTests.test_region_before_plac
+e_noun_does_not_need_a_particle) ... ok
+test_cafe_does_not_reuse_western_cuisine_and_keeps_coordinates (test_date_course.PlaceTests.test_cafe_does_not_reuse_we
+stern_cuisine_and_keeps_coordinates) ... ok
+test_selected_cinema_is_resolved_and_only_western_food_is_returned (test_date_course.PlaceTests.test_selected_cinema_is
+_resolved_and_only_western_food_is_returned) ... ok
+test_unknown_cinema_is_not_silently_replaced_by_another_branch (test_date_course.PlaceTests.test_unknown_cinema_is_not_
+silently_replaced_by_another_branch) ... ok
+test_date_places_survive_reload_and_movie_edit (test_date_course.SavedDateTests.test_date_places_survive_reload_and_mov
+ie_edit) ... ok
+test_api_can_save_cafe_without_movie_and_edit_order (test_itineraries.ItineraryTests.test_api_can_save_cafe_without_mov
+ie_and_edit_order) ... ok
+test_cafe_only_and_repeated_categories_preserve_user_order (test_itineraries.ItineraryTests.test_cafe_only_and_repeated
+_categories_preserve_user_order) ... ok
+test_empty_draft_snapshot_removes_old_search_anchor (test_itineraries.ItineraryTests.test_empty_draft_snapshot_removes_
+old_search_anchor) ... ok
+test_empty_stop_and_invalid_time_are_rejected (test_itineraries.ItineraryTests.test_empty_stop_and_invalid_time_are_rej
+ected) ... ok
+test_nearby_cafe_can_start_from_selected_cafe_without_movie (test_itineraries.ItineraryTests.test_nearby_cafe_can_start
+_from_selected_cafe_without_movie) ... ok
+test_429_distinguishes_rate_limit_from_provider_quota_without_leaking_body (test_llm_errors.LLMErrorTests.test_429_dist
+inguishes_rate_limit_from_provider_quota_without_leaking_body) ... ok
+test_analysis_request_caps_output_and_omits_unused_tool_output_schemas (test_llm_errors.LLMErrorTests.test_analysis_req
+uest_caps_output_and_omits_unused_tool_output_schemas) ... ok
+test_connection_and_invalid_response_are_distinct (test_llm_errors.LLMErrorTests.test_connection_and_invalid_response_a
+re_distinct) ... ok
+test_http_errors_have_safe_distinct_codes (test_llm_errors.LLMErrorTests.test_http_errors_have_safe_distinct_codes) ...
+ ok
+test_ambiguous_range_is_preserved_until_period_reply (test_movie_dialogue.MovieDialogueTests.test_ambiguous_range_is_pr
+eserved_until_period_reply) ... ok
+test_compact_range_keeps_both_hours_and_period (test_movie_dialogue.MovieDialogueTests.test_compact_range_keeps_both_ho
+urs_and_period) ... ok
+test_exact_title_candidates_exclude_unrelated_festival_programs (test_movie_dialogue.MovieDialogueTests.test_exact_titl
+e_candidates_exclude_unrelated_festival_programs) ... ok
+test_range_preserves_exclusive_finish_and_zero_padded_24h_time (test_movie_dialogue.MovieDialogueTests.test_range_prese
+rves_exclusive_finish_and_zero_padded_24h_time) ... ok
+test_recent_release_followup_does_not_become_a_title_or_forget_time (test_movie_dialogue.MovieDialogueTests.test_recent
+_release_followup_does_not_become_a_title_or_forget_time) ... ok
+test_recent_release_unknown_dates_are_not_guessed_from_code (test_movie_dialogue.MovieDialogueTests.test_recent_release
+_unknown_dates_are_not_guessed_from_code) ... ok
+test_actor_description_extracts_person_name (test_movie_lookup.MovieLookupTests.test_actor_description_extracts_person_
+name) ... ok
+test_ambiguous_yes_does_not_choose_first_movie (test_movie_lookup.MovieLookupTests.test_ambiguous_yes_does_not_choose_f
+irst_movie) ... ok
+test_description_is_not_used_as_a_title_or_given_invented_times (test_movie_lookup.MovieLookupTests.test_description_is
+_not_used_as_a_title_or_given_invented_times) ... ok
+test_lookup_confirmation_then_date_and_time_are_required (test_movie_lookup.MovieLookupTests.test_lookup_confirmation_t
+hen_date_and_time_are_required) ... ok
+test_new_date_prompt_has_no_hidden_movie_date_or_time (test_movie_lookup.MovieLookupTests.test_new_date_prompt_has_no_h
+idden_movie_date_or_time) ... ok
+test_person_filmography_uses_real_movie_ids (test_movie_lookup.MovieLookupTests.test_person_filmography_uses_real_movie
+_ids) ... ok
+test_brand_followup_can_add_or_reset_all (test_multicinema.MultiCinemaTests.test_brand_followup_can_add_or_reset_all) .
+.. ok
+test_default_three_providers_and_brand_status (test_multicinema.MultiCinemaTests.test_default_three_providers_and_brand
+_status) ... ok
+test_explicit_brand_selection_and_unknown_brand_rejected (test_multicinema.MultiCinemaTests.test_explicit_brand_selecti
+on_and_unknown_brand_rejected) ... ok
+test_explicit_only_and_unquoted_title_preserve_brand_choice (test_multicinema.MultiCinemaTests.test_explicit_only_and_u
+nquoted_title_preserve_brand_choice) ... ok
+test_multiple_brands_do_not_leave_conjunction_in_region (test_multicinema.MultiCinemaTests.test_multiple_brands_do_not_
+leave_conjunction_in_region) ... ok
+test_natural_language_brand_selection_does_not_become_region (test_multicinema.MultiCinemaTests.test_natural_language_b
+rand_selection_does_not_become_region) ... ok
+test_partial_provider_failure_does_not_hide_success (test_multicinema.MultiCinemaTests.test_partial_provider_failure_do
+es_not_hide_success) ... ok
+test_lotte_extended_midnight_and_closed_status (test_multicinema.OtherCinemaTests.test_lotte_extended_midnight_and_clos
+ed_status) ... ok
+test_lotte_seomyeon_alias_remaining_not_booked_and_zero_sequence (test_multicinema.OtherCinemaTests.test_lotte_seomyeon
+_alias_remaining_not_booked_and_zero_sequence) ... ok
+test_malformed_and_declined_json_are_not_empty_successes (test_multicinema.OtherCinemaTests.test_malformed_and_declined
+_json_are_not_empty_successes) ... ok
+test_megabox_exact_movie_html_entities_and_real_remaining (test_multicinema.OtherCinemaTests.test_megabox_exact_movie_h
+tml_entities_and_real_remaining) ... ok
+test_missing_seats_and_sold_out_not_invented (test_multicinema.OtherCinemaTests.test_missing_seats_and_sold_out_not_inv
+ented) ... ok
+test_wrong_day_or_theater_is_not_published (test_multicinema.OtherCinemaTests.test_wrong_day_or_theater_is_not_publishe
+d) ... ok
+test_chat_graph_tools_memory_and_persisted_logs_work_together (test_requirements.APITests.test_chat_graph_tools_memory_
+and_persisted_logs_work_together) ... ok
+test_chat_route_and_logs_are_available (test_requirements.APITests.test_chat_route_and_logs_are_available) ... ok
+test_crud_and_overlap_are_exposed_through_original_api (test_requirements.APITests.test_crud_and_overlap_are_exposed_th
+rough_original_api) ... ok
+test_direct_cinema_search_works_without_llm (test_requirements.APITests.test_direct_cinema_search_works_without_llm) ..
+. ok
+test_map_config_exposes_only_separate_public_javascript_key (test_requirements.APITests.test_map_config_exposes_only_se
+parate_public_javascript_key) ... ok
+test_missing_agent_configuration_is_safe (test_requirements.APITests.test_missing_agent_configuration_is_safe) ... ok
+test_boxoffice_facts_follow_actual_plan_despite_old_movie_pin (test_requirements.AgentTests.test_boxoffice_facts_follow
+_actual_plan_despite_old_movie_pin) ... ok
+test_changed_movie_title_clears_stale_movie_code (test_requirements.AgentTests.test_changed_movie_title_clears_stale_mo
+vie_code) ... ok
+test_cinema_only_question_does_not_lookup_movies (test_requirements.AgentTests.test_cinema_only_question_does_not_looku
+p_movies) ... ok
+test_cinema_search_without_region_asks_for_region (test_requirements.AgentTests.test_cinema_search_without_region_asks_
+for_region) ... ok
+test_combined_movie_and_cinema_request_asks_for_missing_region (test_requirements.AgentTests.test_combined_movie_and_ci
+nema_request_asks_for_missing_region) ... ok
+test_different_movie_clears_previous_pin_and_excludes_recommendation (test_requirements.AgentTests.test_different_movie
+_clears_previous_pin_and_excludes_recommendation) ... ok
+test_exception_and_malformed_tool_results_are_logged_safely (test_requirements.AgentTests.test_exception_and_malformed_
+tool_results_are_logged_safely) ... ok
+test_explicit_null_removes_previous_constraint (test_requirements.AgentTests.test_explicit_null_removes_previous_constr
+aint) ... ok
+test_followup_keeps_unchanged_conditions (test_requirements.AgentTests.test_followup_keeps_unchanged_conditions) ... ok
+test_greeting_needs_no_tools (test_requirements.AgentTests.test_greeting_needs_no_tools) ... ok
+test_greeting_preserves_last_plan_for_different_movie_followup (test_requirements.AgentTests.test_greeting_preserves_la
+st_plan_for_different_movie_followup) ... ok
+test_missing_start_asks_before_any_tool_call (test_requirements.AgentTests.test_missing_start_asks_before_any_tool_call
+) ... ok
+test_one_upstream_detail_failure_does_not_block_other_movies (test_requirements.AgentTests.test_one_upstream_detail_fai
+lure_does_not_block_other_movies) ... ok
+test_partial_failure_does_not_block_next_candidate_batch (test_requirements.AgentTests.test_partial_failure_does_not_bl
+ock_next_candidate_batch) ... ok
+test_replan_limit_and_no_duplicate_detail_calls (test_requirements.AgentTests.test_replan_limit_and_no_duplicate_detail
+_calls) ... ok
+test_replans_reuse_candidates_and_keep_cinema_failure_partial (test_requirements.AgentTests.test_replans_reuse_candidat
+es_and_keep_cinema_failure_partial) ... ok
+test_same_day_plan_excludes_midnight_overflow (test_requirements.AgentTests.test_same_day_plan_excludes_midnight_overfl
+ow) ... ok
+test_broken_subscriber_does_not_stop_publication (test_requirements.EventTests.test_broken_subscriber_does_not_stop_pub
+lication) ... ok
+test_failed_analysis_has_safe_end_event (test_requirements.EventTests.test_failed_analysis_has_safe_end_event) ... ok
+test_logs_keep_order_and_sessions_separate_then_delete (test_requirements.EventTests.test_logs_keep_order_and_sessions_
+separate_then_delete) ... ok
+test_only_frontend_is_served_and_internal_files_are_not_exposed (test_requirements.FrontendServerTests.test_only_fronte
+nd_is_served_and_internal_files_are_not_exposed) ... ok
+test_real_graph_returns_a_greeting (test_requirements.GraphTests.test_real_graph_returns_a_greeting) ... ok
+test_blank_movie_and_invalid_interval_are_rejected (test_requirements.PlanTests.test_blank_movie_and_invalid_interval_a
+re_rejected) ... ok
+test_persistence_overlap_and_adjacency (test_requirements.PlanTests.test_persistence_overlap_and_adjacency) ... ok
+test_catalog_defines_success_and_failure_outputs (test_requirements.ToolTests.test_catalog_defines_success_and_failure_
+outputs) ... ok
+test_cinema_results_preserve_real_map_coordinates (test_requirements.ToolTests.test_cinema_results_preserve_real_map_co
+ordinates) ... ok
+test_compact_boxoffice_date_is_rejected (test_requirements.ToolTests.test_compact_boxoffice_date_is_rejected) ... ok
+test_future_boxoffice_date_is_disclosed (test_requirements.ToolTests.test_future_boxoffice_date_is_disclosed) ... ok
+test_invalid_arguments_and_missing_key_are_safe (test_requirements.ToolTests.test_invalid_arguments_and_missing_key_are
+_safe) ... ok
+test_kakao_permission_error_explains_activation_without_raw_details (test_requirements.ToolTests.test_kakao_permission_
+error_explains_activation_without_raw_details) ... ok
+test_missing_runtime_is_not_invented (test_requirements.ToolTests.test_missing_runtime_is_not_invented) ... ok
+test_three_external_tools_are_registered (test_requirements.ToolTests.test_three_external_tools_are_registered) ... ok
+test_tool_contract_rejects_malformed_success (test_requirements.ToolTests.test_tool_contract_rejects_malformed_success)
+ ... ok
+test_direct_api_works_without_llm_and_validates_query (test_showtimes.ShowtimeAgentTests.test_direct_api_works_without_
+llm_and_validates_query) ... ok
+test_graph_uses_showtime_tool_without_boxoffice_and_keeps_followup_memory (test_showtimes.ShowtimeAgentTests.test_graph
+_uses_showtime_tool_without_boxoffice_and_keeps_followup_memory) ... ok
+test_missing_region_is_asked_before_external_calls (test_showtimes.ShowtimeAgentTests.test_missing_region_is_asked_befo
+re_external_calls) ... ok
+test_access_denial_is_not_an_empty_success (test_showtimes.ShowtimeClientTests.test_access_denial_is_not_an_empty_succe
+ss) ... ok
+test_deadline_compares_actual_end_and_buffer (test_showtimes.ShowtimeClientTests.test_deadline_compares_actual_end_and_
+buffer) ... ok
+test_extended_clock_keeps_actual_calendar_day (test_showtimes.ShowtimeClientTests.test_extended_clock_keeps_actual_cale
+ndar_day) ... ok
+test_inconsistent_date_or_negative_seats_are_not_published (test_showtimes.ShowtimeClientTests.test_inconsistent_date_o
+r_negative_seats_are_not_published) ... ok
+test_partial_failure_keeps_results_and_is_explicit (test_showtimes.ShowtimeClientTests.test_partial_failure_keeps_resul
+ts_and_is_explicit) ... ok
+test_requested_movie_time_and_seats_are_from_actual_rows (test_showtimes.ShowtimeClientTests.test_requested_movie_time_
+and_seats_are_from_actual_rows) ... ok
+test_sold_out_and_unknown_are_not_available (test_showtimes.ShowtimeClientTests.test_sold_out_and_unknown_are_not_avail
+able) ... ok
+test_timeout_is_safe_and_unknown_theater_does_not_guess (test_showtimes.ShowtimeClientTests.test_timeout_is_safe_and_un
+known_theater_does_not_guess) ... ok
+test_valid_empty_data_is_distinct_from_schema_change (test_showtimes.ShowtimeClientTests.test_valid_empty_data_is_disti
+nct_from_schema_change) ... ok
+test_ambiguous_time_asks_instead_of_guessing (test_showtimes.ShowtimeRequestTests.test_ambiguous_time_asks_instead_of_g
+uessing) ... ok
+test_before_time_is_not_interpreted_as_after (test_showtimes.ShowtimeRequestTests.test_before_time_is_not_interpreted_a
+s_after) ... ok
+test_exact_user_example_without_llm (test_showtimes.ShowtimeRequestTests.test_exact_user_example_without_llm) ... ok
+test_explicit_request_does_not_require_llm_credentials (test_showtimes.ShowtimeRequestTests.test_explicit_request_does_
+not_require_llm_credentials) ... ok
+test_followup_can_complete_a_missing_region_without_llm (test_showtimes.ShowtimeRequestTests.test_followup_can_complete
+_a_missing_region_without_llm) ... ok
+test_followup_time_change_without_after_does_not_keep_old_time (test_showtimes.ShowtimeRequestTests.test_followup_time_
+change_without_after_does_not_keep_old_time) ... ok
+test_general_requests_still_use_existing_analyzer (test_showtimes.ShowtimeRequestTests.test_general_requests_still_use_
+existing_analyzer) ... ok
+test_reordered_request_and_followup (test_showtimes.ShowtimeRequestTests.test_reordered_request_and_followup) ... ok
+test_title_without_brackets_does_not_absorb_date_or_region (test_showtimes.ShowtimeRequestTests.test_title_without_brac
+kets_does_not_absorb_date_or_region) ... ok
+test_final_itinerary_requires_a_date (test_submission_compliance.SubmissionPlanTests.test_final_itinerary_requires_a_da
+te) ... ok
+test_internal_overlaps_and_unknown_times_are_visible (test_submission_compliance.SubmissionPlanTests.test_internal_over
+laps_and_unknown_times_are_visible) ... ok
+test_legacy_plan_warns_about_saved_itinerary_too (test_submission_compliance.SubmissionPlanTests.test_legacy_plan_warns
+_about_saved_itinerary_too) ... ok
+test_overlaps_are_reported_without_blocking_save_and_update_clears_them (test_submission_compliance.SubmissionPlanTests
+.test_overlaps_are_reported_without_blocking_save_and_update_clears_them) ... ok
+test_replan_limit_notice_is_available_to_the_ui (test_submission_compliance.SubmissionResponseTests.test_replan_limit_n
+otice_is_available_to_the_ui) ... ok
+test_simple_boxoffice_facts_do_not_require_a_watch_date (test_submission_compliance.SubmissionResponseTests.test_simple
+_boxoffice_facts_do_not_require_a_watch_date) ... ok
+
+----------------------------------------------------------------------
+Ran 126 tests in 5.012s
+
+OK

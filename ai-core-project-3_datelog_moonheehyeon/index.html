@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#faf5f0" />
+  <meta name="description" content="가고 싶은 곳을 자유롭게 담고 순서와 시간을 정하는 데이트 일정 노트, 데이트로그." />
+  <title>데이트로그 (DateLog) — 우리의 다음 데이트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23bd344c'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='27' fill='white'%3Ed%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root { color-scheme:dark; --bg:#0b0b0e; --surface:#141417; --raised:#1c1c21; --line:#2b2b31; --text:#f6f3f3; --muted:#aaa5ad; --accent:#f13b46; --ink:#fff; --radius:16px; }
+    * { box-sizing:border-box; }
+    [hidden] { display:none !important; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font:14px/1.65 'Segoe UI','Malgun Gothic',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+    button,input,textarea { font:inherit; }
+    button,a,input,textarea,summary { -webkit-tap-highlight-color:transparent; }
+    button { cursor:pointer; color:inherit; background:#1c1c21; border:1px solid #37363e; border-radius:8px; padding:10px 16px; transition:background .18s,border-color .18s; }
+    button:hover { background:#2c2429; border-color:#80505b; }
+    button:disabled { cursor:wait; opacity:.55; }
+    button.primary { background:#d92335; border-color:#d92335; color:white; font-weight:650; box-shadow:0 3px 16px #ed243214; }
+    button.primary:hover { background:#e02b3d; border-color:#e02b3d; }
+    button.quiet { color:var(--muted); border-color:transparent; background:transparent; }
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible { outline:2px solid #ff7d86; outline-offset:4px; }
+    a { color:#ff727c; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { letter-spacing:-.9px; }
+    h2 { font-size:21px; line-height:1.45; }
+    h3 { font-size:18px; }
+    p { margin-bottom:16px; }
+    .shell { width:min(1320px,calc(100% - 96px)); margin-inline:auto; }
+    .topbar { height:90px; display:flex; align-items:center; justify-content:space-between; gap:28px; border-bottom:1px solid #ffffff12; }
+    .brand { display:flex; gap:10px; align-items:center; text-decoration:none !important; color:white; }
+    .brand-mark { background:var(--accent); color:white; width:31px; height:33px; display:grid; place-items:center; font-size:24px; font-weight:800; border-radius:5px; line-height:1; }
+    .brand-name { font-size:25px; letter-spacing:1.5px; font-weight:800; line-height:1.1; }
+    .brand-caption { display:block; font-size:8px; color:#a39ca5; letter-spacing:2.3px; margin-top:3px; }
+    .tabs { display:flex; align-items:stretch; gap:27px; height:90px; }
+    .tabs button { color:#b0aab2; border:0; border-bottom:2px solid transparent; border-radius:0; background:none; padding:0 4px; font-size:13px; }
+    .tabs button:hover { color:white; }
+    .tabs button[aria-selected="true"] { color:white; border-bottom-color:var(--accent); font-weight:650; }
+    .count { display:inline-grid; min-width:19px; height:19px; padding:0 5px; place-items:center; border-radius:4px; background:#f13b461a; color:#ff7882; margin-left:6px; font-size:10px; font-variant-numeric:tabular-nums; }
+    .connection { display:flex; align-items:center; gap:7px; font-size:10px; color:#aaa2ad; }
+    .connection::before { content:''; width:5px; height:5px; border-radius:50%; background:#77717d; }
+    .connection.connected::before { background:#cfb2b4; }
+    main { min-height:calc(100vh - 175px); }
+    .hero { padding:42px 0 36px; display:grid; grid-template-columns:1.15fr 1fr; align-items:center; gap:48px; }
+    .eyebrow { font-size:10px; letter-spacing:2.2px; font-weight:650; color:#fb6a75; margin-bottom:17px; display:flex; gap:9px; align-items:center; }
+    .eyebrow::before { content:''; background:var(--accent); width:17px; height:2px; }
+    h1 { font-size:clamp(38px,4.1vw,56px); line-height:1.22; font-weight:700; letter-spacing:-2.6px; margin-bottom:16px; }
+    h1 em { color:var(--accent); font-style:normal; }
+    .hero-copy { font-size:13px; color:#b2aab6; line-height:1.85; margin-bottom:17px; }
+    .hero-saved { font-size:11px; background:none; border:0; padding:0; color:#b5aab7; }
+    .hero-saved strong { color:white; font-size:12px; margin:0 3px; }
+    .hero-saved .arrow { color:var(--accent); margin-left:8px; }
+    .cinema-scene { position:relative; background:#100d11; border:1px solid #40252d; border-radius:14px; overflow:hidden; aspect-ratio:1.78; }
+    .cinema-scene svg { width:100%; height:100%; display:block; }
+    .scene-tag { position:absolute; top:17px; left:20px; display:flex; gap:6px; align-items:center; font-size:9px; letter-spacing:1.6px; color:#d6b3b8; }
+    .scene-tag::before { content:''; width:5px; height:5px; background:#f13b46; border-radius:50%; }
+    .scene-caption { position:absolute; bottom:13px; left:20px; right:20px; display:flex; justify-content:space-between; color:#a67882; font-size:8px; letter-spacing:2px; }
+    .workspace { display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr); gap:22px; align-items:start; padding-bottom:42px; }
+    .panel { min-width:0; padding:25px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
+    .panel-top { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px; }
+    .panel-top h2,.panel-top p { margin:0; }
+    .panel-top button { font-size:11px; padding:7px 9px; white-space:nowrap; }
+    .section-number { display:block; font-size:9px; color:#a18e9b; letter-spacing:1.7px; margin-bottom:8px; }
+    .panel-icon { width:32px; height:32px; display:grid; place-items:center; color:#fa727c; background:#f13b4614; border:1px solid #ed424324; border-radius:8px; flex-shrink:0; }
+    .panel-title { display:flex; align-items:center; gap:11px; }
+    .chat-empty { padding:20px 0 17px; }
+    .chat-empty h3 { font-size:22px; font-weight:600; line-height:1.55; letter-spacing:-.8px; margin-bottom:9px; }
+    .muted { color:var(--muted); font-size:12px; }
+    .prompt-options { display:flex; flex-wrap:wrap; gap:7px; margin:20px 0 7px; }
+    .prompt-options button { padding:8px 10px; font-size:10px; color:#c5bac9; background:#1b181e; border:1px solid #40313b; text-align:left; }
+    .prompt-options button:hover { border-color:#cc4554; }
+    .prompt-options button span { color:#ff7180; margin-right:6px; }
+    label { display:block; font-size:11px; color:#bdb3c2; margin-bottom:16px; }
+    input,textarea { color:var(--text); background:#0d0d11; border:1px solid #3b343f; border-radius:8px; width:100%; min-width:0; padding:11px 13px; margin-top:7px; }
+    input { height:44px; }
+    input:hover,textarea:hover { border-color:#835663; }
+    input::placeholder,textarea::placeholder { color:#847989; }
+    textarea { min-height:115px; resize:vertical; line-height:1.85; }
+    .composer { border:1px solid #54313d; background:#0d0d11; border-radius:12px; overflow:hidden; }
+    .composer:focus-within { border-color:#ef5969; box-shadow:0 0 0 3px #f13b460b; }
+    .composer textarea { border:0; margin:0; border-radius:0; padding:16px; background:transparent; }
+    .composer textarea:focus-visible { outline:0; }
+    .composer-bottom { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 11px 11px 16px; }
+    .composer-hint { font-size:9px; color:#918397; }
+    .composer button { font-size:11px; padding:9px 13px; }
+    .chat-footnote { display:flex; gap:7px; align-items:flex-start; color:#9a8e9e; font-size:10px; border-top:1px solid #302830; margin-top:22px; padding-top:17px; }
+    .chat-footnote p { margin:0; }
+    .text-button { padding:0; border:0; background:none !important; color:#f87884; font-size:10px; border-radius:0; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .row { display:flex; gap:12px; }
+    .row>* { flex:1; min-width:0; }
+    .form-actions { display:flex; gap:8px; margin-top:24px; }
+    .form-actions .primary { flex:1; }
+    .status { color:#b2a9b9; font-size:11px; overflow-wrap:anywhere; margin:12px 0 0; }
+    .status:empty { display:none; }
+    .status.error { background:#39151d; border:1px solid #8a3546; border-radius:8px; color:#ffc0c7; padding:12px; }
+    .bubble { background:#25191f; border:1px solid #4d2b37; border-radius:11px; padding:14px 16px; font-size:12px; white-space:pre-wrap; overflow-wrap:anywhere; margin:0 0 13px; }
+    .bubble::before { content:'DateLog'; font-size:9px; color:#ff7e89; display:block; letter-spacing:1.5px; margin-bottom:8px; }
+    .bubble.user { background:#1c1a20; border-color:#39313e; margin-left:20px; }
+    .bubble.user::before { content:'YOU'; color:#b4a7bd; }
+    #conversation { max-height:330px; overflow-y:auto; scrollbar-width:thin; }
+    .map-section { margin:0; }
+    .map-section>.muted { font-size:11px; }
+    .map-section .panel-top { margin-bottom:17px; }
+    .map-search { display:flex; gap:8px; align-items:end; margin:0 0 17px; }
+    .map-search label { margin:0; flex:1; }
+    .map-search input { margin-top:5px; }
+    .map-search button { height:44px; white-space:nowrap; font-size:11px; padding:9px 12px; }
+    .map-layout { display:block; }
+    .map-canvas { height:290px; overflow:hidden; border:1px solid #3e303b; border-radius:10px; background:#0e0d11; }
+    .map-unavailable { display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:25px; height:100%; }
+    .kakao-badge { color:#241e00; background:#fee500; border-radius:8px; font-weight:750; padding:8px 12px; font-size:14px; margin-bottom:17px; }
+    .map-unavailable strong { font-size:15px; font-weight:500; margin-bottom:7px; }
+    .map-unavailable p { font-size:11px; color:var(--muted); max-width:300px; }
+    .map-unavailable a { color:#fee500; font-size:11px; }
+    .map-results { display:grid; grid-template-columns:1fr 1fr; gap:8px; max-height:200px; overflow-y:auto; margin-top:13px; scrollbar-width:thin; }
+    .map-results .empty-state { grid-column:1/-1; padding:13px; }
+    .map-results .empty-icon { display:none; }
+    .map-results .empty-state strong { font-size:12px; margin-bottom:2px; }
+    .map-results .empty-state p { font-size:10px; }
+    .map-results .card { padding:12px; margin:0; }
+    .map-results .card strong { font-size:12px; }
+    .map-results .card p { font-size:10px; line-height:1.65; margin-bottom:8px; }
+    .map-results .card a { display:inline-block; margin:3px 7px 0 0; font-size:10px; }
+    .map-results .card button { font-size:10px; padding:5px 8px; margin-top:7px; }
+    .map-note { font-size:10px; color:#9a8a9f; margin:14px 0 0; }
+    .page-heading { padding:40px 0 26px; }
+    .page-heading h1 { font-size:39px; margin-bottom:12px; }
+    .page-heading .eyebrow { margin-bottom:15px; }
+    .plans-layout { grid-template-columns:minmax(290px,.85fr) minmax(0,1.15fr); }
+    .history-layout { grid-template-columns:290px minmax(0,1fr); }
+    .form-note { font-size:12px; color:var(--muted); margin:-6px 0 25px; }
+    .card { background:#1b171e; border:1px solid #392b38; border-radius:10px; padding:20px; margin-bottom:12px; overflow-wrap:anywhere; }
+    .card:last-child { margin-bottom:0; }
+    .card p { color:var(--muted); font-size:12px; margin-bottom:12px; }
+    .card strong { font-size:16px; font-weight:600; }
+    .card h3 { color:#ff8390; }
+    .card button { font-size:11px; padding:7px 12px; margin:5px 6px 0 0; }
+    .card a { font-size:12px; }
+    .warning { color:#ffc1c7 !important; background:#4e1b293e; border:1px solid #86354a; border-radius:8px; font-size:12px; padding:10px 12px; }
+    #recommendations:not(:empty),#cinemas:not(:empty) { margin-top:22px; }
+    .showtime-list { display:grid; gap:10px; margin:15px 0; max-height:680px; overflow-y:auto; scrollbar-width:thin; }
+    .showtime-card { padding:16px; margin:0; }
+    .showtime-card h3 { font-size:14px; margin-bottom:7px; }
+    .showtime-time { font-size:25px; color:#fff; letter-spacing:-.7px; font-weight:700; }
+    .showtime-time small { color:var(--muted); font-size:13px; font-weight:400; }
+    .showtime-seats { display:inline-block; color:#ffd8dc; background:#f13b4614; border:1px solid #6e3440; padding:4px 8px; border-radius:6px; font-size:12px; margin:8px 0; }
+    .showtime-card p { margin-bottom:7px; }
+    .showtime-actions { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+    .showtime-actions button { margin:0; }
+    .showtime-actions a { padding:7px; }
+    .showtime-heading { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; }
+    .showtime-heading h3 { margin:0; }
+    .showtime-heading button { padding:7px 10px; font-size:11px; }
+    .brand-filters { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 10px; }
+    .brand-filters button { padding:6px 9px; font-size:11px; background:#1c1a20; border-color:#40343e; }
+    .brand-filters button[aria-pressed="true"] { color:#fff; background:#71232d; border-color:#e34b5c; }
+    .brand-statuses { color:var(--muted); font-size:11px; line-height:1.9; }
+    .official-links { display:flex; flex-wrap:wrap; gap:6px 15px; }
+    .official-links a { font-size:11px; }
+    .course-panel { margin:18px 0; border:1px solid #69323c; background:#26161c; border-radius:12px; padding:15px; }
+    .course-panel h3 { font-size:15px; margin:0 0 12px; }
+    .course-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .course-step { min-width:0; padding:10px; background:#171216; border-radius:8px; overflow-wrap:anywhere; }
+    .course-step small { display:block; color:#f58b96; font-size:10px; margin-bottom:5px; }
+    .course-step strong { font-size:12px; display:block; }
+    .course-step p { font-size:10px; color:var(--muted); margin:5px 0 0; }
+    .course-step button { padding:3px 6px; margin-top:7px; font-size:9px; }
+    .course-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+    .course-actions button { font-size:11px; padding:7px 10px; }
+    .place-list { max-height:650px; overflow-y:auto; scrollbar-width:thin; margin-top:12px; }
+    .place-card { padding:16px; }
+    .place-card h3 { font-size:15px; margin-bottom:8px; }
+    .place-card p { margin-bottom:7px; }
+    @media(max-width:500px) { .course-steps { grid-template-columns:minmax(0,1fr); } }
+    #excluded-panel { font-size:12px; margin-top:20px; }
+    #excluded-panel summary { cursor:pointer; color:#d2becf; }
+    #excluded { color:var(--muted); margin-top:12px; }
+    #list { margin:0; padding:0; list-style:none; }
+    .empty-state { padding:35px 12px; text-align:center; border:1px dashed #453344; border-radius:10px; }
+    .empty-icon { display:block; font-size:25px; margin-bottom:12px; color:#b16a7e; }
+    .empty-state strong { display:block; font-size:14px; color:#dbc7d8; margin-bottom:6px; font-weight:500; }
+    .empty-state p { font-size:11px; color:var(--muted); margin:0; }
+    #log-list { max-height:580px; overflow-y:auto; scrollbar-width:thin; }
+    #log-list .card { padding:15px; }
+    #log-list .card span { font-size:12px; color:#d2bfd4; display:block; }
+    #events { max-height:650px; overflow-y:auto; padding-left:22px; margin:0; scrollbar-width:thin; }
+    #events li { font-size:12px; color:#b8748a; padding:0 0 18px 8px; }
+    #events summary { cursor:pointer; color:#dfd1e1; }
+    .replan { border-left:2px solid var(--accent); padding-left:12px !important; }
+    pre { padding:14px; border-radius:8px; background:#0d0b10; border:1px solid #39293c; color:#ccb6d1; white-space:pre-wrap; overflow-wrap:anywhere; font:11px/1.8 Consolas,monospace; }
+    footer { border-top:1px solid #ffffff12; padding:22px 0 27px; display:flex; justify-content:space-between; gap:20px; color:#8f8197; font-size:9px; letter-spacing:1px; }
+    footer span:last-child { letter-spacing:0; }
+    @media(max-width:1100px) { .shell { width:calc(100% - 56px); } .connection { display:none; } .hero { gap:30px; } .workspace { gap:16px; } .panel { padding:21px; } .tabs { gap:22px; } }
+    @media(max-width:900px) { .workspace { grid-template-columns:minmax(0,1fr); } .hero { grid-template-columns:1fr .9fr; gap:22px; } h1 { font-size:44px; } .plans-layout { grid-template-columns:minmax(270px,.9fr) minmax(0,1.1fr); } .history-layout { grid-template-columns:260px minmax(0,1fr); } .map-layout { display:grid; grid-template-columns:minmax(0,1fr) 270px; gap:14px; } .map-results { display:block; margin-top:0; max-height:290px; } .map-results .card { margin-bottom:8px; } }
+    @media(max-width:760px) { .shell { width:calc(100% - 36px); } .topbar { height:auto; padding:22px 0 0; flex-wrap:wrap; gap:17px; } .brand-name { font-size:24px; } .brand-mark { width:28px; height:30px; font-size:22px; } .tabs { height:47px; width:100%; gap:0; justify-content:space-between; } .tabs button { padding:0 7px 12px; font-size:12px; flex:1; } .hero { padding:30px 0 28px; display:block; } h1 { font-size:41px; letter-spacing:-2px; } .hero-copy { font-size:12px; } .cinema-scene { display:none; } .eyebrow { font-size:9px; margin-bottom:15px; } .hero-saved { font-size:10px; } .workspace,.plans-layout,.history-layout { grid-template-columns:minmax(0,1fr); padding-bottom:28px; gap:17px; } .panel { padding:21px; border-radius:13px; } .panel-top { gap:9px; } .panel-top h2 { font-size:20px; } .chat-empty { padding-top:12px; } .chat-empty h3 { font-size:20px; } .composer-hint { font-size:9px; max-width:105px; } .prompt-options button { font-size:10px; } .map-section .panel-top { align-items:flex-start; } .map-section .panel-top a { white-space:nowrap; font-size:9px; padding-top:5px; } .map-layout { display:block; } .map-canvas { height:300px; } .map-results { display:grid; grid-template-columns:minmax(0,1fr); margin-top:12px; max-height:280px; } .map-results .card { margin:0; } .page-heading { padding:30px 0 22px; } .page-heading h1 { font-size:32px; } #log-list { max-height:260px; } footer { font-size:8px; } footer span:last-child { max-width:155px; text-align:right; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
+
+    /* A warm date journal: cherry red, paper cream and deep wine. */
+    :root { color-scheme:light; --bg:#faf5f0; --surface:#fffdfb; --raised:#f6eee8; --line:#e9ddd5; --text:#362329; --muted:#826e72; --accent:#bd344c; --ink:#fff; --radius:24px; }
+    body { background:radial-gradient(ellipse at 85% 12%,#f7e2dd80,transparent 40%),var(--bg); }
+    .shell { width:min(1240px,calc(100% - 80px)); }
+    .topbar { height:92px; border-color:var(--line); }
+    .brand { color:var(--text); }
+    .brand-mark { background:var(--accent); border-radius:50% 50% 45% 45%; width:35px; height:35px; font-family:Georgia,serif; font-style:italic; }
+    .brand-name { font-size:24px; letter-spacing:2px; }
+    .brand-caption { color:var(--muted); font-size:8px; letter-spacing:1.7px; }
+    .tabs { height:auto; gap:7px; padding:5px; border:1px solid var(--line); border-radius:30px; background:#f1e8e2; }
+    .tabs button { padding:9px 19px; border:0; border-radius:24px; color:var(--muted); font-size:12px; }
+    .tabs button:hover { color:var(--accent); }
+    .tabs button[aria-selected="true"] { background:var(--surface); color:var(--accent); box-shadow:0 2px 8px #64333e0c; }
+    .count { background:#f7e2e2; color:#a9344a; border-radius:50%; }
+    .connection { color:var(--muted); }.connection.connected::before { background:#7d927a; }
+    .hero { padding:54px 0 38px; gap:60px; grid-template-columns:1fr 1fr; }
+    .eyebrow { color:var(--accent); letter-spacing:2.4px; font-size:10px; }
+    h1 { font-size:clamp(38px,4.1vw,55px); line-height:1.32; letter-spacing:-2.5px; font-weight:650; }
+    h1 em { color:var(--accent); }
+    .hero-copy { color:var(--muted); font-size:14px; line-height:1.95; margin:19px 0; }
+    .hero-saved,.hero-saved strong { color:var(--text); }
+    .hero-saved { border-bottom:1px solid #d5b5b6; padding-bottom:4px; border-radius:0; }
+    .cinema-scene { aspect-ratio:1.48; border:0; border-radius:28px; background:#45282f; overflow:visible; box-shadow:0 18px 50px #5e303219; }
+    .cinema-scene>svg,.scene-tag,.scene-caption { display:none; }
+    .date-art { position:absolute; inset:0; overflow:hidden; border-radius:28px; background:radial-gradient(ellipse at 60% 15%,#80404c80,transparent 60%); }
+    .art-orbit { position:absolute; width:360px; height:360px; border:1px solid #c28a8e30; border-radius:50%; top:-105px; right:-70px; }
+    .art-orbit::after { content:''; position:absolute; inset:32px; border:1px solid #c28a8e30; border-radius:50%; }
+    .art-note { position:absolute; left:27px; top:22px; color:#e7c8c9; font-size:9px; letter-spacing:2px; }
+    .date-ticket { position:absolute; top:22%; left:12%; width:72%; padding:22px 25px 18px; background:#fff6e9; color:#492d33; border-radius:12px; transform:rotate(-8deg); box-shadow:0 14px 25px #200c2630; }
+    .ticket-top { display:flex; justify-content:space-between; font-size:9px; color:#a04b5c; letter-spacing:1.5px; }
+    .date-ticket strong { display:block; font-family:Georgia,serif; font-weight:400; font-size:clamp(25px,3vw,39px); line-height:1.2; margin:17px 0 7px; letter-spacing:-1px; }
+    .date-ticket p { font-size:11px; margin:0 0 17px; color:#927174; }
+    .ticket-bottom { border-top:1px dashed #cfaeaa; padding-top:12px; display:flex; justify-content:space-between; font-size:9px; letter-spacing:1px; }
+    .ticket-heart { color:#be3951; font-size:22px; line-height:1; }
+    .coffee-note { position:absolute; right:6%; bottom:8%; transform:rotate(8deg); width:130px; padding:14px 10px 12px; background:#eeb8ae; border:5px solid #fff4e9; box-shadow:0 8px 18px #20101b30; text-align:center; color:#623f42; }
+    .coffee-note span { display:block; font:italic 15px Georgia,serif; margin-top:8px; }
+    .coffee-cup { width:49px; height:49px; border:8px solid #fff7ed; border-radius:50%; background:#75503c; margin:4px auto; box-shadow:0 0 0 6px #cf968e; position:relative; }
+    .coffee-cup::after { content:''; position:absolute; width:10px; height:10px; border:4px solid #fff7ed; border-radius:4px; right:-19px; top:7px; }
+    .art-flower { position:absolute; left:6%; bottom:8%; color:#edaeaa; font-size:55px; transform:rotate(12deg); line-height:1; }
+    .art-footer { position:absolute; bottom:20px; left:26px; color:#c8959e; font:italic 12px Georgia,serif; }
+    .date-path { display:flex; align-items:center; gap:20px; padding:0 0 30px; color:var(--muted); font-size:12px; }
+    .date-path span { display:flex; align-items:center; gap:9px; white-space:nowrap; }
+    .date-path b { background:#f1e2dd; border-radius:50%; width:26px; height:26px; display:grid; place-items:center; color:#a84d5d; font-size:10px; font-weight:500; }
+    .date-path i { width:35px; border-top:1px dashed #cfb6b4; }
+    .workspace { gap:22px; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); }
+    .panel { padding:28px; border-color:var(--line); box-shadow:0 5px 25px #65432e04; }
+    .section-number { color:#a5797c; font-size:9px; }
+    .panel-icon { color:var(--accent); background:#fae9e5; border-color:#f1d4d0; border-radius:50%; width:38px; height:38px; }
+    .panel-top h2 { font-size:20px; }
+    .chat-empty h3 { font-size:23px; }.chat-empty { padding-top:12px; }
+    button { background:#fffaf6; color:var(--text); border-color:#e3d4cc; border-radius:12px; }
+    button:hover { background:#f8eae5; border-color:#c99196; }
+    button.primary { background:var(--accent); border-color:var(--accent); box-shadow:0 4px 12px #bd344c15; }
+    button.primary:hover { background:#a82b41; border-color:#a82b41; }
+    a,.text-button { color:#ac354b; }
+    .prompt-options button { background:#faf3ef; border-color:#ecddd5; color:#806069; border-radius:20px; font-size:11px; }
+    .prompt-options button span { color:var(--accent); }
+    label { color:#755e64; }
+    input,textarea { background:#fffaf7; border-color:#e2d3cd; border-radius:12px; }
+    input::placeholder,textarea::placeholder { color:#a39292; }
+    .composer { background:#fffcf9; border-color:#dcc0bf; border-radius:18px; }
+    .composer textarea { min-height:125px; font-size:13px; }
+    .composer-hint,.chat-footnote,.map-note { color:#937d80; }
+    .chat-footnote { border-color:var(--line); }
+    .status { color:var(--muted); }.status.error { background:#ffedeb; border-color:#edbdbe; color:#ad3349; }
+    .bubble { background:#f9e9e4; border-color:#edcfca; border-radius:16px 16px 16px 4px; }
+    .bubble::before { color:#a74155; }.bubble.user { background:#f4efeb; border-color:#e7ddd5; border-radius:16px 16px 4px 16px; }.bubble.user::before { color:#947b81; }
+    .map-canvas { border-color:#e6d8d1; background:#f5ede5; border-radius:17px; height:310px; }
+    .map-unavailable a { color:#a84a52; }
+    .card { background:#fffaf6; border-color:#e9dcd3; border-radius:17px; }
+    .card h3 { color:#9f354c; }.showtime-time { color:var(--text); }
+    .showtime-seats { color:#a0394e; background:#f9e6e1; border-color:#eccac5; border-radius:8px; }
+    .brand-filters button { background:#f7eee9; border-color:#e5d3cc; }
+    .brand-filters button[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); }
+    .course-panel { background:#f8eae3; border-color:#e6c9c0; border-radius:20px; padding:18px; }
+    .course-step { background:#fffaf5; border:1px solid #eedbd1; border-radius:12px; }.course-step small { color:#ab5061; }
+    .empty-state { border-color:#e2cec7; }.empty-state strong { color:#7e5b66; }.empty-icon { color:#bd7b85; }
+    .warning { background:#fff0df; border-color:#e2cba9; color:#8b5b34 !important; }
+    #excluded-panel summary,#log-list .card span,#events summary { color:#81636d; }
+    pre { background:#f5ede8; border-color:#e4d4ca; color:#785b66; }
+    footer { border-color:var(--line); color:#9e868a; }
+    .plans-layout { grid-template-columns:minmax(290px,.85fr) minmax(0,1.15fr); }.history-layout { grid-template-columns:290px minmax(0,1fr); }
+    @media(max-width:1000px) { .shell { width:calc(100% - 48px); }.hero { gap:30px; }.date-ticket { padding:18px; }.coffee-note { width:108px; bottom:6%; }.panel { padding:23px; } }
+    @media(max-width:900px) { .workspace { grid-template-columns:minmax(0,1fr); }.map-layout { display:grid; }.hero { grid-template-columns:1fr 1fr; } }
+    @media(max-width:760px) { .shell { width:calc(100% - 36px); }.topbar { height:auto; padding:22px 0 17px; gap:21px; }.tabs { height:auto; padding:4px; }.tabs button { font-size:11px; padding:9px 8px; }.hero { display:grid; grid-template-columns:1fr; padding:31px 0 25px; gap:25px; } h1 { font-size:39px; }.hero-copy { font-size:13px; }.cinema-scene { display:block; aspect-ratio:1.8; margin:0 6px; }.date-ticket { top:15%; width:66%; left:13%; padding:16px 20px; }.date-ticket strong { font-size:29px; margin:11px 0 5px; }.date-ticket p { font-size:10px; margin-bottom:12px; }.ticket-bottom { padding-top:8px; }.coffee-note { width:100px; right:5%; bottom:6%; padding:8px; }.coffee-cup { width:40px; height:40px; border-width:6px; }.coffee-note span { font-size:12px; }.art-footer { display:none; }.art-note { top:15px; font-size:8px; }.art-flower { left:4%; bottom:5%; font-size:39px; }.date-path { justify-content:center; gap:10px; font-size:11px; padding-bottom:24px; }.date-path i { width:20px; }.date-path b { width:23px; height:23px; }.panel { padding:21px; border-radius:21px; }.map-layout { display:block; }.composer-hint { max-width:115px; }.plans-layout,.history-layout { grid-template-columns:minmax(0,1fr); } }
+    @media(max-width:420px) {
+      h1 { font-size:32px; letter-spacing:-1.8px; }
+      .hero-copy { font-size:12px; }
+      .cinema-scene { aspect-ratio:1.55; }
+      .date-ticket { left:9%; top:24%; width:75%; padding:15px 17px; }
+      .date-ticket strong { font-size:25px; white-space:nowrap; }
+      .ticket-top { font-size:7px; letter-spacing:.8px; }
+      .ticket-bottom { font-size:7px; letter-spacing:.5px; }
+      .coffee-note { width:80px; right:3%; bottom:4%; }
+      .coffee-cup { width:31px; height:31px; border-width:5px; }
+      .coffee-cup::after { width:6px; height:6px; right:-14px; top:4px; border-width:3px; }
+      .coffee-note span { font-size:10px; }
+      .panel-top button.quiet { padding:7px 4px; background:transparent; border-color:transparent; }
+    }
+    .saved-stop { margin:10px 0; padding:12px; border:1px solid var(--line); border-radius:12px; background:var(--bg); }
+    .saved-stop strong { font-size:13px; }.saved-stop p { margin:5px 0; font-size:11px; }
+    .cinema-scene { overflow:hidden; background:#eedbd0; }
+    .date-hero-image { display:block; width:100%; height:100%; object-fit:cover; object-position:55% center; border-radius:inherit; }
+    /* A small Korean date diary, with a pasted photo and quiet stationery details. */
+    :root { --bg:#f8f4ec; --surface:#fffef9; --text:#413630; --muted:#81776b; --accent:#af4547; --line:#e5dfd2; --radius:19px; }
+    body { font-family:'Noto Sans KR',sans-serif; background-color:var(--bg); background-image:radial-gradient(#b7a89533 .65px,transparent .65px); background-size:9px 9px; font-size:13px; }
+    h1,h2,h3,.brand-name,.date-path,.photo-caption,.hero-kicker { font-family:'Gowun Dodum',sans-serif; font-weight:400; }
+    .shell { width:min(1160px,calc(100% - 72px)); }
+    .topbar { height:100px; border-bottom:1px solid #cbbfb0; }
+    .brand-mark { background:none; color:var(--accent); border:1.5px solid var(--accent); border-radius:10px; font:italic 29px Georgia,serif; transform:rotate(-6deg); }
+    .brand-name { font-size:27px; letter-spacing:-1px; color:#70413e; }
+    .brand-caption { font-family:'Noto Sans KR',sans-serif; font-size:9px; letter-spacing:.4px; margin-top:3px; color:#958476; }
+    .tabs { background:none; border:none; padding:0; gap:10px; }
+    .tabs button { font-size:12px; padding:9px 14px; color:#8e7d6d; }
+    .tabs button[aria-selected="true"] { background:#efe3da; color:#964043; box-shadow:none; border-radius:7px; }
+    .connection { font-size:9px; color:#9b9082; }
+    .hero { padding:48px 9px 43px; gap:82px; grid-template-columns:1fr .94fr; }
+    .hero-kicker { display:inline-block; font-size:14px; color:#9a5c58; margin:0 0 17px; padding:3px 4px; border-bottom:1px dashed #c9b2a3; transform:rotate(-2deg); }
+    h1 { font-size:46px; line-height:1.45; letter-spacing:-2px; margin-bottom:14px; }
+    h1 em { position:relative; color:#a14647; }
+    h1 em::after { content:''; position:absolute; left:2px; right:0; bottom:1px; height:7px; border-radius:50%; background:#d9b15b30; z-index:-1; transform:rotate(-1deg); }
+    .hero-copy { font-size:12px; line-height:2; margin:18px 0 21px; color:#897b6b; }
+    .hero-saved { font-size:11px; border:1px dashed #cfbfb0; border-radius:7px; padding:8px 12px; background:#fffaf1; color:#8a645b; }
+    .hero-saved strong { color:#a14647; }
+    .cinema-scene { aspect-ratio:1.35; padding:10px 10px 45px; border-radius:3px; background:#fffdf6; box-shadow:1px 7px 18px #705a3d14; transform:rotate(2deg); overflow:visible; margin:8px 8px 0; border:1px solid #e6ddcf; }
+    .cinema-scene::before { content:''; position:absolute; width:115px; height:29px; background:repeating-linear-gradient(90deg,#d8b8ab90 0 1px,#ead3bfaf 1px 5px); left:calc(50% - 57px); top:-14px; z-index:1; transform:rotate(-7deg); clip-path:polygon(2% 0,98% 0,100% 12%,98% 24%,100% 36%,98% 48%,100% 60%,98% 75%,100% 88%,98% 100%,2% 100%,0 88%,2% 75%,0 60%,2% 48%,0 36%,2% 24%,0 12%); }
+    .date-hero-image { border-radius:1px; object-position:55% center; }
+    .photo-caption { position:absolute; left:0; bottom:11px; width:100%; text-align:center; color:#89715b; font-size:14px; letter-spacing:.3px; }
+    .photo-caption span { color:#b76767; margin-left:8px; font-size:17px; }
+    .date-path { gap:12px; width:max-content; max-width:100%; padding:11px 17px; margin:0 0 23px 9px; background:#fffaf2; border:1px solid #e5dac8; border-radius:7px; font-size:12px; box-shadow:2px 3px 0 #e9e0d133; }
+    .date-path b { background:none; color:#b38173; font-family:Georgia,serif; font-style:italic; font-size:13px; width:auto; height:auto; }
+    .date-path i { width:23px; border-color:#cdb9a4; }
+    .panel { border-radius:15px; border-color:#e4dbcc; background:#fffefaeF; box-shadow:0 4px 14px #79623805; padding:27px; }
+    .workspace { gap:23px; }.panel-top { margin-bottom:18px; }
+    .panel-top h2 { font-size:22px; letter-spacing:-.6px; }
+    .section-number { font-family:'Noto Sans KR',sans-serif; font-size:9px; color:#aa9581; letter-spacing:1px; margin-bottom:5px; }
+    .panel-icon { border:1px dashed #d1aba0; background:#fcf0e6; border-radius:10px; color:#ad6460; width:36px; height:36px; transform:rotate(-5deg); }
+    .chat-empty h3 { font-size:23px; color:#665044; margin-top:5px; margin-bottom:9px; }
+    .muted { font-size:11px; line-height:1.95; }.prompt-options { margin-top:17px; margin-bottom:18px; }
+    .prompt-options button { border-radius:6px; font-size:10px; background:#fbf5e9; border-color:#e7d9c1; color:#8c735d; padding:7px 9px; }
+    .prompt-options button:nth-child(2) { background:#f1f3e8; border-color:#d9dfc5; color:#7e8764; }
+    .prompt-options button:nth-child(3) { background:#fbefed; border-color:#ebd4cf; color:#a37572; }
+    .composer { border-radius:11px; border-color:#d8c9b6; background:repeating-linear-gradient(#fffdf7 0 30px,#e9e2d3 30px 31px); }
+    .composer textarea { font-size:12px; line-height:31px; padding:12px 15px; min-height:125px; background:transparent; }
+    input,textarea { font-family:'Noto Sans KR',sans-serif; font-size:12px; border-radius:7px; }
+    input::placeholder,textarea::placeholder { color:#aa9c89; }
+    .composer-bottom { background:#fffdf7; padding-top:6px; }.composer-hint { font-size:9px; color:#b0a08d; }
+    button { border-radius:8px; font-size:12px; }.primary { box-shadow:none !important; }
+    button.primary { background:#af4e4e; border-color:#af4e4e; border-radius:8px; font-weight:500; }
+    button.primary:hover { background:#984344; border-color:#984344; }
+    .bubble,.bubble.user { font-size:12px; background:#f8eee3; border-color:#e8d7c7; border-radius:11px; }
+    .bubble.user { background:#f3f1e6; border-color:#e0decd; }.bubble::before { font-size:9px; letter-spacing:.4px; }
+    .map-canvas { border-radius:9px; border:5px solid #f1eadc; outline:1px solid #e1d7c6; }
+    .map-search button { font-size:10px; }.map-section .panel-top>a { font-size:9px; }
+    .card { border-radius:11px; border-color:#e4dacb; background:#fffcf5; }
+    .card h3 { font-size:19px; color:#8f524c; }.showtime-card h3 { font-size:17px; }
+    .showtime-time { font-family:'Gowun Dodum',sans-serif; font-size:28px; }
+    .showtime-seats { font-size:11px; border-style:dashed; background:#faf0e6; color:#a06259; border-color:#d8b4a0; }
+    .course-panel { background:#fbf1df; border:1px dashed #d5bda0; border-radius:11px; padding:18px; }
+    .course-panel h3 { font-size:20px; }.course-step { border-radius:8px; border-color:#e8d9bf; background:#fffdf5; }
+    .course-step small { color:#a37f5e; }.course-step strong { font-size:12px; font-weight:500; }
+    .saved-stop { border-style:dashed; background:#faf5e9; border-radius:8px; }.empty-state { border-radius:9px; }
+    footer { font-size:9px; color:#ab9984; border-color:#dbcebb; }
+    @media(max-width:1000px) { .hero { gap:40px; } h1 { font-size:39px; }.panel { padding:23px; } }
+    @media(max-width:760px) { .shell { width:calc(100% - 36px); }.topbar { height:auto; padding:23px 0 17px; gap:18px; }.brand-name { font-size:26px; }.tabs { width:100%; gap:5px; }.tabs button { font-size:11px; padding:9px 12px; }.hero { grid-template-columns:1fr; padding:28px 4px 27px; gap:27px; }.hero-kicker { font-size:12px; margin-bottom:13px; } h1 { font-size:35px; line-height:1.4; letter-spacing:-1.5px; }.hero-copy { font-size:11px; margin:15px 0 18px; }.cinema-scene { width:calc(100% - 20px); margin:6px 10px 0; aspect-ratio:1.52; padding:8px 8px 37px; }.photo-caption { bottom:8px; font-size:12px; }.cinema-scene::before { width:90px; height:23px; left:calc(50% - 45px); top:-10px; }.date-path { width:100%; margin:0 0 19px; justify-content:center; padding:10px; gap:9px; font-size:11px; }.date-path span { gap:5px; }.date-path i { width:13px; }.panel { padding:20px; border-radius:13px; }.panel-top h2 { font-size:21px; }.panel-top button { font-size:10px; }.chat-empty h3 { font-size:22px; }.section-number { letter-spacing:.3px; }.composer-hint { max-width:110px; }.map-canvas { height:285px; } }
+    .itinerary-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .itinerary-heading h3 { margin:0; }.itinerary-heading button { padding:5px 9px; font-size:10px; }
+    .itinerary-panel>p { margin:8px 0 15px; }.itinerary-fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .itinerary-fields label { font-size:10px; margin:0; }.itinerary-fields input { height:37px; padding:7px 9px; font-size:11px; margin:5px 0 0; }
+    .itinerary-empty { padding:18px 12px; background:#fffcf5; border:1px dashed #dbc6a6; border-radius:8px; color:#9b866c; font-size:11px; text-align:center; }
+    .itinerary-list { margin:15px 0; padding:0; list-style:none; display:grid; gap:9px; }
+    .itinerary-stop { display:flex; gap:10px; justify-content:space-between; padding:13px; background:#fffdf5; border:1px solid #e6d7be; border-radius:9px; }
+    .stop-detail { min-width:0; flex:1; }.stop-detail>small { display:block; font-size:9px; color:#ab8462; margin-bottom:5px; }
+    .stop-detail>strong { display:block; font-size:12px; font-weight:500; overflow-wrap:anywhere; }.stop-detail>p { font-size:10px; color:var(--muted); margin:5px 0; }
+    .stop-times { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }.stop-times label { font-size:9px; width:110px; margin:0; }
+    .stop-times input { height:32px; font-size:10px; margin:3px 0 0; padding:4px 6px; }
+    .stop-controls { display:flex; gap:5px; align-items:flex-start; flex-shrink:0; }.stop-controls button { padding:4px 6px; font-size:10px; }
+    .custom-stop { display:flex; align-items:center; gap:7px; margin:12px 0; }.custom-stop input { margin:0; height:36px; font-size:10px; }
+    .custom-stop button { white-space:nowrap; padding:8px; font-size:10px; }.itinerary-panel>.primary { width:100%; padding:11px; }
+    .saved-itinerary-stops { padding-left:21px; margin:14px 0; }.saved-itinerary-stops li { padding:4px 0 10px 5px; color:#a37d62; }
+    .saved-itinerary-stops strong { font-size:12px; color:var(--text); }.saved-itinerary-stops p { margin:4px 0; font-size:11px; }
+    .date-path { display:flex; flex-wrap:wrap; width:100%; padding:0; border:0; background:none; box-shadow:none; margin-left:0; }
+    .date-path button { font-family:'Gowun Dodum',sans-serif; background:#fffbf2; border:1px solid #dfd2bc; font-size:13px; padding:8px 15px; }
+    .date-path span { color:#a08e76; margin-left:4px; font-size:11px; }
+    .map-search { flex-wrap:wrap; }.map-search>input { flex:1; min-width:150px; margin:0; }
+    .map-search select { font-family:inherit; font-size:11px; height:44px; background:#fffaf2; color:var(--text); border:1px solid #e2d3cd; border-radius:7px; padding:0 8px; max-width:110px; }
+    .plans-layout { grid-template-columns:minmax(0,1fr); }
+    @media(max-width:500px) { .itinerary-fields { grid-template-columns:minmax(0,1fr); gap:9px; }.itinerary-stop { flex-wrap:wrap; padding:11px; }.stop-controls { width:100%; justify-content:flex-end; }.stop-times label { width:100px; }.date-path { justify-content:flex-start; gap:8px; }.date-path button { padding:7px 12px; font-size:12px; }.date-path span { width:100%; margin:0; }.map-search>input { flex-basis:100%; }.map-search select { flex:1; max-width:none; }.map-search button { flex:1; } }
+  </style>
+</head>
+<body>
+<header class="shell topbar">
+  <a class="brand" href="#" data-view="planner" aria-label="데이트로그 홈"><span class="brand-mark" aria-hidden="true">d</span><span><span class="brand-name">데이트로그</span><span class="brand-caption">DateLog · 둘이서 쓰는 데이트 일기</span></span></a>
+  <nav class="tabs" role="tablist" aria-label="플래너 메뉴">
+    <button type="button" id="tab-planner" role="tab" data-view="planner" aria-controls="view-planner" aria-selected="true">데이트 만들기</button>
+    <button type="button" id="tab-plans" role="tab" data-view="plans" aria-controls="view-plans" aria-selected="false" tabindex="-1">내 약속<span class="count" id="plan-count">0</span></button>
+    <button type="button" id="tab-history" role="tab" data-view="history" aria-controls="view-history" aria-selected="false" tabindex="-1">실행 기록</button>
+  </nav>
+  <span class="connection" id="connection-status" role="status">서버 연결 확인 중</span>
+</header>
+<main class="shell">
+  <div id="view-planner" class="view-panel" role="tabpanel" aria-labelledby="tab-planner">
+    <div class="hero">
+      <div><p class="hero-kicker">이번 데이트는,</p><h1>가고 싶은 곳,<br><em>하나씩 담아볼까?</em></h1><p class="hero-copy">카페 두 곳도 좋고, 밥 먹고 산책만 해도 좋아요.<br>마음에 드는 곳을 담고 우리만의 순서로 정해봐요.</p><button type="button" class="hero-saved" data-view="plans">내가 담아 둔 약속 <strong id="saved-count">00</strong><span class="arrow">↗</span></button></div>
+      <div class="cinema-scene"><img id="hero-image" class="date-hero-image" alt="벚꽃이 놓인 테이블 위 딸기 케이크와 커피" fetchpriority="high" /><span class="photo-caption">같이 먹으면, 더 맛있지.<span aria-hidden="true">♡</span></span></div>
+    </div>
+    <div class="date-path" aria-label="무엇부터 찾아볼까요"><button type="button" data-prompt="cafe">카페 찾기</button><button type="button" data-prompt="meal">밥집 찾기</button><button type="button" data-prompt="showtimes">영화 찾기</button><span>끌리는 것부터 시작해요.</span></div>
+    <div class="workspace">
+      <section class="panel" aria-labelledby="chat-title">
+        <div class="panel-top"><div class="panel-title"><span class="panel-icon" aria-hidden="true">✎</span><div><span class="section-number">첫 번째 페이지</span><h2 id="chat-title">우리의 데이트 노트</h2></div></div><button id="new-session" type="button" class="quiet">＋ 새 대화</button></div>
+        <div class="chat-empty" id="chat-empty"><h3>오늘은 뭐 하고 싶어요?</h3><p class="muted">“서면 카페 찾아줘”, “근처 양식 밥집 추천해줘”<br>어디서 시작하든 좋아요. 마음에 드는 곳은 일정에 담아두세요.</p><div class="prompt-options"><button type="button" data-prompt="cafe"><span>♡</span>서면 카페 찾아보기</button><button type="button" data-prompt="meal"><span>＋</span>홍대 양식 밥집</button><button type="button" data-prompt="showtimes"><span>↗</span>서면에서 영화 보기</button></div></div>
+        <div id="conversation" aria-live="polite"></div>
+        <form id="chat-form"><label for="message" class="sr-only">요청 내용</label><div class="composer"><textarea id="message" required maxlength="4000" placeholder="서면에서 갈 만한 카페부터 찾아볼까?"></textarea><div class="composer-bottom"><span class="composer-hint">가고 싶은 곳을 편하게 말해요</span><button class="primary" id="send" type="submit">찾아보기 ↗</button></div></div></form>
+        <p id="status" class="status" role="status"></p><div id="date-course" hidden></div><div id="recommendations"></div><div id="cinemas"></div>
+        <details id="excluded-panel" hidden><summary>조건에 맞지 않았던 후보 보기</summary><div id="excluded"></div></details>
+        <div class="chat-footnote"><span aria-hidden="true">ⓘ</span><p>잔여석은 조회 시점 기준이에요. 각 영화관에서 예매할 때 다시 확인해 주세요.</p></div><button type="button" class="text-button" data-view="history" style="margin-top:14px">추천 과정 살펴보기 →</button>
+      </section>
+      <section class="panel map-section" aria-labelledby="map-title">
+        <div class="panel-top"><div><span class="section-number">동네 한 바퀴</span><h2 id="map-title">우리가 만날 동네</h2></div><a id="region-map-link" href="https://map.kakao.com/link/search/강남%20영화관" target="_blank" rel="noopener noreferrer" class="text-button">카카오맵에서 열기 ↗</a></div>
+        <p class="muted">동네나 장소 이름으로 검색하고, 가고 싶은 곳을 담아보세요.</p>
+        <form id="cinema-search-form" class="map-search"><label for="cinema-region" class="sr-only">찾고 싶은 지역이나 장소</label><input id="cinema-region" required maxlength="100" aria-label="찾고 싶은 지역이나 장소" placeholder="예: 전포 소품샵, 서면, 연남동"/><label for="place-search-kind" class="sr-only">장소 종류</label><select id="place-search-kind" aria-label="장소 종류"><option value="place">모든 장소</option value="cafe">카페</option><option value="restaurant">식당</option><option value="cinema">영화관</option></select><button id="search-cinemas" class="primary" type="submit">찾기 ↗</button></form>
+        <div class="map-layout"><div id="cinema-map" class="map-canvas" aria-label="카카오 영화관 지도"></div><div id="map-results" class="map-results" aria-live="polite"></div></div>
+        <p id="map-status" class="status" role="status"></p><p class="map-note">카카오맵 장소 정보 · 상영작과 시간표는 별도 확인이 필요해요.</p>
+      </section>
+    </div>
+  </div>
+
+  <div id="view-plans" class="view-panel" role="tabpanel" aria-labelledby="tab-plans" hidden>
+    <div class="page-heading"><p class="eyebrow">우리의 약속 모음</p><h1>다음에 만날 날,<br><em>여기에 모아둘게.</em></h1><p class="muted">날짜를 정한 약속도, 아직 고민 중인 일정도. 저장한 순서 그대로 남아 있어요.</p></div>
+    <div class="workspace plans-layout">
+      <section id="legacy-plan-editor" class="panel" aria-labelledby="plan-title" hidden><div class="panel-top"><div><span class="section-number">MAKE IT A DATE</span><h2 id="plan-title">관람 계획 추가</h2></div></div><p class="form-note">실제 상영 시간을 확인한 뒤 입력해 주세요.</p><form id="plan-form"><input type="hidden" id="plan-id"/><label>영화명<input id="movie-nm" required maxlength="200" placeholder="어떤 영화를 볼까요?"/></label><label>관람 날짜<input id="watch-date" type="date" required/></label><div class="row"><label>시작 시각<input id="start-time" type="time"/></label><label>종료 시각<input id="end-time" type="time"/></label></div><label>영화관 <span class="muted">(선택)</span><input id="cinema" maxlength="200" placeholder="영화를 만날 장소"/></label><input type="hidden" id="movie-cd"/><div class="form-actions"><button class="primary" id="save-plan" type="submit">계획 저장</button><button id="reset-plan" type="button">초기화</button></div></form><p id="plan-status" class="status" role="status"></p></section>
+      <section class="panel" aria-labelledby="saved-title"><div class="panel-top"><div><span class="section-number">나중에 꺼내 볼 페이지</span><h2 id="saved-title">담아 둔 약속</h2></div><button id="refresh-plans" type="button" class="quiet">↻ 새로고침</button></div><ul id="list"></ul></section>
+    </div>
+  </div>
+  <div id="view-history" class="view-panel" role="tabpanel" aria-labelledby="tab-history" hidden>
+    <div class="page-heading"><p class="eyebrow">BEHIND THE RECOMMENDATION</p><h1>좋은 추천에는,<br><em>이유가 있으니까.</em></h1><p class="muted">어떤 정보를 살펴보고 조건을 비교했는지, 추천이 만들어지는 과정을 확인하세요.</p></div>
+    <div class="workspace history-layout"><section class="panel" aria-labelledby="log-title"><div class="panel-top"><h2 id="log-title">지난 대화</h2><button id="refresh-logs" type="button" class="quiet">↻ 새로고침</button></div><p id="log-status" class="status" role="status"></p><div id="log-list"></div></section><section class="panel" aria-labelledby="timeline-title"><div class="panel-top"><div><span class="section-number">STEP BY STEP</span><h2 id="timeline-title">추천의 발자취</h2></div><span class="count" id="event-count">0</span></div><div class="empty-state" id="event-empty"><span class="empty-icon" aria-hidden="true">⌁</span><strong>아직 펼쳐 보지 않은 이야기</strong><p>지난 대화에서 ‘조회’를 누르면<br>단계별 실행 과정이 여기에 나타나요.</p></div><ol id="events"></ol></section></div>
+  </div>
+</main>
+<footer class="shell"><span>데이트로그 · DateLog © 2026</span><span>둘만의 좋은 하루를 기록합니다.</span></footer>
+
+<script>
+  const API = 'http://localhost:8000/api';
+  document.querySelector('#hero-image').src = API + '/hero-image';
+  const $ = (selector) => document.querySelector(selector);
+  $('#saved-title').closest('section').querySelector('.panel-top').after($('#plan-status'));
+  let sessionId = sessionStorage.getItem('movie-planner-session');
+  let busy = false;
+  let cinemaMap = null;
+  let cinemaMarkers = [];
+  let currentCinemas = [];
+  let mapsLoading = null;
+  let mapSearchVersion = 0;
+  let dateCourse = {};
+  let planPlaces = {restaurant:null,cafe:null};
+  let savingCourse = false;
+  let itinerary = {title:'우리의 데이트',watch_date:null,stops:[]};
+  try { const draft = JSON.parse(localStorage.getItem('datelog-itinerary') || 'null'); if (draft && Array.isArray(draft.stops)) itinerary = draft; } catch {}
+  try { dateCourse = JSON.parse(sessionStorage.getItem('movie-planner-course') || '{}'); } catch { dateCourse = {}; }
+  if (!localStorage.getItem('datelog-itinerary')) {
+    for (const key of ['movie','restaurant','cafe']) {
+      const previous = dateCourse[key]; if (!previous) continue;
+      itinerary.stops.push({id:crypto.randomUUID(),kind:key,name:previous.movie_nm || previous.name,
+        venue:previous.cinema || null,address:previous.address || null,start_time:previous.start_time || null,end_time:previous.end_time || null,
+        source_date:previous.watch_date || null,lat:previous.lat ?? null,lng:previous.lng ?? null,url:previous.url || null});
+      if (!itinerary.watch_date && previous.watch_date) itinerary.watch_date = previous.watch_date;
+    }
+    persistDraft();
+  }
+  function syncCourseControls() {
+    $('#new-session').disabled = busy || savingCourse;
+    document.querySelectorAll('#date-course button, #date-course input, .showtime-card button, .place-card button, #map-results [data-add-stop], .saved-itinerary button').forEach(control => {
+      control.disabled = busy || savingCourse || control.dataset.atEdge === 'true' || (control.dataset.needsStops && !itinerary.stops.length);
+    });
+  }
+  function persistCourse() {
+    sessionStorage.setItem('movie-planner-course', JSON.stringify(dateCourse));
+    renderCourse();
+  }
+  function persistDraft() {
+    localStorage.setItem('datelog-itinerary', JSON.stringify(itinerary));
+  }
+  function syncSearchContext() {
+    const context = {};
+    for (const stop of itinerary.stops) {
+      if (stop.kind === 'movie' && (stop.source_date || itinerary.watch_date)) {
+        context.movie = {movie_nm:stop.name,cinema:stop.venue || stop.name,watch_date:stop.source_date || itinerary.watch_date,
+          start_time:stop.start_time,end_time:stop.end_time};
+      } else if (['restaurant','cafe'].includes(stop.kind) && stop.lat != null && stop.lng != null) {
+        context[stop.kind] = {name:stop.name,lat:stop.lat,lng:stop.lng,address:stop.address,url:stop.url};
+      }
+    }
+    const last = itinerary.stops.at(-1);
+    if (last) context.anchor = {name:last.venue || last.name,lat:last.lat ?? null,lng:last.lng ?? null};
+    dateCourse = context;
+    sessionStorage.setItem('movie-planner-course', JSON.stringify(dateCourse));
+  }
+  function updateDraft() { persistDraft(); syncSearchContext(); renderCourse(); }
+  function addStop(stop) {
+    if (busy || savingCourse) return;
+    if (itinerary.stops.length >= 50) { $('#status').textContent = '한 일정에는 최대 50곳까지 담을 수 있어요.'; return; }
+    itinerary.stops.push({id:crypto.randomUUID(),kind:stop.kind,name:stop.name,venue:stop.venue || null,
+      address:stop.address || null,start_time:stop.start_time || null,end_time:stop.end_time || null,
+      source_date:stop.source_date || null,lat:stop.lat ?? null,lng:stop.lng ?? null,url:stop.url || null});
+    if (!itinerary.watch_date && stop.source_date) itinerary.watch_date = stop.source_date;
+    updateDraft();
+    $('#status').textContent = `일정에 ${stop.name}을(를) 담았어요. 순서와 시간은 직접 바꿀 수 있어요.`;
+  }
+  function renderCourse() {
+    const host = $('#date-course'); host.replaceChildren(); host.hidden = false;
+    const panel = element('section',undefined,'course-panel itinerary-panel');
+    const heading = element('div',undefined,'itinerary-heading');
+    heading.append(element('h3','나의 데이트 일정'),button('새 일정',()=>{
+      if (busy || savingCourse) return;
+      itinerary = {title:'우리의 데이트',watch_date:null,stops:[]}; updateDraft();
+    }));
+    panel.append(heading,element('p','순서는 우리 마음대로. 가고 싶은 곳부터 하나씩 담아 보세요.','muted'));
+    const fields = element('div',undefined,'itinerary-fields');
+    for (const [key,label,type] of [['title','약속 이름','text'],['watch_date','날짜 · 약속 저장할 때 필요해요','date']]) {
+      const field = element('label',label); const input = document.createElement('input'); input.type = type;
+      input.value = itinerary[key] || ''; input.maxLength = 100; input.dataset.draftField = key;
+      input.required = type === 'date';
+      input.addEventListener('change',()=>{ itinerary[key] = input.value || (key === 'title' ? '우리의 데이트' : null); persistDraft(); });
+      field.append(input); fields.append(field);
+    }
+    panel.append(fields);
+    if (!itinerary.stops.length) panel.append(element('p','아직 빈 페이지예요. 카페 한 곳만 담아도 좋아요.','itinerary-empty'));
+    const list = element('ol',undefined,'itinerary-list');
+    itinerary.stops.forEach((stop,index)=>{
+      const row = element('li',undefined,'itinerary-stop');
+      const labels = {movie:'영화',restaurant:'식당',cafe:'카페',place:'장소'};
+      const detail = element('div',undefined,'stop-detail');
+      detail.append(element('small',`${String(index+1).padStart(2,'0')} · ${labels[stop.kind]}`),element('strong',stop.name));
+      if (stop.venue || stop.address) detail.append(element('p',stop.venue || stop.address));
+      if (stop.source_date) detail.append(element('p',`선택한 회차 날짜 ${stop.source_date}`,'muted'));
+      const times = element('div',undefined,'stop-times');
+      for (const [key,label] of [['start_time','시작'],['end_time','종료']]) {
+        const field = element('label',label); const input = document.createElement('input'); input.type = 'time'; input.value = stop[key] || '';
+        input.setAttribute('aria-label',`${stop.name} ${label} 시각`);
+        input.addEventListener('change',()=>{ stop[key] = input.value || null; persistDraft(); });
+        field.append(input); times.append(field);
+      }
+      detail.append(times);
+      const controls = element('div',undefined,'stop-controls');
+      const move = direction=>{ const target = index+direction; if (busy || savingCourse || target<0 || target>=itinerary.stops.length) return;
+        [itinerary.stops[index],itinerary.stops[target]] = [itinerary.stops[target],itinerary.stops[index]]; updateDraft(); };
+      const up = button('↑',()=>move(-1)); up.setAttribute('aria-label',`${stop.name} 위로`); up.dataset.atEdge = String(index===0);
+      const down = button('↓',()=>move(1)); down.setAttribute('aria-label',`${stop.name} 아래로`); down.dataset.atEdge = String(index===itinerary.stops.length-1);
+      const remove = button('삭제',()=>{ if (busy || savingCourse) return; itinerary.stops.splice(index,1); updateDraft(); });
+      controls.append(up,down,remove); row.append(detail,controls); list.append(row);
+    });
+    panel.append(list);
+    const custom = document.createElement('form'); custom.className = 'custom-stop';
+    const name = document.createElement('input'); name.required = true; name.maxLength = 200; name.placeholder = '직접 장소나 할 일 적기 · 산책, 소품샵…'; name.setAttribute('aria-label','직접 추가할 장소나 할 일');
+    const add = button('직접 추가',()=>{}); add.type = 'submit'; custom.append(name,add);
+    custom.addEventListener('submit',event=>{ event.preventDefault(); if (name.value.trim()) addStop({kind:'place',name:name.value.trim()}); }); panel.append(custom);
+    const save = button(savingCourse ? '저장 중…' : itinerary.itinerary_id ? '변경사항 저장' : '이 일정으로 약속 저장',async()=>{
+      if (busy || savingCourse || !itinerary.stops.length) return;
+      const dateInput = $('#date-course [data-draft-field="watch_date"]');
+      if (!dateInput.reportValidity()) { $('#status').textContent = '약속으로 저장하려면 날짜를 정해 주세요. 담아 둔 초안은 그대로 남아 있어요.'; return; }
+      itinerary.title = $('#date-course [data-draft-field="title"]').value.trim() || '우리의 데이트';
+      itinerary.watch_date = dateInput.value;
+      savingCourse = true; syncCourseControls();
+      const payload = {title:itinerary.title,watch_date:itinerary.watch_date,stops:itinerary.stops};
+      try {
+        const id = itinerary.itinerary_id;
+        const saved = await request('/itineraries'+(id ? '/'+id : ''),{method:id ? 'PUT' : 'POST',body:JSON.stringify(payload)});
+        itinerary = {title:saved.title,watch_date:saved.watch_date,stops:saved.stops,itinerary_id:saved.itinerary_id}; persistDraft();
+        await loadPlans(); activateView('plans'); $('#plan-status').textContent = '약속을 저장했어요.' + (saved.warnings.length ? ' '+saved.warnings.join(' ') : ' 언제든 순서와 시간을 바꿀 수 있어요.');
+      } catch(error) { $('#status').textContent = error.message; $('#status').classList.add('error'); }
+      finally { savingCourse = false; renderCourse(); }
+    });
+    save.classList.add('primary'); save.dataset.needsStops = 'true'; panel.append(save); host.append(panel); syncCourseControls();
+  }
+  function rememberMovie(movie) {
+    if (!movie.cinema || !movie.movie_nm || !movie.watch_date) return;
+    addStop({kind:'movie',name:movie.movie_nm,venue:movie.cinema,start_time:movie.start_time,end_time:movie.end_time,
+      source_date:movie.watch_date,url:movie.booking_url});
+  }
+
+  function activateView(view, focus = false) {
+    if (!['planner', 'plans', 'history'].includes(view)) return;
+    for (const panel of document.querySelectorAll('[role="tabpanel"]')) panel.hidden = panel.id !== 'view-' + view;
+    for (const tab of document.querySelectorAll('[role="tab"]')) {
+      const active = tab.dataset.view === view;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    }
+    if (view === 'planner' && cinemaMap) requestAnimationFrame(() => { cinemaMap.relayout(); fitCinemas(); });
+  }
+  for (const control of document.querySelectorAll('[data-view]')) {
+    control.addEventListener('click', (event) => { event.preventDefault(); activateView(control.dataset.view, control.getAttribute('role') !== 'tab'); });
+  }
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  for (const tab of tabs) tab.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const index = tabs.indexOf(tab);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    activateView(tabs[next].dataset.view, true);
+  });
+  for (const control of document.querySelectorAll('[data-prompt]')) control.addEventListener('click', () => {
+    const date = new Date(); date.setDate(date.getDate() + 1);
+    const tomorrow = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const prompts = {
+      cafe: '서면에서 갈 만한 카페 추천해줘',
+      meal: '홍대에서 양식 밥집 추천해줘',
+      showtimes: '서면에서 영화 데이트 하고 싶어',
+      weekend: `${tomorrow} 오후 3시 이후 강남에서 영화를 보고 오후 6시 전에 끝내고 싶어.`,
+      short: `${tomorrow} 오후 2시부터 오후 4시 안에 관람을 마칠 수 있는 영화를 찾아 줘.`,
+      cinema: '홍대 근처 영화관 이름과 주소를 알려 줘.',
+    };
+    $('#message').value = prompts[control.dataset.prompt];
+    $('#message').focus();
+  });
+
+  function element(tag, text, className) {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  }
+  function button(text, action) {
+    const node = element('button', text);
+    node.type = 'button';
+    node.addEventListener('click', action);
+    return node;
+  }
+  function emptyState(tag, title, description, icon = '⌑') {
+    const node = element(tag, undefined, 'empty-state');
+    const symbol = element('span', icon, 'empty-icon');
+    symbol.setAttribute('aria-hidden', 'true');
+    node.append(symbol, element('strong', title), element('p', description));
+    return node;
+  }
+  function placeLink(url, label) {
+    try {
+      const parsed = new URL(url);
+      if (!['http:', 'https:'].includes(parsed.protocol)) return null;
+      const link = element('a', label); link.href = parsed.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      return link;
+    } catch { return null; }
+  }
+  function mapFallback(message) {
+    const body = element('div', undefined, 'map-unavailable');
+    body.append(element('span', 'kakao map', 'kakao-badge'), element('strong', '다음 영화관을 찾아볼까요?'), element('p', message));
+    const link = placeLink($('#region-map-link').href, '카카오맵에서 현재 지역 보기 ↗');
+    if (link) body.append(link);
+    $('#cinema-map').replaceChildren(body);
+  }
+  function fitCinemas() {
+    if (!cinemaMap || !currentCinemas.length || $('#view-planner').hidden) return;
+    const valid = currentCinemas.filter(place => Number.isFinite(place.lat) && Number.isFinite(place.lng));
+    if (!valid.length) return;
+    const bounds = new kakao.maps.LatLngBounds();
+    valid.forEach(place => bounds.extend(new kakao.maps.LatLng(place.lat, place.lng)));
+    cinemaMap.setBounds(bounds);
+  }
+  function paintMap() {
+    if (!cinemaMap) return;
+    cinemaMarkers.forEach(marker => marker.setMap(null)); cinemaMarkers = [];
+    for (const place of currentCinemas) {
+      if (!Number.isFinite(place.lat) || !Number.isFinite(place.lng)) continue;
+      const marker = new kakao.maps.Marker({ map:cinemaMap, position:new kakao.maps.LatLng(place.lat, place.lng), title:place.name });
+      if (place.url) kakao.maps.event.addListener(marker, 'click', () => { const link = placeLink(place.url, place.name); if (link) link.click(); });
+      cinemaMarkers.push(marker);
+    }
+    fitCinemas();
+  }
+  async function initializeMap() {
+    if (cinemaMap) return true;
+    if (mapsLoading) return mapsLoading;
+    mapsLoading = (async () => {
+      try {
+        const config = await request('/maps/config');
+        if (!config.javascript_key) { mapFallback('지역을 검색하면 실제 영화관 목록을 확인할 수 있어요. 지도는 카카오맵에서 바로 열어 보세요.'); return false; }
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=' + encodeURIComponent(config.javascript_key);
+          const timer = setTimeout(() => { script.remove(); reject(new Error('지도 연결 시간 초과')); }, 12000);
+          script.onload = () => {
+            if (!window.kakao?.maps?.load) { clearTimeout(timer); script.remove(); reject(new Error('지도 사용 설정 확인 필요')); return; }
+            kakao.maps.load(() => { clearTimeout(timer); resolve(); });
+          };
+          script.onerror = () => { clearTimeout(timer); script.remove(); reject(new Error('지도 연결 실패')); };
+          document.head.append(script);
+        });
+        $('#cinema-map').replaceChildren();
+        cinemaMap = new kakao.maps.Map($('#cinema-map'), { center:new kakao.maps.LatLng(37.4979, 127.0276), level:5 });
+        cinemaMap.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
+        paintMap(); return true;
+      } catch { mapFallback('지도를 연결하지 못했어요. 영화관 검색 결과의 카카오맵 링크로 위치를 확인해 주세요.'); return false; }
+    })();
+    const connected = await mapsLoading;
+    if (!connected) mapsLoading = null;
+    return connected;
+  }
+  function showCinemaPlaces(items,kind='place') {
+    currentCinemas = items;
+    $('#map-results').replaceChildren();
+    if (!items.length) $('#map-results').append(emptyState('div', '어느 동네로 가볼까요?', '', '⌁'));
+    for (const [index, place] of items.entries()) {
+      const card = element('article', undefined, 'card');
+      card.append(element('strong', `${String(index + 1).padStart(2, '0')} · ${place.name}`), element('p', place.address || '주소 정보 없음'));
+      const link = placeLink(place.url, '카카오맵 ↗'); if (link) card.append(link);
+      if (Number.isFinite(place.lat) && Number.isFinite(place.lng)) {
+        const directions = placeLink(`https://map.kakao.com/link/to/${encodeURIComponent(place.name)},${place.lat},${place.lng}`, '길찾기 ↗');
+        if (directions) card.append(directions);
+        card.append(button('위치 보기', () => {
+          if (cinemaMap) { cinemaMap.setLevel(3); cinemaMap.panTo(new kakao.maps.LatLng(place.lat, place.lng)); }
+          else if (link) link.click();
+        }));
+      }
+      const add = button('일정에 담기',()=>addStop({kind,name:place.name,address:place.address,lat:place.lat,lng:place.lng,url:place.url}));
+      add.dataset.addStop = 'true'; card.append(add);
+      $('#map-results').append(card);
+    }
+    paintMap(); syncCourseControls();
+  }
+  async function searchCinemaItems(region) {
+    const connected = await initializeMap();
+    if (connected && kakao.maps.services?.Places) {
+      try {
+        return await new Promise((resolve, reject) => {
+          const timer = setTimeout(() => reject(new Error('영화관 검색 시간 초과')), 10000);
+          const places = new kakao.maps.services.Places();
+          places.keywordSearch(region + ' 영화관', (items, status) => {
+            clearTimeout(timer);
+            if (status === kakao.maps.services.Status.ZERO_RESULT) { resolve([]); return; }
+            if (status !== kakao.maps.services.Status.OK) { reject(new Error('영화관 검색 연결 실패')); return; }
+            resolve(items.map(place => ({name:place.place_name, address:place.road_address_name || place.address_name,
+              url:place.place_url, lat:place.y ? Number(place.y) : null, lng:place.x ? Number(place.x) : null})));
+          }, {size:5});
+        });
+      } catch { /* SDK 장소 검색이 불가능하면 서버의 REST 검색을 사용한다. */ }
+    }
+    const result = await request('/cinemas?region=' + encodeURIComponent(region));
+    if (!result.ok) throw new Error(result.error.message);
+    return result.data.items;
+  }
+  $('#cinema-search-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    const version = ++mapSearchVersion;
+    const kind = $('#place-search-kind').value;
+    $('#map-title').textContent = '우리가 만날 동네';
+    $('#cinema-map').setAttribute('aria-label','카카오 장소 지도');
+    const region = $('#cinema-region').value.trim(); if (!region) return;
+    $('#search-cinemas').disabled = true; $('#map-status').classList.remove('error'); $('#map-status').textContent = '장소를 찾고 있어요…';
+    $('#region-map-link').href = 'https://map.kakao.com/link/search/' + encodeURIComponent(region);
+    try {
+      if (kind !== 'cinema') {
+        const result = await request('/places?' + new URLSearchParams({region,kind}));
+        if (version !== mapSearchVersion) return;
+        if (!result.ok) throw new Error(result.error.message);
+        showCinemaPlaces(result.data.items,result.data.kind); initializeMap();
+        $('#map-status').textContent = `${region} · ${result.data.items.length}곳을 찾았어요.`;
+        $('.map-note').textContent = result.data.notice;
+        syncCourseControls();
+        return;
+      }
+      const items = await searchCinemaItems(region);
+      if (version !== mapSearchVersion) return;
+      showCinemaPlaces(items);
+      $('#map-status').textContent = items.length ? `${region} 주변 영화관 ${items.length}곳을 찾았어요.` : `${region}에서 영화관을 찾지 못했어요. 다른 지역명으로 검색해 주세요.`;
+      await initializeMap();
+    } catch(error) { if (version !== mapSearchVersion) return; $('#map-status').textContent = error.message; $('#map-status').classList.add('error'); showCinemaPlaces([]); if (!cinemaMap) mapFallback('카카오맵에서 장소를 직접 살펴볼 수 있어요.'); }
+    finally { if (version === mapSearchVersion) $('#search-cinemas').disabled = false; }
+  });
+  async function request(path, options = {}) {
+    let response;
+    try {
+      response = await fetch(API + path, { ...options, headers: { 'Content-Type': 'application/json', ...options.headers } });
+    } catch {
+      throw new Error('서버에 연결할 수 없습니다. FastAPI 서버가 실행 중인지 확인해 주세요.');
+    }
+    if (response.status === 204) return null;
+    let data;
+    try { data = await response.json(); } catch { throw new Error('서버 응답을 읽지 못했습니다.'); }
+    if (!response.ok) {
+      if (response.status === 422) throw new Error('입력값을 확인해 주세요. 날짜·시각 형식과 종료 시각을 확인하세요.');
+      throw new Error(typeof data.detail === 'string' ? data.detail : '요청을 처리하지 못했습니다.');
+    }
+    return data;
+  }
+  function showMessage(text, isUser = false) {
+    $('#chat-empty').hidden = true;
+    $('#conversation').append(element('p', text, 'bubble' + (isUser ? ' user' : '')));
+    $('#conversation').scrollTop = $('#conversation').scrollHeight;
+  }
+  function showEvents(events) {
+    $('#events').replaceChildren();
+    $('#event-empty').hidden = events.length > 0;
+    $('#event-count').textContent = events.length;
+    const labels = { stage_start: '단계 시작', stage_end: '단계 종료', work_plan: '작업 계획', llm_decision: '요청 분석', tool_request: 'Tool 요청', tool_response: 'Tool 결과', tool_cache: '조회 결과 재사용', constraint_result: '조건 판단', replan: '재계획' };
+    const stages = { analyze: '요청 이해하기', plan: '탐색 계획 세우기', execute: '정보 찾아보기', judge: '조건 비교하기', respond: '결과 정리하기' };
+    for (const event of events) {
+      const item = element('li', undefined, event.type === 'replan' ? 'replan' : '');
+      const details = element('details');
+      const subject = stages[event.data.stage] ?? event.data.tool ?? '';
+      details.append(element('summary', `${labels[event.type] ?? event.type}${subject ? ' · ' + subject : ''}${event.data.status === 'failed' ? ' · 실패' : ''}`));
+      details.append(element('pre', JSON.stringify(event.data, null, 2)));
+      item.append(details);
+      $('#events').append(item);
+    }
+  }
+  function preparePlan(plan, editing = false) {
+    $('#legacy-plan-editor').hidden = false;
+    planPlaces = {restaurant:plan.restaurant || null,cafe:plan.cafe || null};
+    let stops = $('#plan-stops');
+    if (!stops) { stops = element('div'); stops.id = 'plan-stops'; $('#plan-form .form-actions').before(stops); }
+    stops.replaceChildren();
+    for (const [key,label] of [['restaurant','식사'],['cafe','카페']]) if (planPlaces[key]) {
+      stops.append(element('p', `${label} · ${planPlaces[key].name}`, 'saved-stop'));
+    }
+    if (plan.schedule_id) rememberMovie(plan);
+    activateView('plans');
+    $('#plan-id').value = editing ? plan.plan_id : '';
+    $('#movie-nm').value = plan.movie_nm ?? '';
+    $('#watch-date').value = plan.watch_date ?? '';
+    $('#start-time').value = editing || plan.schedule_id ? plan.start_time ?? '' : '';
+    const overnight = plan.ends_at && plan.starts_at && plan.ends_at.slice(0,10) !== plan.starts_at.slice(0,10);
+    $('#end-time').value = overnight ? '' : editing || plan.schedule_id ? plan.end_time ?? '' : '';
+    $('#movie-cd').value = plan.movie_cd ?? '';
+    $('#cinema').value = plan.cinema ?? '';
+    $('#save-plan').textContent = editing ? '계획 수정' : '계획 저장';
+    $('#plan-title').textContent = editing ? '관람 계획 수정' : '관람 계획 추가';
+    $('#plan-status').classList.remove('error');
+    $('#plan-status').textContent = editing ? '수정 후 계획 수정 버튼을 누르세요.' : plan.schedule_id ? '조회한 실제 회차를 입력했습니다. 계획 저장은 좌석 예매가 아닙니다.' : '실제 상영 시간표의 시작·종료 시각을 입력한 뒤 저장하세요.';
+    if (overnight) $('#plan-status').textContent = '이 회차는 자정을 넘습니다. 현재 계획은 같은 날짜만 저장하므로 종료 시각을 비워 두었습니다. 실제 종료: ' + plan.ends_at.slice(0,10) + ' ' + plan.end_time;
+    $('#plan-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('#movie-nm').focus({preventScroll:true});
+  }
+  function showResult(data) {
+    if (data.course) { dateCourse = data.course; persistCourse(); }
+    $('#recommendations').replaceChildren();
+    if (data.movie_matches?.length) {
+      const section = element('section'); section.append(element('h3','찾으시는 영화를 골라 주세요'));
+      const c = data.conditions;
+      section.append(element('p',[c.region,c.watch_date,c.start_time ? `${c.start_time}${c.deadline ? '~'+c.deadline : ' 이후'}` : null].filter(Boolean).join(' · '),'muted'));
+      for (const [index,movie] of data.movie_matches.entries()) {
+        const card = element('article',undefined,'card');
+        card.append(element('h3',movie.movie_nm));
+        card.append(element('p',(movie.open_date ? movie.open_date + ' 개봉 · ' : movie.year ? movie.year + '년 제작 · ' : '') + 'KOBIS 영화 정보'));
+        card.append(button('이 영화가 맞아요',()=>{ if (busy) return; $('#message').value = `${index+1}번`; $('#chat-form').requestSubmit(); }));
+        section.append(card);
+      }
+      $('#recommendations').append(section);
+    }
+    showShowtimes(data);
+    showPlaceResults(data);
+    for (const movie of data.recommendations) {
+      const card = element('article', undefined, 'card');
+      card.append(element('h3', movie.movie_nm));
+      card.append(element('p', `러닝타임 ${movie.runtime_minutes}분 · 장르 ${(movie.genres ?? []).join(', ') || '미확인'} · 등급 ${(movie.ratings ?? []).join(', ') || '미확인'}`));
+      if (movie.latest_start) card.append(element('p', `늦어도 ${movie.latest_start} 시작 필요 (실제 상영 시각은 별도 확인)`));
+      card.append(element('p', movie.basis, 'muted'));
+      card.append(element('p', `근거: ${movie.source} · 영화코드 ${movie.movie_cd}`, 'muted'));
+      card.append(button('저장 준비', () => preparePlan(movie)));
+      $('#recommendations').append(card);
+    }
+    $('#cinemas').replaceChildren();
+    if (data.cinemas.length) $('#cinemas').append(element('h3', '주변 영화관 · 상영 여부 별도 확인'));
+    for (const cinema of data.cinemas) {
+      const card = element('div', undefined, 'card');
+      card.append(element('strong', cinema.name), element('p', cinema.address ?? '주소 미확인'));
+      if (cinema.url) {
+        try {
+          const url = new URL(cinema.url);
+          if (url.protocol === 'https:' || url.protocol === 'http:') {
+            const link = element('a', '지도에서 확인');
+            link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer'; card.append(link);
+          }
+        } catch { /* 잘못된 링크는 표시하지 않는다. */ }
+      }
+      $('#cinemas').append(card);
+    }
+    $('#excluded').replaceChildren(...data.excluded.map(movie => element('p', `${movie.movie_nm}: ${movie.reason}`)));
+    $('#excluded-panel').hidden = !data.excluded.length;
+    for (const error of data.errors) if (!['get_showtimes','search_places'].includes(error.tool)) $('#recommendations').append(element('p', `${error.tool} · ${error.code}: ${error.message}`, 'warning'));
+    if (data.cinemas.length) {
+      if (data.conditions?.region) {
+        $('#cinema-region').value = data.conditions.region;
+        $('#region-map-link').href = 'https://map.kakao.com/link/search/' + encodeURIComponent(data.conditions.region + ' 영화관');
+      }
+      showCinemaPlaces(data.cinemas); initializeMap();
+    } else if (data.showtime_search && data.conditions?.region) {
+      $('#cinema-region').value = data.conditions.region;
+      $('#place-search-kind').value = 'cinema';
+      $('#cinema-search-form').requestSubmit();
+    }
+    showEvents(data.events);
+  }
+  function showShowtimes(data) {
+    const search = data.showtime_search;
+    const isShowtime = search || data.errors?.some(error => error.tool === 'get_showtimes');
+    if (!isShowtime) return;
+    const section = element('section', undefined, 'showtime-results');
+    const heading = element('div', undefined, 'showtime-heading');
+    heading.append(element('h3', '통합 상영시간표'));
+    const refresh = button('↻ 잔여석 다시 조회', async () => {
+      refresh.disabled = true;
+      feedback.textContent = '최신 회차와 잔여석을 조회하고 있어요…';
+      try {
+        const keys = ['region', 'movie_nm', 'watch_date', 'start_time', 'deadline', 'deadline_inclusive', 'buffer_minutes', 'brands'];
+        const params = new URLSearchParams();
+        for (const key of keys) if (data.conditions?.[key] != null) {
+          if (Array.isArray(data.conditions[key])) data.conditions[key].forEach(value => params.append(key, value));
+          else params.set(key, data.conditions[key]);
+        }
+        const result = await request('/showtimes?' + params);
+        if (!section.isConnected) return;
+        // 재조회 실패 시 오래된 좌석 카드를 남기지 않는다.
+        section.remove();
+        showShowtimes({...data, showtimes:result.ok ? result.data.items : [], showtime_search:result.ok ? result.data : null,
+          errors:result.ok ? [] : [{tool:'get_showtimes', ...result.error}]});
+      } catch (error) {
+        if (!section.isConnected) return;
+        list.replaceChildren();
+        feedback.textContent = error.message + ' 이전 좌석 정보는 제거했습니다.';
+        feedback.classList.add('warning');
+      } finally { refresh.disabled = false; }
+    });
+    heading.append(refresh); section.append(heading);
+    const feedback = element('p', '', 'muted'); feedback.setAttribute('role', 'status'); section.append(feedback);
+    const list = element('div', undefined, 'showtime-list');
+    list.tabIndex = 0; list.setAttribute('aria-label', '상영 회차 목록');
+    if (search) {
+      const finishBy = data.conditions.deadline ? ` · ${data.conditions.deadline} ${data.conditions.deadline_inclusive === false ? '전에' : '까지'} 종료` : '';
+      section.append(element('p', `${data.conditions.movie_nm} · ${data.conditions.watch_date} · ${data.conditions.start_time ?? '00:00'} 이후${finishBy}`, 'muted'));
+      feedback.textContent = `조회 ${new Date(search.checked_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})} · ${search.complete ? '조회 완료' : '일부 지점 조회 실패'}`;
+      if (search.providers?.length) {
+        const labels = {ok:'조회 완료', partial:'일부 지점 실패', error:'조회 실패', no_theater:'해당 지점 없음'};
+        section.append(element('p', search.providers.map(item => `${item.label} · ${labels[item.status] ?? '확인 필요'}`).join(' / '), 'brand-statuses'));
+        const filters = element('div', undefined, 'brand-filters');
+        const choices = [{brand:'all', label:'전체', count:search.items.length}, ...search.providers];
+        for (const provider of choices) {
+          const filter = button(`${provider.label} ${provider.count ?? 0}`, () => {
+            for (const control of filters.children) control.setAttribute('aria-pressed', String(control === filter));
+            let visible = 0;
+            for (const card of list.querySelectorAll('.showtime-card')) {
+              card.hidden = provider.brand !== 'all' && card.dataset.brand !== provider.brand;
+              if (!card.hidden) visible++;
+            }
+            const previous = list.querySelector('.brand-empty'); if (previous) previous.remove();
+            if (!visible && search.items.length) {
+              const empty = emptyState('div', '이 브랜드에서 조회된 회차가 없어요.', '브랜드별 조회 상태와 오류 안내를 확인해 주세요.');
+              empty.classList.add('brand-empty'); list.append(empty);
+            }
+          });
+          filter.setAttribute('aria-pressed', String(provider.brand === 'all')); filters.append(filter);
+        }
+        section.append(filters);
+      }
+      if (!search.items.length) list.append(emptyState('div', '조건에 맞는 조회 회차가 없어요.', '시간표가 아직 공개되지 않았을 수 있어요. 날짜나 지역을 바꿔 보세요.'));
+      for (const item of search.items) {
+        const card = element('article', undefined, 'card showtime-card');
+        card.dataset.brand = item.brand ?? 'cgv';
+        card.append(element('h3', `${item.cinema} · ${item.movie_nm}`));
+        const clock = element('div', item.start_label, 'showtime-time');
+        clock.append(element('small', ' — ' + item.end_label)); card.append(clock);
+        card.append(element('p', `${item.screen} · ${item.format}`));
+        const seats = item.remaining_seats == null ? '잔여석 미확인' : `잔여 ${item.remaining_seats}석${item.total_seats == null ? '' : ' / 전체 ' + item.total_seats + '석'}`;
+        const status = {sold_out:' · 매진', unavailable:' · 예매 제한/종료', unknown:' · 확인 필요'}[item.availability] ?? '';
+        card.append(element('div', seats + status, 'showtime-seats'));
+        if (item.watch_date !== item.business_date) card.append(element('p', '실제 시작 날짜: ' + item.watch_date, 'muted'));
+        card.append(element('p', '좌석 확인 ' + new Date(item.checked_at).toLocaleTimeString('ko-KR', {timeZone:'Asia/Seoul'}), 'muted'));
+        const actions = element('div', undefined, 'showtime-actions');
+        const link = placeLink(item.booking_url, `${item.brand_name ?? '영화관'}에서 확인 ↗`); if (link) actions.append(link);
+        if (item.availability === 'available') actions.append(button('일정에 담기', () => { rememberMovie(item); $('#date-course').scrollIntoView({behavior:'smooth',block:'center'}); }));
+        card.append(actions); list.append(card);
+      }
+      for (const warning of search.warnings) section.append(element('p', warning, 'warning'));
+      section.append(element('p', '확인한 지점: ' + search.checked_theaters.join(', '), 'muted'));
+      section.append(element('p', search.notice, 'muted'));
+    } else {
+      feedback.textContent = data.errors.filter(error => error.tool === 'get_showtimes').map(error => error.message).join(' ');
+      feedback.classList.add('warning');
+    }
+    section.append(list);
+    const officialLinks = element('div', undefined, 'official-links');
+    const fallbackLinks = [
+      {brand:'cgv', label:'CGV', url:'https://cgv.co.kr/cnm/movieBook'},
+      {brand:'lotte', label:'롯데시네마', url:'https://www.lottecinema.co.kr/NLCHS/Ticketing'},
+      {brand:'megabox', label:'메가박스', url:'https://www.megabox.co.kr/booking'}
+    ].filter(item => !data.conditions?.brands || data.conditions.brands.includes(item.brand));
+    for (const entry of search?.booking_urls?.length ? search.booking_urls : fallbackLinks) {
+      const official = placeLink(entry.url, entry.label + ' 공식 예매 ↗'); if (official) officialLinks.append(official);
+    }
+    section.append(officialLinks);
+    $('#recommendations').prepend(section);
+  }
+  function showPlaceResults(data) {
+    const search = data.place_search;
+    const error = data.errors?.find(error => error.tool === 'search_places');
+    if (!search && !error) return;
+    const section = element('section', undefined, 'place-results');
+    if (!search) { section.append(element('p', error.message, 'warning')); $('#recommendations').append(section); return; }
+    const label = search.kind === 'place' ? '장소' : search.kind === 'cafe' ? '카페' : (search.cuisine || '') + ' 식당';
+    section.append(element('h3', label.trim() + ' 고르기'));
+    const basis = search.anchor ? `${search.anchor.name} 주변 ${search.anchor.radius_m}m` : `${search.region} 지역 검색`;
+    section.append(element('p', basis + ` · ${search.items.length}곳`, 'muted'));
+    const list = element('div', undefined, 'place-list'); list.tabIndex = 0; list.setAttribute('aria-label', label + ' 검색 결과');
+    if (!search.items.length) list.append(emptyState('div', '조건에 맞는 장소를 찾지 못했어요.', '지역이나 음식 종류를 바꿔 보세요.'));
+    for (const place of search.items) {
+      const card = element('article', undefined, 'card place-card');
+      card.append(element('h3', place.name), element('p', place.category), element('p', place.address));
+      if (place.distance_m != null) card.append(element('p', `기준 장소에서 직선거리 ${place.distance_m}m`, 'muted'));
+      if (place.phone) card.append(element('p', place.phone, 'muted'));
+      const actions = element('div', undefined, 'showtime-actions');
+      const link = placeLink(place.url, '카카오맵에서 확인 ↗'); if (link) actions.append(link);
+      const directions = placeLink(`https://map.kakao.com/link/to/${encodeURIComponent(place.name)},${place.lat},${place.lng}`, '길찾기 ↗'); if (directions) actions.append(directions);
+      actions.append(button('일정에 담기', () => {
+        if (busy) return;
+        addStop({kind:search.kind,name:place.name,lat:place.lat,lng:place.lng,address:place.address,url:place.url});
+      }));
+      card.append(actions); list.append(card);
+    }
+    section.append(list, element('p', search.notice, 'muted')); $('#recommendations').append(section);
+    showCinemaPlaces(search.items,search.kind);
+    initializeMap();
+    $('#map-title').textContent = search.kind === 'place' ? '찾아본 장소' : search.kind === 'cafe' ? '가까운 카페' : '가까운 식당';
+    $('#cinema-map').setAttribute('aria-label','카카오 ' + label + ' 지도');
+    $('.map-note').textContent = search.notice;
+    $('#map-status').textContent = basis + ' · ' + label.trim() + ' 검색 결과';
+    $('#region-map-link').href = 'https://map.kakao.com/link/search/' + encodeURIComponent((search.anchor?.name || search.region) + ' ' + label);
+  }
+  $('#chat-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (busy || savingCourse) return;
+    const message = $('#message').value.trim();
+    if (!message) return;
+    busy = true; $('#send').disabled = true; $('#new-session').disabled = true; syncCourseControls();
+    $('#status').classList.remove('error');
+    $('#send').textContent = '찾아보는 중…';
+    $('#status').textContent = '요청 분석과 외부 정보 조회 중입니다…';
+    showMessage(message, true);
+    try {
+      syncSearchContext();
+      const data = await request('/chat', { method: 'POST', body: JSON.stringify({ message, session_id: sessionId || null, course:dateCourse }) });
+      sessionId = data.session_id; sessionStorage.setItem('movie-planner-session', sessionId);
+      if (data.question) showMessage(data.question);
+      else if (data.notice) showMessage(data.notice);
+      else if (data.showtime_search && !data.showtime_search.items.length) {
+        const movie = data.conditions.movie_nm;
+        const message = data.showtime_search.complete
+          ? `해당 날짜와 시간 조건에 맞는 ${movie ? '<' + movie + '>의 ' : ''}상영 회차가 없어요.`
+          : '조회된 결과에는 조건에 맞는 상영 회차가 없어요. 일부 영화관의 조회가 완료되지 않아 전체 상영 여부는 확인할 수 없어요.';
+        showMessage(message);
+      }
+      showResult(data); syncCourseControls(); $('#message').value = '';
+      $('#status').textContent = `처리 완료 · 재계획 ${data.replans}회`;
+      await loadLogs();
+    } catch (error) { $('#status').textContent = error.message; $('#status').classList.add('error'); await loadLogs(); }
+    finally { busy = false; $('#send').disabled = false; $('#new-session').disabled = false; $('#send').textContent = '데이트 이어가기 ↗'; syncCourseControls(); }
+  });
+  $('#new-session').addEventListener('click', () => {
+    sessionId = null; sessionStorage.removeItem('movie-planner-session');
+    dateCourse = {}; sessionStorage.removeItem('movie-planner-course'); renderCourse();
+    for (const id of ['conversation', 'recommendations', 'cinemas', 'events', 'excluded']) $('#' + id).replaceChildren();
+    $('#chat-empty').hidden = false; $('#message').value = ''; $('#status').classList.remove('error'); showEvents([]);
+    $('#excluded-panel').hidden = true; $('#status').textContent = '새 대화를 시작합니다.';
+  });
+  function resetForm() { planPlaces = {restaurant:null,cafe:null}; $('#plan-stops')?.replaceChildren(); $('#plan-form').reset(); $('#plan-id').value = ''; $('#save-plan').textContent = '계획 저장'; $('#plan-title').textContent = '관람 계획 추가'; $('#plan-status').textContent = ''; $('#plan-status').classList.remove('error'); }
+  $('#reset-plan').addEventListener('click', resetForm);
+  $('#plan-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); $('#save-plan').disabled = true;
+    $('#plan-status').classList.remove('error');
+    const id = $('#plan-id').value;
+    const plan = { movie_nm: $('#movie-nm').value.trim(), watch_date: $('#watch-date').value,
+      start_time: $('#start-time').value || null, end_time: $('#end-time').value || null,
+      movie_cd: $('#movie-cd').value || null, cinema: $('#cinema').value.trim() || null, ...planPlaces };
+    try {
+      const saved = await request('/plans' + (id ? '/' + id : ''), { method: id ? 'PUT' : 'POST', body: JSON.stringify(plan) });
+      resetForm(); await loadPlans();
+      $('#plan-status').textContent = '저장했습니다.' + (saved.warnings.length ? ' ' + saved.warnings.join(' ') : '');
+    } catch (error) { $('#plan-status').textContent = error.message; $('#plan-status').classList.add('error'); }
+    finally { $('#save-plan').disabled = false; }
+  });
+  async function loadPlans() {
+    try {
+      const [plans,dates] = await Promise.all([request('/plans'),request('/itineraries')]);
+      $('#plan-count').textContent = plans.length + dates.length;
+      $('#saved-count').textContent = String(plans.length + dates.length).padStart(2, '0');
+      $('#connection-status').textContent = '계획 서버 연결됨';
+      $('#connection-status').classList.add('connected');
+      $('#list').replaceChildren();
+      if (!plans.length && !dates.length) $('#list').append(emptyState('li', '다음 약속을 기다리는 중', '가고 싶은 곳을 담고 일정을 저장하면 여기에 남아요.'));
+      for (const date of dates) {
+        const item = element('li',undefined,'card saved-itinerary');
+        item.append(element('h3',date.title),element('p',`${date.watch_date || '날짜는 아직 미정'} · ${date.stops.length}개 일정`));
+        item.append(element('p',`저장 ${new Date(date.created_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})}`,'muted'));
+        for (const warning of date.warnings || []) item.append(element('p',warning,'warning'));
+        const stops = element('ol',undefined,'saved-itinerary-stops');
+        for (const stop of date.stops) {
+          const row = element('li');
+          row.append(element('strong',`${stop.start_time || '시간 미정'}${stop.end_time ? ' ~ '+stop.end_time : ''} · ${stop.name}`));
+          if (stop.venue || stop.address) row.append(element('p',stop.venue || stop.address));
+          const link = placeLink(stop.url,'지도·상세 보기 ↗'); if (link) row.append(link);
+          stops.append(row);
+        }
+        item.append(stops,button('일정 수정',()=>{
+          if (busy || savingCourse) return;
+          itinerary = JSON.parse(JSON.stringify({itinerary_id:date.itinerary_id,title:date.title,watch_date:date.watch_date,stops:date.stops}));
+          updateDraft(); activateView('planner'); $('#date-course').scrollIntoView({behavior:'smooth',block:'center'});
+        }),button('삭제',async()=>{
+          if (busy || savingCourse) return;
+          try { await request('/itineraries/'+date.itinerary_id,{method:'DELETE'});
+            if (itinerary.itinerary_id===date.itinerary_id) { delete itinerary.itinerary_id; persistDraft(); renderCourse(); }
+            await loadPlans(); $('#plan-status').textContent = '약속을 삭제했어요.';
+          } catch(error) { $('#plan-status').textContent = error.message; }
+        }));
+        $('#list').append(item);
+      }
+      for (const plan of plans) {
+        const item = element('li', undefined, 'card');
+        item.append(element('strong', plan.movie_nm), element('p', `${plan.watch_date} ${plan.start_time ?? '시작 미정'} ~ ${plan.end_time ?? '종료 미정'} · ${plan.cinema ?? '영화관 미정'}`));
+        for (const [key,label] of [['restaurant','식사'],['cafe','카페']]) {
+          const place = plan[key]; if (!place) continue;
+          const stop = element('div', undefined, 'saved-stop');
+          stop.append(element('strong', `${label} · ${place.name}`));
+          if (place.address) stop.append(element('p', place.address));
+          const link = placeLink(place.url, '카카오맵에서 보기 ↗'); if (link) stop.append(link);
+          item.append(stop);
+        }
+        item.append(element('p', `생성: ${new Date(plan.created_at).toLocaleString('ko-KR')}`, 'muted'));
+        for (const warning of plan.warnings) item.append(element('p', warning, 'warning'));
+        item.append(button('수정', () => preparePlan(plan, true)), button('삭제', async () => {
+          try { await request('/plans/' + plan.plan_id, { method: 'DELETE' }); await loadPlans(); $('#plan-status').textContent = '삭제했습니다.'; }
+          catch (error) { $('#plan-status').textContent = error.message; }
+        }));
+        $('#list').append(item);
+      }
+      syncCourseControls();
+    } catch (error) { $('#plan-status').textContent = error.message; $('#plan-status').classList.add('error'); $('#connection-status').textContent = '서버 연결 필요'; $('#connection-status').classList.remove('connected'); }
+  }
+  async function loadLogs() {
+    try {
+      const logs = await request('/logs'); $('#log-list').replaceChildren();
+      $('#log-status').textContent = '';
+      if (!logs.length) $('#log-list').append(emptyState('div', '아직 대화가 없어요.', '영화를 찾아보면 대화 기록이 여기에 남아요.', '⌁'));
+      for (const [index, log] of logs.entries()) {
+        const item = element('div', undefined, 'card');
+        item.append(element('span', `대화 ${logs.length - index} · 이벤트 ${log.event_count}개`), element('p', new Date(log.updated_at).toLocaleString('ko-KR'), 'muted'));
+        item.append(button('조회', async () => {
+          try { const detail = await request('/logs/' + log.session_id); showEvents(detail.events); $('#log-status').textContent = '선택한 세션의 실행 기록입니다.'; }
+          catch (error) { $('#log-status').textContent = error.message; }
+        }), button('삭제', async () => {
+          try { await request('/logs/' + log.session_id, { method: 'DELETE' }); showEvents([]); await loadLogs(); }
+          catch (error) { $('#log-status').textContent = error.message; }
+        }));
+        $('#log-list').append(item);
+      }
+    } catch (error) { $('#log-status').textContent = error.message; }
+  }
+  $('#refresh-plans').addEventListener('click', loadPlans);
+  renderCourse();
+  $('#refresh-logs').addEventListener('click', loadLogs);
+  mapFallback('지역을 검색하고 카카오맵에서 영화관의 위치를 확인해 보세요.');
+  showCinemaPlaces([]); initializeMap(); loadPlans(); loadLogs();
+</script>
+</body>
+</html>

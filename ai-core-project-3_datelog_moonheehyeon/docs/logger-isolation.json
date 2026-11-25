@@ -1,0 +1,29 @@
+{
+  "mode": "fixed_analysis_real_graph_sqlite",
+  "records": [
+    {
+      "mode": "unplugged",
+      "main_succeeded": true,
+      "llm_calls": 0,
+      "returned_events": 11,
+      "stored_events": 0,
+      "events_equal": null
+    },
+    {
+      "mode": "logger",
+      "main_succeeded": true,
+      "llm_calls": 0,
+      "returned_events": 11,
+      "stored_events": 11,
+      "events_equal": true
+    },
+    {
+      "mode": "storage_failure",
+      "main_succeeded": true,
+      "llm_calls": 0,
+      "returned_events": 11,
+      "stored_events": 0,
+      "events_equal": null
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ thread.title }} | 책 이야기{% endblock title %}
+{% block content %}
+  <nav class="breadcrumb" aria-label="현재 위치"><a href="{% url 'books:index' %}">도서 목록</a><span aria-hidden="true">/</span><a href="{% url 'books:detail' thread.book.pk %}">{{ thread.book.title }}</a><span aria-hidden="true">/</span><span>쓰레드</span></nav>
+  <article class="panel article">
+    <header class="article-header"><p class="eyebrow">READING THREAD</p><h1>{{ thread.title }}</h1><div class="article-meta"><a href="{% url 'accounts:profile' thread.user.username %}">{{ thread.user.username }}</a><span>작성 {{ thread.created_at|date:'Y.m.d H:i' }}</span><span>수정 {{ thread.updated_at|date:'Y.m.d H:i' }}</span></div><span class="reading-date">독서일 {{ thread.reading_date|date:'Y-m-d' }}</span></header>
+    <dl class="detail-facts"><dt>도서</dt><dd><a class="text-link" href="{% url 'books:detail' thread.book.pk %}">{{ thread.book.title }}</a></dd><dt>작성자</dt><dd><a href="{% url 'accounts:profile' thread.user.username %}">{{ thread.user.username }}</a></dd></dl>
+    <div class="article-body"><h2>내용</h2><p>{{ thread.content|linebreaksbr }}</p></div>
+    <div class="article-bottom"><div class="like-zone">{% if request.user.is_authenticated %}<form action="{% url 'books:like' thread.pk %}" method="POST">{% csrf_token %}<button class="button {% if is_liked %}button-liked{% else %}button-quiet{% endif %}" type="submit" aria-pressed="{% if is_liked %}true{% else %}false{% endif %}">{% if is_liked %}좋아요 취소{% else %}좋아요{% endif %}</button></form>{% else %}<a class="button button-quiet" href="{% url 'accounts:login' %}">로그인하고 좋아요</a>{% endif %}<span class="like-count">좋아요 {{ thread.like_users.count }}명</span></div><div class="action-row">{% if request.user == thread.user %}<a class="button button-quiet" href="{% url 'books:thread_update' thread.pk %}">쓰레드 수정</a><form action="{% url 'books:thread_delete' thread.pk %}" method="POST">{% csrf_token %}<button class="button button-danger" type="submit">쓰레드 삭제</button></form>{% endif %}</div></div>
+  </article>
+  <div class="section-space"><a class="text-link" href="{% url 'books:detail' thread.book.pk %}">← 도서 상세</a></div>
+{% endblock content %}

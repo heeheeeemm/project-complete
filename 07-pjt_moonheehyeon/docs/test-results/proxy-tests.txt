@@ -1,0 +1,35 @@
+Command: -X utf8 -m unittest discover -s tests -v
+Exit code: 0
+
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /interactions image_response_error StopIteration
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /chat/completions 400 upstream error
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /chat/completions 401 upstream error
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /chat/completions 403 upstream error
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /chat/completions 429 upstream error
+[GMS 호출 실패] 2026-11-06T03:24:45.592416+00:00 /chat/completions 500 upstream error
+[GMS 호출 실패] 2026-11-06T03:24:45.602159+00:00 /chat/completions connection_error 
+[GMS 호출 실패] 2026-11-06T03:24:45.603259+00:00 /chat/completions connection_error 
+[GMS 응답 형식 오류] guardrail_response JSONDecodeError
+[GMS 응답 형식 오류] guardrail_response ValueError
+[GMS 응답 형식 오류] guardrail_response ValueError
+[GMS 응답 형식 오류] route_response ValueError
+[GMS 응답 형식 오류] score_response ValueError
+[GMS 응답 형식 오류] score_response ValueError
+[GMS 응답 형식 오류] score_response ValueError
+test_gemini_image_is_returned_as_jpeg (test_proxy.ProxyTests.test_gemini_image_is_returned_as_jpeg) ... ok
+test_gemini_response_without_image_is_503 (test_proxy.ProxyTests.test_gemini_response_without_image_is_503) ... ok
+test_gms_errors_are_503_and_timeout_is_set (test_proxy.ProxyTests.test_gms_errors_are_503_and_timeout_is_set) ... ok
+test_guardrail_failure_never_generates (test_proxy.ProxyTests.test_guardrail_failure_never_generates) ... ok
+test_guardrail_schema (test_proxy.ProxyTests.test_guardrail_schema) ... ok
+test_image_analysis_sends_question_and_image (test_proxy.ProxyTests.test_image_analysis_sends_question_and_image) ... ok
+test_image_generation_contract (test_proxy.ProxyTests.test_image_generation_contract) ... ok
+test_model_selection_and_call_order (test_proxy.ProxyTests.test_model_selection_and_call_order) ... ok
+test_rejected_requests_never_generate (test_proxy.ProxyTests.test_rejected_requests_never_generate) ... ok
+test_route_only_allows_known_paths (test_proxy.ProxyTests.test_route_only_allows_known_paths) ... ok
+test_score_range (test_proxy.ProxyTests.test_score_range) ... ok
+test_speech_returns_base64_mp3 (test_proxy.ProxyTests.test_speech_returns_base64_mp3) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.026s
+
+OK

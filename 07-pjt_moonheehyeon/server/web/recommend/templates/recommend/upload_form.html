@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-title"><p class="eyebrow">A COVER, A NEW DISCOVERY</p><h1>표지 한 장에서, 새로운 이야기로.</h1><p>눈길이 머문 책 표지를 올려주세요. 어떤 책인지 살펴보고, 닮은 이야기도 찾아드려요.</p></div>
+<div class="upload-layout"><div class="prompt-card"><div class="card-kicker"><svg class="icon"><use href="#i-scan"/></svg>어떤 책과 만났나요?</div><form method="post" enctype="multipart/form-data" data-loading>{% csrf_token %}<div class="form-fields">{% include 'recommend/_fields.html' %}</div><div class="form-footer"><span class="form-footnote">표지가 잘 보이는 PNG 또는 JPG 사진을 올려주세요.</span><button type="submit"><span class="button-label">표지 속 이야기 찾기</span><svg class="icon"><use href="#i-arrow"/></svg></button></div></form></div><div class="empty-state"><svg class="icon"><use href="#i-book"/></svg><h3>어떤 이야기가 숨어 있을까요?</h3><p>제목과 장르를 함께 살펴보고<br>취향에 어울리는 비슷한 책을 추천해드려요.</p></div></div>
+{% endblock %}

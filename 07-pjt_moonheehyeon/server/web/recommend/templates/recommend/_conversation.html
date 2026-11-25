@@ -1,0 +1,27 @@
+{% load reading %}
+<div class="page-title"><p class="eyebrow">A CONVERSATION BETWEEN THE PAGES</p><h1>이야기를 나눌수록, 취향에 가까이.</h1><p>마음에 드는 책이 있나요? 궁금한 점을 더 물어보거나, 다른 분위기의 책을 찾아보세요.</p></div>
+<div class="conversation-layout">
+  <aside class="conversation-aside" aria-label="추천 정보">
+    <div class="request-card"><h2>오늘, 내가 찾는 이야기</h2><p>{{ result.request_text }}</p></div>
+    {% if result.score is not None %}<div class="score-card"><span>나의 취향과 어울리는 정도</span><div class="score-number"><strong>{{ result.score }}</strong><small>/ 100</small></div><p>{{ result.reason }}</p></div>{% elif result.reason %}<div class="meta">{{ result.reason }}</div>{% endif %}
+    <div class="conversation-model">함께 읽는 도우미 · {{ result.model_used }}</div>
+    <a class="back" href="{% url 'recommend:text' %}">↗ 새로운 취향으로 시작하기</a>
+  </aside>
+  <section class="conversation-panel" aria-label="도서 추천 대화">
+    <div class="conversation-header"><span class="assistant-avatar"><svg class="icon"><use href="#i-book"/></svg></span><div><h2>사이책, 당신의 독서 도우미</h2><p>이전 이야기를 기억하며 함께 책을 찾아요</p></div></div>
+    <div class="conversation-body" aria-live="polite">
+      <article class="message assistant"><div class="message-label">사이책의 첫 번째 추천</div><div class="answer-text">{{ result.content|reading_text }}</div></article>
+      {% for message in chat_messages %}<article class="message {{ message.role }}" {% if forloop.last %}id="latest-reply"{% endif %}><div class="message-label">{% if message.role == 'user' %}나의 질문{% else %}사이책의 답변{% endif %}</div><div class="answer-text">{{ message.content|reading_text }}</div></article>{% endfor %}
+    </div>
+    <div class="chat-composer">
+      {% if chat_error %}<div class="chat-error" role="alert">{{ chat_error }}</div>{% endif %}
+      <div class="composer-title"><h3>조금 더 이야기해 볼까요?</h3><span>대화는 이 브라우저에 이어서 보관돼요</span></div>
+      <form method="post" action="{% url 'recommend:conversation' result.pk %}" data-loading>
+        {% csrf_token %}
+        {{ followup_form.question }}{{ followup_form.question.errors }}
+        <div class="composer-bottom"><span>최대 300자 · Ctrl / ⌘ + Enter로 보내기</span><button type="submit"><span class="button-label">이어서 질문하기</span><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+      </form>
+      <div class="suggestions"><button type="button" class="prompt-chip" data-target="id_question" data-prompt="추천한 책 중에서 가장 가볍게 읽기 좋은 책은 어떤 책이야?">조금 더 가벼운 책은? ↗</button><button type="button" class="prompt-chip" data-target="id_question" data-prompt="추천한 책들의 분위기와 차이점을 비교해줘">추천한 책들을 비교해줘 ↗</button><button type="button" class="prompt-chip" data-target="id_question" data-prompt="비슷한 분위기의 다른 책도 추천해줘">다른 책도 만나볼래 ↗</button></div>
+    </div>
+  </section>
+</div>

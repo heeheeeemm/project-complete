@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-title"><p class="eyebrow">LET THE WORDS FIND THEIR VOICE</p><h1>이제, 문장에 귀 기울여보세요.</h1><p>잠깐의 쉼표가 필요한 순간, 이야기를 소리로 만나요.</p></div>
+<div class="panes">
+  <div class="pane">
+    <h3>목소리로 만날 문장</h3>
+    <div class="result">{{ result.text }}</div>
+    <a class="back" href="{% url 'recommend:tts' %}">← 다시 입력</a>
+  </div>
+  <div class="pane">
+    <h3>당신을 위한 작은 낭독</h3>
+    <audio controls src="data:audio/mp3;base64,{{ audio_data }}">
+      사용 중인 브라우저가 오디오 재생을 지원하지 않습니다.
+    </audio>
+
+    <div class="meta">재생 버튼을 눌러 문장을 들어보세요. 플레이어에서 재생 속도를 조절할 수도 있어요.</div>
+  </div>
+</div>
+{% endblock content %}

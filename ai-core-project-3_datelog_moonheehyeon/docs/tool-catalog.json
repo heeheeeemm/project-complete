@@ -1,0 +1,1306 @@
+[
+  {
+    "name": "search_movies",
+    "description": "불완전한 영화 제목이나 출연자 이름으로 KOBIS 영화 목록·필모그래피를 검색해 사용자에게 확인할 후보를 찾는다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "MovieMatch": {
+          "properties": {
+            "movie_cd": {
+              "pattern": "^\\d{8}$",
+              "title": "Movie Cd",
+              "type": "string"
+            },
+            "movie_nm": {
+              "minLength": 1,
+              "title": "Movie Nm",
+              "type": "string"
+            },
+            "year": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Year"
+            },
+            "open_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Open Date"
+            }
+          },
+          "required": [
+            "movie_cd",
+            "movie_nm"
+          ],
+          "title": "MovieMatch",
+          "type": "object"
+        },
+        "MovieMatches": {
+          "properties": {
+            "items": {
+              "items": {
+                "$ref": "#/$defs/MovieMatch"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "source": {
+              "default": "KOBIS 영화 목록·영화인 필모그래피",
+              "title": "Source",
+              "type": "string"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "required": [
+            "items"
+          ],
+          "title": "MovieMatches",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_MovieMatches_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/MovieMatches"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[MovieMatches]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_MovieMatches_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  },
+  {
+    "name": "search_places",
+    "description": "선택한 영화관·식당 또는 기억한 지역 주변의 실제 식당/카페를 카카오에서 검색한다. 평점·영업시간·가격을 생성하지 않는다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "restaurant",
+            "cafe",
+            "place"
+          ]
+        },
+        "cuisine": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "anchor_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lat": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "lng": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "region",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "Place": {
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "category": {
+              "title": "Category",
+              "type": "string"
+            },
+            "address": {
+              "title": "Address",
+              "type": "string"
+            },
+            "phone": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Phone"
+            },
+            "url": {
+              "title": "Url",
+              "type": "string"
+            },
+            "lat": {
+              "maximum": 90,
+              "minimum": -90,
+              "title": "Lat",
+              "type": "number"
+            },
+            "lng": {
+              "maximum": 180,
+              "minimum": -180,
+              "title": "Lng",
+              "type": "number"
+            },
+            "distance_m": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Distance M"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "category",
+            "address",
+            "url",
+            "lat",
+            "lng"
+          ],
+          "title": "Place",
+          "type": "object"
+        },
+        "PlaceData": {
+          "properties": {
+            "items": {
+              "items": {
+                "$ref": "#/$defs/Place"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "kind": {
+              "enum": [
+                "restaurant",
+                "cafe",
+                "place"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "region": {
+              "title": "Region",
+              "type": "string"
+            },
+            "cuisine": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cuisine"
+            },
+            "anchor": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Anchor"
+            },
+            "checked_at": {
+              "format": "date-time",
+              "title": "Checked At",
+              "type": "string"
+            },
+            "source": {
+              "default": "카카오 로컬",
+              "title": "Source",
+              "type": "string"
+            },
+            "notice": {
+              "default": "메뉴·영업시간·가격은 카카오맵 장소 상세에서 확인해 주세요.",
+              "title": "Notice",
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "kind",
+            "region",
+            "checked_at"
+          ],
+          "title": "PlaceData",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_PlaceData_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/PlaceData"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[PlaceData]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_PlaceData_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  },
+  {
+    "name": "get_boxoffice",
+    "description": "후보를 정하지 않았거나 대안 영화가 필요할 때 일별 순위와 영화코드를 조회한다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "YYYY-MM-DD. 생략하면 한국시간 어제. 미래는 어제로 보정."
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "BoxofficeData": {
+          "properties": {
+            "items": {
+              "items": {
+                "$ref": "#/$defs/MovieCandidate"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "requested_date": {
+              "format": "date",
+              "title": "Requested Date",
+              "type": "string"
+            },
+            "query_date": {
+              "format": "date",
+              "title": "Query Date",
+              "type": "string"
+            },
+            "estimated": {
+              "title": "Estimated",
+              "type": "boolean"
+            },
+            "source": {
+              "title": "Source",
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "requested_date",
+            "query_date",
+            "estimated",
+            "source"
+          ],
+          "title": "BoxofficeData",
+          "type": "object"
+        },
+        "MovieCandidate": {
+          "properties": {
+            "movie_cd": {
+              "pattern": "^\\d{8}$",
+              "title": "Movie Cd",
+              "type": "string"
+            },
+            "movie_nm": {
+              "minLength": 1,
+              "title": "Movie Nm",
+              "type": "string"
+            },
+            "rank": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Rank"
+            }
+          },
+          "required": [
+            "movie_cd",
+            "movie_nm"
+          ],
+          "title": "MovieCandidate",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_BoxofficeData_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/BoxofficeData"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[BoxofficeData]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_BoxofficeData_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  },
+  {
+    "name": "get_movie_detail",
+    "description": "후보 영화코드의 러닝타임·장르·등급으로 조건을 판단할 때 조회한다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "movie_cd": {
+          "type": "string",
+          "pattern": "^\\d{8}$"
+        }
+      },
+      "required": [
+        "movie_cd"
+      ],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "MovieDetailData": {
+          "properties": {
+            "movie_cd": {
+              "pattern": "^\\d{8}$",
+              "title": "Movie Cd",
+              "type": "string"
+            },
+            "movie_nm": {
+              "minLength": 1,
+              "title": "Movie Nm",
+              "type": "string"
+            },
+            "runtime_minutes": {
+              "exclusiveMinimum": 0,
+              "title": "Runtime Minutes",
+              "type": "integer"
+            },
+            "genres": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Genres",
+              "type": "array"
+            },
+            "ratings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ratings",
+              "type": "array"
+            },
+            "source": {
+              "title": "Source",
+              "type": "string"
+            }
+          },
+          "required": [
+            "movie_cd",
+            "movie_nm",
+            "runtime_minutes",
+            "genres",
+            "ratings",
+            "source"
+          ],
+          "title": "MovieDetailData",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_MovieDetailData_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/MovieDetailData"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[MovieDetailData]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_MovieDetailData_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  },
+  {
+    "name": "search_cinemas",
+    "description": "사용자가 지정한 지역의 영화관 이름·주소·링크가 필요할 때 검색한다. 시간표는 제공하지 않는다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "region"
+      ],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "Cinema": {
+          "properties": {
+            "name": {
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            },
+            "address": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Address"
+            },
+            "url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Url"
+            },
+            "lat": {
+              "anyOf": [
+                {
+                  "maximum": 90,
+                  "minimum": -90,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Lat"
+            },
+            "lng": {
+              "anyOf": [
+                {
+                  "maximum": 180,
+                  "minimum": -180,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Lng"
+            }
+          },
+          "required": [
+            "name",
+            "address",
+            "url"
+          ],
+          "title": "Cinema",
+          "type": "object"
+        },
+        "CinemaData": {
+          "properties": {
+            "items": {
+              "items": {
+                "$ref": "#/$defs/Cinema"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "source": {
+              "title": "Source",
+              "type": "string"
+            },
+            "notice": {
+              "title": "Notice",
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "source",
+            "notice"
+          ],
+          "title": "CinemaData",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_CinemaData_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/CinemaData"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[CinemaData]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_CinemaData_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  },
+  {
+    "name": "get_showtimes",
+    "description": "영화명·지역·날짜의 실제 CGV·롯데시네마·메가박스 회차와 잔여석을 통합 조회한다. KOBIS 영화코드는 사용하지 않는다.",
+    "tool_type": "external_api",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string"
+        },
+        "movie_nm": {
+          "type": "string"
+        },
+        "watch_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "HH:MM, 이 시각 포함 이후"
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deadline_inclusive": {
+          "type": "boolean",
+          "description": "까지=true, 전에/이전=false"
+        },
+        "buffer_minutes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 240
+        },
+        "brands": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "cgv",
+              "lotte",
+              "megabox"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "region",
+        "movie_nm",
+        "watch_date"
+      ],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "$defs": {
+        "Showtime": {
+          "properties": {
+            "schedule_id": {
+              "title": "Schedule Id",
+              "type": "string"
+            },
+            "brand": {
+              "default": "cgv",
+              "enum": [
+                "cgv",
+                "lotte",
+                "megabox"
+              ],
+              "title": "Brand",
+              "type": "string"
+            },
+            "brand_name": {
+              "default": "CGV",
+              "title": "Brand Name",
+              "type": "string"
+            },
+            "movie_nm": {
+              "title": "Movie Nm",
+              "type": "string"
+            },
+            "movie_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Movie Id"
+            },
+            "cgv_movie_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cgv Movie Id"
+            },
+            "cinema": {
+              "title": "Cinema",
+              "type": "string"
+            },
+            "cinema_id": {
+              "title": "Cinema Id",
+              "type": "string"
+            },
+            "screen": {
+              "title": "Screen",
+              "type": "string"
+            },
+            "format": {
+              "title": "Format",
+              "type": "string"
+            },
+            "business_date": {
+              "format": "date",
+              "title": "Business Date",
+              "type": "string"
+            },
+            "watch_date": {
+              "format": "date",
+              "title": "Watch Date",
+              "type": "string"
+            },
+            "start_time": {
+              "title": "Start Time",
+              "type": "string"
+            },
+            "end_time": {
+              "title": "End Time",
+              "type": "string"
+            },
+            "start_label": {
+              "title": "Start Label",
+              "type": "string"
+            },
+            "end_label": {
+              "title": "End Label",
+              "type": "string"
+            },
+            "starts_at": {
+              "format": "date-time",
+              "title": "Starts At",
+              "type": "string"
+            },
+            "ends_at": {
+              "format": "date-time",
+              "title": "Ends At",
+              "type": "string"
+            },
+            "remaining_seats": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Remaining Seats"
+            },
+            "total_seats": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Seats"
+            },
+            "availability": {
+              "title": "Availability",
+              "type": "string"
+            },
+            "checked_at": {
+              "format": "date-time",
+              "title": "Checked At",
+              "type": "string"
+            },
+            "booking_url": {
+              "title": "Booking Url",
+              "type": "string"
+            },
+            "source": {
+              "default": "CGV 상영시간표",
+              "title": "Source",
+              "type": "string"
+            }
+          },
+          "required": [
+            "schedule_id",
+            "movie_nm",
+            "cinema",
+            "cinema_id",
+            "screen",
+            "format",
+            "business_date",
+            "watch_date",
+            "start_time",
+            "end_time",
+            "start_label",
+            "end_label",
+            "starts_at",
+            "ends_at",
+            "availability",
+            "checked_at",
+            "booking_url"
+          ],
+          "title": "Showtime",
+          "type": "object"
+        },
+        "ShowtimesData": {
+          "properties": {
+            "items": {
+              "items": {
+                "$ref": "#/$defs/Showtime"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "checked_at": {
+              "format": "date-time",
+              "title": "Checked At",
+              "type": "string"
+            },
+            "checked_theaters": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Checked Theaters",
+              "type": "array"
+            },
+            "complete": {
+              "title": "Complete",
+              "type": "boolean"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "booking_url": {
+              "default": "https://cgv.co.kr/cnm/movieBook",
+              "title": "Booking Url",
+              "type": "string"
+            },
+            "providers": {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Providers",
+              "type": "array"
+            },
+            "booking_urls": {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Booking Urls",
+              "type": "array"
+            },
+            "notice": {
+              "default": "잔여석은 조회 시점 기준이며 예매 과정에서 바뀔 수 있습니다. 해당 영화관에서 최종 확인해 주세요.",
+              "title": "Notice",
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "checked_at",
+            "checked_theaters",
+            "complete",
+            "warnings"
+          ],
+          "title": "ShowtimesData",
+          "type": "object"
+        },
+        "ToolError": {
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_ARGUMENT",
+                "INVALID_KEY",
+                "NOT_FOUND",
+                "NO_DATA",
+                "NO_RUNTIME",
+                "UPSTREAM_ERROR",
+                "ACCESS_DENIED",
+                "TIMEOUT",
+                "CONNECTION_ERROR"
+              ],
+              "title": "Code",
+              "type": "string"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "title": "ToolError",
+          "type": "object"
+        },
+        "ToolFailure": {
+          "properties": {
+            "ok": {
+              "const": false,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "error": {
+              "$ref": "#/$defs/ToolError"
+            }
+          },
+          "required": [
+            "ok",
+            "error"
+          ],
+          "title": "ToolFailure",
+          "type": "object"
+        },
+        "ToolSuccess_ShowtimesData_": {
+          "properties": {
+            "ok": {
+              "const": true,
+              "title": "Ok",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/$defs/ShowtimesData"
+            }
+          },
+          "required": [
+            "ok",
+            "data"
+          ],
+          "title": "ToolSuccess[ShowtimesData]",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolSuccess_ShowtimesData_"
+        },
+        {
+          "$ref": "#/$defs/ToolFailure"
+        }
+      ]
+    }
+  }
+]

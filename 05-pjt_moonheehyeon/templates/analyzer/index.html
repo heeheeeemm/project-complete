@@ -1,0 +1,123 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pulse — 댓글 증강 시스템</title>
+  <link rel="stylesheet" href="{% static 'analyzer/style.css' %}?v=20261030-4">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="page-shell">
+    <nav class="topbar">
+      <a class="brand" href="/" aria-label="홈으로">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>Pulse</span>
+      </a>
+      <span class="model-badge"><i></i> GMS · gpt-5-nano</span>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">STOCK COMMUNITY INTELLIGENCE</p>
+      <h1>댓글 속 투자 흐름을<br><span>한눈에 읽어보세요.</span></h1>
+      <p class="hero-copy">실시간 커뮤니티 댓글을 수집하고, 정제하고, 더 풍부한 데이터로 확장합니다.</p>
+
+      <form method="post" class="search-panel" id="search-form">
+        {% csrf_token %}
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+          <label class="sr-only" for="{{ form.company.id_for_label }}">회사명</label>
+          {{ form.company }}
+          <button type="submit"><span>분석 시작</span><b>→</b></button>
+        </div>
+        <div class="search-options">
+          <p>회사명의 일부만 입력해도 첫 번째 검색 결과를 자동 선택합니다.</p>
+          <label class="toggle-option">
+            {{ form.include_summary }}
+            <span class="toggle"><i></i></span>
+            <span>AI 요약 포함</span>
+          </label>
+        </div>
+        {% if form.company.errors %}<p class="form-error">{{ form.company.errors.0 }}</p>{% endif %}
+      </form>
+    </section>
+
+    <section class="loading-panel" id="loading" hidden>
+      <span class="loader"><i></i><i></i><i></i></span>
+      <div><strong>댓글의 흐름을 분석하고 있어요</strong><p>수집부터 AI 증강까지 순서대로 처리 중입니다.</p></div>
+    </section>
+
+    {% if result %}
+      {% if result.message %}
+        <section class="status-panel">
+          <span class="status-icon">!</span>
+          <div><strong>분석을 완료하지 못했어요</strong><p>{{ result.message }}</p></div>
+        </section>
+      {% else %}
+        <section class="result-section">
+          <header class="result-header">
+            <div>
+              <p class="section-kicker">ANALYSIS RESULT</p>
+              <h2>{{ result.actual_company }}</h2>
+              <p class="result-meta"><span>{{ result.company }}</span>{% if result.stock_code %}<i></i><span>{{ result.stock_code }}</span>{% endif %}<i></i><span>정상 길이 {{ result.iqr.lower|floatformat:0 }}–{{ result.iqr.upper|floatformat:0 }}자</span></p>
+            </div>
+            <a class="new-search" href="/">새로 분석하기 <span>↗</span></a>
+          </header>
+
+          <div class="metrics">
+            <article><span class="metric-icon raw">01</span><div><p>수집한 댓글</p><strong>{{ result.counts.collected }}<small>개</small></strong></div></article>
+            <article><span class="metric-icon filtered">02</span><div><p>필터 통과</p><strong>{{ result.counts.filtered }}<small>개</small></strong></div></article>
+            <article><span class="metric-icon clean">03</span><div><p>정제 데이터</p><strong>{{ result.counts.cleaned }}<small>개</small></strong></div></article>
+            <article><span class="metric-icon augment">04</span><div><p>증강 데이터</p><strong>{{ result.counts.augmented }}<small>개</small></strong></div></article>
+          </div>
+
+          <div class="pipeline-label"><span>DATA PIPELINE</span><i></i><p>각 단계의 데이터를 나란히 비교해보세요.</p></div>
+
+          <div class="pipeline-grid">
+            <article class="data-card stage-raw">
+              <header><div><span>STEP 01</span><h3>원본 데이터</h3></div><b>{{ result.raw_comments|length }}</b></header>
+              <ol>{% for comment in result.raw_comments %}<li><span>{{ forloop.counter|stringformat:"02d" }}</span><p>{{ comment }}</p></li>{% empty %}<li class="empty">데이터가 없습니다.</li>{% endfor %}</ol>
+            </article>
+            <div class="flow-arrow" aria-hidden="true"><span>→</span></div>
+            <article class="data-card stage-clean">
+              <header><div><span>STEP 02</span><h3>전처리 데이터</h3></div><b>{{ result.cleaned_comments|length }}</b></header>
+              <ol>{% for comment in result.cleaned_comments %}<li><span>{{ forloop.counter|stringformat:"02d" }}</span><p>{{ comment }}</p></li>{% empty %}<li class="empty">데이터가 없습니다.</li>{% endfor %}</ol>
+            </article>
+            <div class="flow-arrow" aria-hidden="true"><span>→</span></div>
+            <article class="data-card stage-augment">
+              <header><div><span>STEP 03</span><h3>증강 데이터</h3></div><b>{{ result.augmented_comments|length }}</b></header>
+              <ol>{% for comment in result.augmented_comments %}<li><span>{{ forloop.counter|stringformat:"02d" }}</span><p>{{ comment }}</p></li>{% empty %}<li class="empty">데이터가 없습니다.</li>{% endfor %}</ol>
+            </article>
+            <div class="flow-arrow" aria-hidden="true"><span>→</span></div>
+            <article class="data-card stage-final">
+              <header><div><span>STEP 04</span><h3>최종 데이터셋</h3></div><b>{{ result.records|length }}</b></header>
+              <ol>{% for record in result.records %}<li><em class="source-tag {{ record.source }}">{% if record.source == 'original' %}정제{% else %}증강{% endif %}</em><p>{{ record.text }}</p></li>{% empty %}<li class="empty">데이터가 없습니다.</li>{% endfor %}</ol>
+            </article>
+          </div>
+
+          {% if result.summary %}
+            <section class="summary-card">
+              <div class="summary-symbol"><span>✦</span></div>
+              <div><p class="section-kicker">AI INSIGHT</p><h3>댓글에서 발견한 핵심 흐름</h3><p class="summary-text">{{ result.summary }}</p></div>
+            </section>
+          {% endif %}
+        </section>
+      {% endif %}
+    {% endif %}
+
+    <footer><span>Pulse</span><p>Community data, refined with intelligence.</p></footer>
+  </main>
+
+  <script>
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+      const input = this.querySelector('input[name="company"]');
+      if (!input.value.trim()) { event.preventDefault(); input.focus(); return; }
+      document.getElementById('loading').hidden = false;
+      this.querySelector('button').disabled = true;
+    });
+  </script>
+</body>
+</html>

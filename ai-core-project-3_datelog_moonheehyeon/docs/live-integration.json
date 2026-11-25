@@ -1,0 +1,1271 @@
+{
+  "mode": "live_backend_browser",
+  "checked_at": "2026-11-20T03:50:40.014Z",
+  "records": [
+    {
+      "message": "안녕! 오늘 데이트 일정을 함께 고민해 줄래?",
+      "status": 200,
+      "elapsed_ms": 3067,
+      "response": {
+        "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+        "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+        "answer": "관람 날짜, 시작 가능한 시각, 종료 제한, 희망 지역을 알려 주세요. 영화 후보의 러닝타임으로 관람 조건을 비교합니다.",
+        "question": null,
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": null,
+          "start_time": null,
+          "deadline": null,
+          "deadline_inclusive": null,
+          "region": null,
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": null,
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "0bfe3c0534bb48a1a7755dd589a24e4f",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:32.153231+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "426094e1336c4f0db8932eafea8a8978",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:50:34.370383+00:00",
+            "data": {
+              "intent": "help",
+              "reason": "사용자가 인사 및 도움 요청을 하여 도움 의도로 판단",
+              "updates": {},
+              "selected_tools": []
+            }
+          },
+          {
+            "event_id": "53b4604e0a3e448cb37f0ae5fb7313dc",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.387155+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 2215.34
+            }
+          },
+          {
+            "event_id": "62d310207d6d4f26b2e9d1fc2a758a95",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.408127+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "db7c526696ac4033b2e74fc4ddaf7fde",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.421781+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          },
+          {
+            "event_id": "7bb7371e0ff645bbb94b16f365313b37",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.438408+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "ab534b6da5e8485aa87f185f5c60278e",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.450908+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "e45e9c7af94f43989cf703f3dd22669d",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.468631+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "14ef6520503e46d3bb8471c0383fe393",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.483430+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          },
+          {
+            "event_id": "f95e7c43e2c647adb12f6dc00915233c",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.500492+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "427b4c667b254364aa57847a3561fbe5",
+            "session_id": "aa7abee29d6045a2a97029f6ddb755db",
+            "run_id": "86ac6d4ee36d4518ae7c63368470babd",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.512533+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.27
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    },
+    {
+      "message": "서면 카페 추천해줘",
+      "status": 200,
+      "elapsed_ms": 623,
+      "response": {
+        "session_id": "edb47496e2a8447395eb830901316923",
+        "run_id": "84cea12b3ea94d4996deb65bc2197637",
+        "answer": "",
+        "question": null,
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": null,
+          "start_time": null,
+          "deadline": null,
+          "deadline_inclusive": null,
+          "region": null,
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": null,
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": "cafe",
+          "cuisine": null,
+          "place_region": "서면",
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [
+          {
+            "id": "12807299",
+            "name": "블랙업커피 서면본점",
+            "category": "음식점 > 카페",
+            "address": "부산 부산진구 서전로10번길 41",
+            "phone": "051-944-4952",
+            "url": "http://place.map.kakao.com/12807299",
+            "lat": 35.1560639463997,
+            "lng": 129.059977814734,
+            "distance_m": null
+          },
+          {
+            "id": "897675548",
+            "name": "넉아웃",
+            "category": "음식점 > 카페",
+            "address": "부산 부산진구 동천로 91-4",
+            "phone": null,
+            "url": "http://place.map.kakao.com/897675548",
+            "lat": 35.15696291698332,
+            "lng": 129.06201291759663,
+            "distance_m": null
+          },
+          {
+            "id": "2046081820",
+            "name": "도시농가코페",
+            "category": "음식점 > 카페",
+            "address": "부산 부산진구 중앙대로666번길 17",
+            "phone": null,
+            "url": "http://place.map.kakao.com/2046081820",
+            "lat": 35.1522849287026,
+            "lng": 129.06026874696,
+            "distance_m": null
+          },
+          {
+            "id": "23523974",
+            "name": "스타벅스 서면서전로점",
+            "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+            "address": "부산 부산진구 서전로 19",
+            "phone": "1522-3232",
+            "url": "http://place.map.kakao.com/23523974",
+            "lat": 35.15791124588171,
+            "lng": 129.06204783104334,
+            "distance_m": null
+          },
+          {
+            "id": "20971198",
+            "name": "스타벅스 부산서면점",
+            "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+            "address": "부산 부산진구 중앙대로692번길 46-10",
+            "phone": "1522-3232",
+            "url": "http://place.map.kakao.com/20971198",
+            "lat": 35.154094327799,
+            "lng": 129.061547691058,
+            "distance_m": null
+          },
+          {
+            "id": "56775844",
+            "name": "다운트클래식",
+            "category": "음식점 > 카페",
+            "address": "부산 부산진구 서전로 12",
+            "phone": null,
+            "url": "http://place.map.kakao.com/56775844",
+            "lat": 35.157577031955,
+            "lng": 129.060876256592,
+            "distance_m": null
+          },
+          {
+            "id": "204304647",
+            "name": "카페벽돌",
+            "category": "음식점 > 카페 > 커피전문점",
+            "address": "부산 부산진구 서면로 46",
+            "phone": "0503-7151-8417",
+            "url": "http://place.map.kakao.com/204304647",
+            "lat": 35.15481815298805,
+            "lng": 129.0580393562485,
+            "distance_m": null
+          },
+          {
+            "id": "1879117698",
+            "name": "북카페심심푸리 서면본점",
+            "category": "음식점 > 카페 > 테마카페 > 북카페",
+            "address": "부산 부산진구 중앙대로702번길 33",
+            "phone": "051-803-1088",
+            "url": "http://place.map.kakao.com/1879117698",
+            "lat": 35.1555587172802,
+            "lng": 129.061071124201,
+            "distance_m": null
+          }
+        ],
+        "place_search": {
+          "items": [
+            {
+              "id": "12807299",
+              "name": "블랙업커피 서면본점",
+              "category": "음식점 > 카페",
+              "address": "부산 부산진구 서전로10번길 41",
+              "phone": "051-944-4952",
+              "url": "http://place.map.kakao.com/12807299",
+              "lat": 35.1560639463997,
+              "lng": 129.059977814734,
+              "distance_m": null
+            },
+            {
+              "id": "897675548",
+              "name": "넉아웃",
+              "category": "음식점 > 카페",
+              "address": "부산 부산진구 동천로 91-4",
+              "phone": null,
+              "url": "http://place.map.kakao.com/897675548",
+              "lat": 35.15696291698332,
+              "lng": 129.06201291759663,
+              "distance_m": null
+            },
+            {
+              "id": "2046081820",
+              "name": "도시농가코페",
+              "category": "음식점 > 카페",
+              "address": "부산 부산진구 중앙대로666번길 17",
+              "phone": null,
+              "url": "http://place.map.kakao.com/2046081820",
+              "lat": 35.1522849287026,
+              "lng": 129.06026874696,
+              "distance_m": null
+            },
+            {
+              "id": "23523974",
+              "name": "스타벅스 서면서전로점",
+              "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+              "address": "부산 부산진구 서전로 19",
+              "phone": "1522-3232",
+              "url": "http://place.map.kakao.com/23523974",
+              "lat": 35.15791124588171,
+              "lng": 129.06204783104334,
+              "distance_m": null
+            },
+            {
+              "id": "20971198",
+              "name": "스타벅스 부산서면점",
+              "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+              "address": "부산 부산진구 중앙대로692번길 46-10",
+              "phone": "1522-3232",
+              "url": "http://place.map.kakao.com/20971198",
+              "lat": 35.154094327799,
+              "lng": 129.061547691058,
+              "distance_m": null
+            },
+            {
+              "id": "56775844",
+              "name": "다운트클래식",
+              "category": "음식점 > 카페",
+              "address": "부산 부산진구 서전로 12",
+              "phone": null,
+              "url": "http://place.map.kakao.com/56775844",
+              "lat": 35.157577031955,
+              "lng": 129.060876256592,
+              "distance_m": null
+            },
+            {
+              "id": "204304647",
+              "name": "카페벽돌",
+              "category": "음식점 > 카페 > 커피전문점",
+              "address": "부산 부산진구 서면로 46",
+              "phone": "0503-7151-8417",
+              "url": "http://place.map.kakao.com/204304647",
+              "lat": 35.15481815298805,
+              "lng": 129.0580393562485,
+              "distance_m": null
+            },
+            {
+              "id": "1879117698",
+              "name": "북카페심심푸리 서면본점",
+              "category": "음식점 > 카페 > 테마카페 > 북카페",
+              "address": "부산 부산진구 중앙대로702번길 33",
+              "phone": "051-803-1088",
+              "url": "http://place.map.kakao.com/1879117698",
+              "lat": 35.1555587172802,
+              "lng": 129.061071124201,
+              "distance_m": null
+            }
+          ],
+          "kind": "cafe",
+          "region": "서면",
+          "cuisine": null,
+          "anchor": null,
+          "checked_at": "2026-11-20T12:50:35.045533+09:00",
+          "source": "카카오 로컬",
+          "notice": "메뉴·영업시간·가격은 카카오맵 장소 상세에서 확인해 주세요."
+        },
+        "course": {},
+        "events": [
+          {
+            "event_id": "b2c5bae3793d4198bc2a150e4f60f918",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.566489+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "4f666faeb429413ba121f2b5f5bf9495",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:50:34.588388+00:00",
+            "data": {
+              "intent": "places",
+              "reason": "기억한 영화관·선택한 코스 주변의 실제 장소 검색",
+              "updates": {
+                "place_kind": "cafe",
+                "place_region": "서면",
+                "place_anchor": null
+              },
+              "selected_tools": [
+                "search_places"
+              ]
+            }
+          },
+          {
+            "event_id": "8631cc52f0d04700ba466142aa2d0413",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.602126+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 15.64
+            }
+          },
+          {
+            "event_id": "903f9c91563d480fa43fb75058859bc7",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.617770+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "b842b975ff1d421ea3092f72a6c14bb2",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "work_plan",
+            "timestamp": "2026-11-20T03:50:34.630240+00:00",
+            "data": {
+              "tasks": [
+                {
+                  "tool": "search_places",
+                  "args": {
+                    "region": "서면",
+                    "kind": "cafe",
+                    "cuisine": null
+                  }
+                }
+              ],
+              "attempt": 0
+            }
+          },
+          {
+            "event_id": "defdf0b2a3b9408c81416b924fe407fe",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:34.644328+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 14.29
+            }
+          },
+          {
+            "event_id": "ebe602cf822a4d5b922c9bb5271b5cfd",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:34.660471+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "91f916bec1d44ff2a4f1a53b1a3abb0b",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "tool_request",
+            "timestamp": "2026-11-20T03:50:34.681552+00:00",
+            "data": {
+              "tool": "search_places",
+              "arguments": {
+                "region": "서면",
+                "kind": "cafe",
+                "cuisine": null
+              }
+            }
+          },
+          {
+            "event_id": "c5ce386cec9041c3a9e101a7e5d044b9",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "tool_response",
+            "timestamp": "2026-11-20T03:50:35.046502+00:00",
+            "data": {
+              "tool": "search_places",
+              "result": {
+                "ok": true,
+                "data": {
+                  "items": [
+                    {
+                      "id": "12807299",
+                      "name": "블랙업커피 서면본점",
+                      "category": "음식점 > 카페",
+                      "address": "부산 부산진구 서전로10번길 41",
+                      "phone": "051-944-4952",
+                      "url": "http://place.map.kakao.com/12807299",
+                      "lat": 35.1560639463997,
+                      "lng": 129.059977814734,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "897675548",
+                      "name": "넉아웃",
+                      "category": "음식점 > 카페",
+                      "address": "부산 부산진구 동천로 91-4",
+                      "phone": null,
+                      "url": "http://place.map.kakao.com/897675548",
+                      "lat": 35.15696291698332,
+                      "lng": 129.06201291759663,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "2046081820",
+                      "name": "도시농가코페",
+                      "category": "음식점 > 카페",
+                      "address": "부산 부산진구 중앙대로666번길 17",
+                      "phone": null,
+                      "url": "http://place.map.kakao.com/2046081820",
+                      "lat": 35.1522849287026,
+                      "lng": 129.06026874696,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "23523974",
+                      "name": "스타벅스 서면서전로점",
+                      "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+                      "address": "부산 부산진구 서전로 19",
+                      "phone": "1522-3232",
+                      "url": "http://place.map.kakao.com/23523974",
+                      "lat": 35.15791124588171,
+                      "lng": 129.06204783104334,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "20971198",
+                      "name": "스타벅스 부산서면점",
+                      "category": "음식점 > 카페 > 커피전문점 > 스타벅스",
+                      "address": "부산 부산진구 중앙대로692번길 46-10",
+                      "phone": "1522-3232",
+                      "url": "http://place.map.kakao.com/20971198",
+                      "lat": 35.154094327799,
+                      "lng": 129.061547691058,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "56775844",
+                      "name": "다운트클래식",
+                      "category": "음식점 > 카페",
+                      "address": "부산 부산진구 서전로 12",
+                      "phone": null,
+                      "url": "http://place.map.kakao.com/56775844",
+                      "lat": 35.157577031955,
+                      "lng": 129.060876256592,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "204304647",
+                      "name": "카페벽돌",
+                      "category": "음식점 > 카페 > 커피전문점",
+                      "address": "부산 부산진구 서면로 46",
+                      "phone": "0503-7151-8417",
+                      "url": "http://place.map.kakao.com/204304647",
+                      "lat": 35.15481815298805,
+                      "lng": 129.0580393562485,
+                      "distance_m": null
+                    },
+                    {
+                      "id": "1879117698",
+                      "name": "북카페심심푸리 서면본점",
+                      "category": "음식점 > 카페 > 테마카페 > 북카페",
+                      "address": "부산 부산진구 중앙대로702번길 33",
+                      "phone": "051-803-1088",
+                      "url": "http://place.map.kakao.com/1879117698",
+                      "lat": 35.1555587172802,
+                      "lng": 129.061071124201,
+                      "distance_m": null
+                    }
+                  ],
+                  "kind": "cafe",
+                  "region": "서면",
+                  "cuisine": null,
+                  "anchor": null,
+                  "checked_at": "2026-11-20T12:50:35.045533+09:00",
+                  "source": "카카오 로컬",
+                  "notice": "메뉴·영업시간·가격은 카카오맵 장소 상세에서 확인해 주세요."
+                }
+              },
+              "elapsed_ms": 347.77
+            }
+          },
+          {
+            "event_id": "220e4bb9873c4850be83c49f8f83f6dc",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:35.061641+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 380.18
+            }
+          },
+          {
+            "event_id": "fec233737f6c47d8987401490172440d",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:35.078215+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "7f926196667047c68881d9890ac98daf",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:35.090704+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          },
+          {
+            "event_id": "63d39258849244d0869382b764a544ac",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:35.112598+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "420785b569f747d38822a4ca5a6b2b40",
+            "session_id": "edb47496e2a8447395eb830901316923",
+            "run_id": "84cea12b3ea94d4996deb65bc2197637",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:35.135442+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.02
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    },
+    {
+      "message": "서울 강남에서 오늘 오후 2-6시 사이에 <폭설> 영화 볼거야",
+      "status": 200,
+      "elapsed_ms": 1702,
+      "response": {
+        "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+        "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+        "answer": "",
+        "question": null,
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": "2026-11-20",
+          "start_time": "14:00",
+          "deadline": "18:00",
+          "deadline_inclusive": true,
+          "region": "서울 강남",
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": "폭설",
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [
+          {
+            "schedule_id": "megabox:2611201372132",
+            "brand": "megabox",
+            "brand_name": "메가박스",
+            "movie_nm": "폭설",
+            "movie_id": "26070001",
+            "cgv_movie_id": null,
+            "cinema": "메가박스 강남",
+            "cinema_id": "1372",
+            "screen": "10층 르 리클라이너 4관[Laser]",
+            "format": "2D",
+            "business_date": "2026-11-20",
+            "watch_date": "2026-11-20",
+            "start_time": "14:10",
+            "end_time": "15:48",
+            "start_label": "14:10",
+            "end_label": "15:48",
+            "starts_at": "2026-11-20T14:10:00+09:00",
+            "ends_at": "2026-11-20T15:48:00+09:00",
+            "remaining_seats": 36,
+            "total_seats": 53,
+            "availability": "available",
+            "checked_at": "2026-11-20T12:50:36.762275+09:00",
+            "booking_url": "https://www.megabox.co.kr/booking",
+            "source": "메가박스 상영시간표"
+          }
+        ],
+        "showtime_search": {
+          "items": [
+            {
+              "schedule_id": "megabox:2611201372132",
+              "brand": "megabox",
+              "brand_name": "메가박스",
+              "movie_nm": "폭설",
+              "movie_id": "26070001",
+              "cgv_movie_id": null,
+              "cinema": "메가박스 강남",
+              "cinema_id": "1372",
+              "screen": "10층 르 리클라이너 4관[Laser]",
+              "format": "2D",
+              "business_date": "2026-11-20",
+              "watch_date": "2026-11-20",
+              "start_time": "14:10",
+              "end_time": "15:48",
+              "start_label": "14:10",
+              "end_label": "15:48",
+              "starts_at": "2026-11-20T14:10:00+09:00",
+              "ends_at": "2026-11-20T15:48:00+09:00",
+              "remaining_seats": 36,
+              "total_seats": 53,
+              "availability": "available",
+              "checked_at": "2026-11-20T12:50:36.762275+09:00",
+              "booking_url": "https://www.megabox.co.kr/booking",
+              "source": "메가박스 상영시간표"
+            }
+          ],
+          "checked_at": "2026-11-20T12:50:36.762275+09:00",
+          "checked_theaters": [
+            "CGV 강남",
+            "메가박스 강남"
+          ],
+          "complete": true,
+          "warnings": [],
+          "booking_url": "https://cgv.co.kr/cnm/movieBook",
+          "providers": [
+            {
+              "brand": "cgv",
+              "label": "CGV",
+              "status": "ok",
+              "count": 0,
+              "booking_url": "https://cgv.co.kr/cnm/movieBook"
+            },
+            {
+              "brand": "lotte",
+              "label": "롯데시네마",
+              "status": "no_theater",
+              "count": 0,
+              "error_code": "NOT_FOUND",
+              "message": "해당 지역 이름에 맞는 롯데시네마 지점을 찾지 못했습니다.",
+              "booking_url": "https://www.lottecinema.co.kr/NLCHS/Ticketing"
+            },
+            {
+              "brand": "megabox",
+              "label": "메가박스",
+              "status": "ok",
+              "count": 1,
+              "booking_url": "https://www.megabox.co.kr/booking"
+            }
+          ],
+          "booking_urls": [
+            {
+              "brand": "cgv",
+              "label": "CGV",
+              "url": "https://cgv.co.kr/cnm/movieBook"
+            },
+            {
+              "brand": "lotte",
+              "label": "롯데시네마",
+              "url": "https://www.lottecinema.co.kr/NLCHS/Ticketing"
+            },
+            {
+              "brand": "megabox",
+              "label": "메가박스",
+              "url": "https://www.megabox.co.kr/booking"
+            }
+          ],
+          "notice": "잔여석은 조회 시점 기준이며 예매 과정에서 바뀔 수 있습니다. 해당 영화관에서 최종 확인해 주세요."
+        },
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "f4ea14d0fe3e435a94871fa156a0f68f",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:35.193848+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "3f399e5580c5486eb435ff1cd0e7236d",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:50:35.214055+00:00",
+            "data": {
+              "intent": "showtimes",
+              "reason": "기존 영화·지역·브랜드를 유지하며 실제 회차 조회 조건만 갱신",
+              "updates": {
+                "watch_date": "2026-11-20",
+                "start_time": "14:00",
+                "deadline": "18:00",
+                "deadline_inclusive": true,
+                "region": "서울 강남",
+                "movie_nm": "폭설"
+              },
+              "selected_tools": [
+                "get_showtimes"
+              ]
+            }
+          },
+          {
+            "event_id": "0d687a2367d642aabc939d3e2c7f1749",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:35.228077+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 16.28
+            }
+          },
+          {
+            "event_id": "d7341bb75d4f4d88914d2bfa67abfcc1",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:35.244317+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "bb5c3dd3fe0b4313ad809149137a4e2d",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "work_plan",
+            "timestamp": "2026-11-20T03:50:35.258017+00:00",
+            "data": {
+              "tasks": [
+                {
+                  "tool": "get_showtimes",
+                  "args": {
+                    "region": "서울 강남",
+                    "movie_nm": "폭설",
+                    "watch_date": "2026-11-20",
+                    "start_time": "14:00",
+                    "deadline": "18:00",
+                    "deadline_inclusive": true
+                  }
+                }
+              ],
+              "attempt": 0
+            }
+          },
+          {
+            "event_id": "f63e536b59df4966b186fdcb86d313b0",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:35.272878+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 14.82
+            }
+          },
+          {
+            "event_id": "4de50a26c8e641a5a5173b0bacd3dc1a",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:35.289280+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "780c2b49c5d24cf7b928fe02dfc8448b",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "tool_request",
+            "timestamp": "2026-11-20T03:50:35.304698+00:00",
+            "data": {
+              "tool": "get_showtimes",
+              "arguments": {
+                "region": "서울 강남",
+                "movie_nm": "폭설",
+                "watch_date": "2026-11-20",
+                "start_time": "14:00",
+                "deadline": "18:00",
+                "deadline_inclusive": true
+              }
+            }
+          },
+          {
+            "event_id": "8b2d5c2670e245b1ad5601ff2dfbfea6",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "tool_response",
+            "timestamp": "2026-11-20T03:50:36.763201+00:00",
+            "data": {
+              "tool": "get_showtimes",
+              "result": {
+                "ok": true,
+                "data": {
+                  "items": [
+                    {
+                      "schedule_id": "megabox:2611201372132",
+                      "brand": "megabox",
+                      "brand_name": "메가박스",
+                      "movie_nm": "폭설",
+                      "movie_id": "26070001",
+                      "cgv_movie_id": null,
+                      "cinema": "메가박스 강남",
+                      "cinema_id": "1372",
+                      "screen": "10층 르 리클라이너 4관[Laser]",
+                      "format": "2D",
+                      "business_date": "2026-11-20",
+                      "watch_date": "2026-11-20",
+                      "start_time": "14:10",
+                      "end_time": "15:48",
+                      "start_label": "14:10",
+                      "end_label": "15:48",
+                      "starts_at": "2026-11-20T14:10:00+09:00",
+                      "ends_at": "2026-11-20T15:48:00+09:00",
+                      "remaining_seats": 36,
+                      "total_seats": 53,
+                      "availability": "available",
+                      "checked_at": "2026-11-20T12:50:36.762275+09:00",
+                      "booking_url": "https://www.megabox.co.kr/booking",
+                      "source": "메가박스 상영시간표"
+                    }
+                  ],
+                  "checked_at": "2026-11-20T12:50:36.762275+09:00",
+                  "checked_theaters": [
+                    "CGV 강남",
+                    "메가박스 강남"
+                  ],
+                  "complete": true,
+                  "warnings": [],
+                  "booking_url": "https://cgv.co.kr/cnm/movieBook",
+                  "providers": [
+                    {
+                      "brand": "cgv",
+                      "label": "CGV",
+                      "status": "ok",
+                      "count": 0,
+                      "booking_url": "https://cgv.co.kr/cnm/movieBook"
+                    },
+                    {
+                      "brand": "lotte",
+                      "label": "롯데시네마",
+                      "status": "no_theater",
+                      "count": 0,
+                      "error_code": "NOT_FOUND",
+                      "message": "해당 지역 이름에 맞는 롯데시네마 지점을 찾지 못했습니다.",
+                      "booking_url": "https://www.lottecinema.co.kr/NLCHS/Ticketing"
+                    },
+                    {
+                      "brand": "megabox",
+                      "label": "메가박스",
+                      "status": "ok",
+                      "count": 1,
+                      "booking_url": "https://www.megabox.co.kr/booking"
+                    }
+                  ],
+                  "booking_urls": [
+                    {
+                      "brand": "cgv",
+                      "label": "CGV",
+                      "url": "https://cgv.co.kr/cnm/movieBook"
+                    },
+                    {
+                      "brand": "lotte",
+                      "label": "롯데시네마",
+                      "url": "https://www.lottecinema.co.kr/NLCHS/Ticketing"
+                    },
+                    {
+                      "brand": "megabox",
+                      "label": "메가박스",
+                      "url": "https://www.megabox.co.kr/booking"
+                    }
+                  ],
+                  "notice": "잔여석은 조회 시점 기준이며 예매 과정에서 바뀔 수 있습니다. 해당 영화관에서 최종 확인해 주세요."
+                }
+              },
+              "elapsed_ms": 1440.04
+            }
+          },
+          {
+            "event_id": "1769339774fd4a50b536c4862a3f2d73",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:36.781513+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 1476.03
+            }
+          },
+          {
+            "event_id": "e9f20a23a690487184ab8a66d40bb576",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:36.795495+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "db098ba865d04043b9feec0b6b2cc55c",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:36.809947+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          },
+          {
+            "event_id": "17f670b1493b4f22ac242f9e19706735",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:36.824995+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "ce4f0f90def448e185d259052db88b7a",
+            "session_id": "163e14060f3c4f16bf45e9b8304133cb",
+            "run_id": "de28402ddaa24c9b84e1aaeaf786be1b",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:36.838238+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    },
+    {
+      "message": "2026-11-21 오후 3시 이후 강남에서 영화를 보고 오후 7시 전에 끝내고 싶어",
+      "status": 200,
+      "elapsed_ms": 3133,
+      "response": {
+        "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+        "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+        "answer": "보고 싶은 영화 제목을 알려주세요.",
+        "question": "보고 싶은 영화 제목을 알려주세요.",
+        "notice": null,
+        "movie_matches": [],
+        "conditions": {
+          "watch_date": "2026-11-21",
+          "start_time": "15:00",
+          "deadline": "19:00",
+          "deadline_inclusive": false,
+          "region": "강남",
+          "genre": null,
+          "movie_cd": null,
+          "movie_nm": null,
+          "movie_query": null,
+          "brands": null,
+          "budget": null,
+          "buffer_minutes": null,
+          "place_kind": null,
+          "cuisine": null,
+          "place_region": null,
+          "place_anchor": null
+        },
+        "recommendations": [],
+        "excluded": [],
+        "cinemas": [],
+        "showtimes": [],
+        "showtime_search": null,
+        "places": [],
+        "place_search": null,
+        "course": {},
+        "events": [
+          {
+            "event_id": "f9154388fc23447c87efe7b3fc7f3557",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:36.890530+00:00",
+            "data": {
+              "stage": "analyze"
+            }
+          },
+          {
+            "event_id": "0ac16771e26042ffa24cd1a8213b451a",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "llm_decision",
+            "timestamp": "2026-11-20T03:50:39.828905+00:00",
+            "data": {
+              "intent": "showtimes",
+              "reason": "사용자가 2026-11-21에 강남 지역에서 오후 3시 이후 시작하고 오후 7시 전에 끝나는 영화를 원함. 영화 제목 미지정.",
+              "updates": {
+                "watch_date": "2026-11-21",
+                "start_time": "15:00",
+                "deadline": "19:00",
+                "deadline_inclusive": false,
+                "region": "강남"
+              },
+              "selected_tools": [
+                "get_showtimes"
+              ]
+            }
+          },
+          {
+            "event_id": "c2232b767cba4c8bad2ea47961bd4069",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:39.840790+00:00",
+            "data": {
+              "stage": "analyze",
+              "status": "completed",
+              "elapsed_ms": 2934.46
+            }
+          },
+          {
+            "event_id": "3c18b78037ed4f08ae9b47938293df7d",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:39.858292+00:00",
+            "data": {
+              "stage": "plan"
+            }
+          },
+          {
+            "event_id": "a0c3170caf284b20b8fcd2a8f8d7fb93",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:39.870326+00:00",
+            "data": {
+              "stage": "plan",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "1b1a090700bb4016ba682b2b13b346d5",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:39.888199+00:00",
+            "data": {
+              "stage": "execute"
+            }
+          },
+          {
+            "event_id": "b63b652f7d0e45a891aa5072a2d690bb",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:39.904976+00:00",
+            "data": {
+              "stage": "execute",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "6d572a2460a44b7c82df7b87b8aebf56",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:39.924175+00:00",
+            "data": {
+              "stage": "judge"
+            }
+          },
+          {
+            "event_id": "172346214db6491e9952d67241b7c51f",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:39.940312+00:00",
+            "data": {
+              "stage": "judge",
+              "status": "completed",
+              "elapsed_ms": 0
+            }
+          },
+          {
+            "event_id": "1d544a58d93c48d2a46b78cd12d5cb16",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_start",
+            "timestamp": "2026-11-20T03:50:39.953570+00:00",
+            "data": {
+              "stage": "respond"
+            }
+          },
+          {
+            "event_id": "2f5473b90dac46e890d449df511348b9",
+            "session_id": "dc0beedeba6f4ba0b0166ad3c819143c",
+            "run_id": "0c80aff2f8ba4de3b99a27e6f652423d",
+            "type": "stage_end",
+            "timestamp": "2026-11-20T03:50:39.965826+00:00",
+            "data": {
+              "stage": "respond",
+              "status": "completed",
+              "elapsed_ms": 0.01
+            }
+          }
+        ],
+        "errors": [],
+        "replans": 0
+      }
+    }
+  ]
+}

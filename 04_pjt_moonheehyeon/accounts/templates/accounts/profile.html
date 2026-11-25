@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div class="eyebrow">MY READING SPACE</div><h1 class="serif">책을 읽는 당신의 이야기.</h1><p>나의 취향과 독서 습관을 차곡차곡 담아두는 공간.</p></div>
+<div class="profile-layout">
+  <aside class="profile-summary">
+    <div class="profile-avatar" aria-hidden="true">{{ user_profile.username|first|upper }}</div>
+    <h1>{{ user_profile.username }}</h1><p>{{ user_profile.date_joined|date:'Y년 m월 d일' }}부터 함께 읽는 중</p>
+    <div class="profile-stats"><div class="profile-stat"><strong>{{ user_profile.weekly_reading_hours|default_if_none:'—' }}</strong><span>주간 독서 시간</span></div><div class="profile-stat"><strong>{{ user_profile.annual_reading_count|default_if_none:'—' }}</strong><span>연간 독서량</span></div></div>
+  </aside>
+  <section class="card"><div class="card-header"><h2 class="h5 mb-0">독서 프로필</h2></div><div class="card-body">
+    <dl class="profile-fields">
+      <div class="profile-field"><dt>아이디</dt><dd>{{ user_profile.username }}</dd></div>
+      <div class="profile-field"><dt>이름</dt><dd>{{ user_profile.last_name }}{{ user_profile.first_name }}</dd></div>
+      <div class="profile-field"><dt>이메일</dt><dd>{{ user_profile.email|default:'미등록' }}</dd></div>
+      <div class="profile-field"><dt>성별</dt><dd>{{ user_profile.get_gender_display|default:'미등록' }}</dd></div>
+      <div class="profile-field"><dt>나이</dt><dd>{{ user_profile.age|default_if_none:'미등록' }}</dd></div>
+      <div class="profile-field"><dt>주간 평균 독서 시간</dt><dd>{% if user_profile.weekly_reading_hours %}{{ user_profile.weekly_reading_hours }}시간{% else %}미등록{% endif %}</dd></div>
+      <div class="profile-field"><dt>연간 독서량</dt><dd>{% if user_profile.annual_reading_count %}{{ user_profile.annual_reading_count }}권{% else %}미등록{% endif %}</dd></div>
+      <div class="profile-field"><dt>관심 장르</dt><dd>{{ user_profile.get_interested_genres_display|default:'미등록' }}</dd></div>
+    </dl>
+    {% if request.user == user_profile %}<div class="profile-actions"><a href="{% url 'accounts:update' %}" class="btn btn-primary">회원정보 수정</a><a href="{% url 'accounts:change_password' %}" class="btn btn-secondary">비밀번호 변경</a><form action="{% url 'accounts:delete' %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-danger">회원탈퇴</button></form></div>{% endif %}
+  </div></section>
+</div>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}로그인 | 책 이야기{% endblock title %}
+{% block content %}
+<div class="form-shell form-shell-narrow">
+  <nav class="breadcrumb" aria-label="현재 위치"><a href="{% url 'books:index' %}">도서 목록</a><span aria-hidden="true">/</span><span>로그인</span></nav>
+  <section class="panel form-panel">
+    <header class="form-header"><p class="eyebrow">WELCOME BACK</p><h1>로그인</h1><p>다시 만나 반가워요. 함께 읽던 이야기를 이어가세요.</p></header>
+    
+    <form action="{% url 'accounts:login' %}" method="POST">
+      {% csrf_token %}
+      {% include 'includes/form_fields.html' %}
+      <div class="form-actions"><button class="button" type="submit">로그인</button></div>
+    </form>
+    <p class="form-after">계정이 없으신가요? <a href="{% url 'accounts:signup' %}">회원가입</a></p>
+  </section>
+</div>
+{% endblock content %}
